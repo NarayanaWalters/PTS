@@ -3,7 +3,7 @@ extends Area2D
 export var contents = []
 
 func _ready():
-	pass
+	set_meta("type", "loot")
 
 func set_contents(var new_contents):
 	contents = new_contents

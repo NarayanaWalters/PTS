@@ -25,6 +25,10 @@ var time_since_attack = 9999
 func _ready():
 	set_fixed_process(true)
 	init_npc()
+	if attitude == "friendly":
+		set_meta("type", "npc")
+	else:
+		set_meta("type", "enemy")
 	"""
 	print(name)
 	print(attitude)

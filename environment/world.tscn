@@ -39,12 +39,12 @@ transform/pos = Vector2( 576, 544 )
 
 [node name="NPC" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 264, 0 )
-id = "h_zombie_minotaur"
+transform/pos = Vector2( 234, 0 )
+id = "default_npc"
 
 [node name="LootBag" parent="." instance=ExtResource( 5 )]
 
-transform/pos = Vector2( 94, 0 )
+transform/pos = Vector2( 34, 60 )
 contents = [ "asd", "afaf" ]
 
 

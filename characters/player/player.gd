@@ -15,7 +15,7 @@ var rotation = 0
 var mouse_sens = 0.1
 
 func _ready():
-	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	set_meta("type", "player")
 	set_process_input(true)
 	set_process(true)

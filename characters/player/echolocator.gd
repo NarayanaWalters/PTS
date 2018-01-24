@@ -1,8 +1,8 @@
 extends Node2D
 
 const PIXELS_PER_METER = 16
-const MIN_CLICK_RATE = 0.06 #per second
-const MAX_CLICK_RATE = 0.14 
+const MIN_CLICK_RATE = 0.2 #per second
+const MAX_CLICK_RATE = 0.4 
 const MAX_DISTANCE = 30 # meters
 
 const MIN_PITCH = 1
@@ -12,6 +12,14 @@ onready var ping_ray = get_node("RayCast2D")
 onready var click_player = get_node("ClickPlayer")
 
 const DIS_PER_TIER = [2, 8, MAX_DISTANCE]
+
+var click_sounds = ["an", "e", "oo"]
+var npc_sound = "na"
+var enemy_sound = "ra"
+var loot_sound = "la"
+var int_sound = "ka"
+var alternate = false
+
 
 var time_since_last_click = 0
 
@@ -62,10 +70,27 @@ func calc_click_rate(var distance, var tier):
 	return lerp(MIN_CLICK_RATE, MAX_CLICK_RATE, t)
 
 func play_click(var tier):
-	var pitch = MIN_PITCH + tier * PITCH_DIFF_PER_TIER
+	#var pitch = MIN_PITCH + tier * PITCH_DIFF_PER_TIER
+	var sound = click_sounds[tier]
+	alternate = !alternate
+	if alternate and (ping_ray.is_colliding()):
+		var hit_obj = ping_ray.get_collider()
+		if hit_obj.has_meta("type"):
+			var type = hit_obj.get_meta("type")
+			if type == "npc":
+				sound = npc_sound
+			elif type == "enemy":
+				sound = enemy_sound
+			elif type == "interactable":
+				sound = int_sound
+			elif type == "loot":
+				sound = loot_sound
+	
+	
 	click_player.stop_all()
-	var click_voice = click_player.play("click" + str(tier + 1))
-	click_player.set_pitch_scale(click_voice, pitch)
+	
+	var click_voice = click_player.play(sound)
+	#click_player.set_pitch_scale(click_voice, pitch)
 
 # some objects react to being echolocated at, e.g. chimes or gongs
 func tap_hit_obj():
