@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://characters/player/inventory/inventory.gd" type="Script" id=1]
+
+[node name="Inventory" type="Label"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -272.0
+margin/top = -209.0
+margin/right = -176.0
+margin/bottom = -195.0
+text = "asdasdasdasdd"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script/script = ExtResource( 1 )
+
+

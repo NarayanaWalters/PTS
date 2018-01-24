@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://characters/enemy/npc.gd" type="Script" id=1]
+[ext_resource path="res://characters/health.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 10.0
+
+[node name="NPC" type="KinematicBody2D"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 2
+collision/mask = 2
+collision/margin = 0.08
+script/script = ExtResource( 1 )
+id = ""
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+
+enabled = true
+cast_to = Vector2( 0, 50 )
+layer_mask = 3
+type_mask = 15
+
+[node name="Health" parent="." instance=ExtResource( 2 )]
+
+max_health = 50
+
+

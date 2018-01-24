@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=1]
+
+[ext_resource path="res://door_plate.gd" type="Script" id=1]
+[ext_resource path="res://sfx/gate_slam.smp" type="Sample" id=2]
+[ext_resource path="res://Ping_Idee_.wav" type="Sample" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 30, 30 )
+
+[sub_resource type="SampleLibrary" id=2]
+
+samples/Slam = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 2 )
+}
+samples/Test = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 3 )
+}
+
+[sub_resource type="CircleShape2D" id=3]
+
+custom_solver_bias = 0.0
+radius = 32.0
+
+[node name="DoorPlate" type="StaticBody2D"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 1, -31 )
+shapes/0/trigger = true
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+script/script = ExtResource( 1 )
+start_closed = false
+
+[node name="Door" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( 1, -31 )
+shape = SubResource( 1 )
+trigger = true
+_update_shape_index = 0
+
+[node name="SamplePlayer2D" type="SamplePlayer" parent="."]
+
+config/polyphony = 1
+config/samples = SubResource( 2 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
+
+[node name="Plate" type="Area2D" parent="."]
+
+transform/pos = Vector2( 0, 32 )
+input/pickable = true
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision/layers = 0
+collision/mask = 0
+
+[node name="TriggerArea" type="CollisionShape2D" parent="Plate"]
+
+shape = SubResource( 3 )
+trigger = true
+_update_shape_index = 0
+
+
