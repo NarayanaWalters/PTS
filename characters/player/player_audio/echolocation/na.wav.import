@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/na.wav-bee9e4ab7be59fc46a82d928e75abe23.sample"
+
+[deps]
+
+source_file="res://characters/player/player_audio/echolocation/na.wav"
+source_md5="2d3ec3c9e4eee5a6a6be4c8ea4834b14"
+
+dest_files=[ "res://.import/na.wav-bee9e4ab7be59fc46a82d928e75abe23.sample" ]
+dest_md5="e3fe5d71065a5d3204c8ec6ed0fb79be"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

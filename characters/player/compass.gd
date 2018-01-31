@@ -3,11 +3,13 @@ extends Node2D
 const MIN_PITCH = 1
 const MAX_PITCH_DIFF = 0.5
 
-onready var beat_player = get_node("HeartBeatPlayer")
+onready var beat_player = $HeartBeatPlayer #get_node("HeartBeatPlayer")
 
 var beat_voice = 0
 var last_r = 0
 var was_aligned = false
+
+var bus_index = 0
 
 # [rotation, pan, pitch]
 var alignments = [
@@ -17,11 +19,10 @@ var alignments = [
 [-PI / 2, -1, MIN_PITCH + MAX_PITCH_DIFF / 2]] #West
 
 func _ready():
-	beat_voice = beat_player.play("heartbeat_slow")
-	set_process(true)
+	bus_index = AudioServer.get_bus_index(beat_player.bus)
 
 func _process(delta):
-	var rotation = get_global_rot()
+	var rotation = global_rotation
 	calc_east_west(rotation)
 	calc_north_south(rotation)
 	# check_play_cross_sound(rotation)
@@ -34,15 +35,29 @@ func calc_east_west(var angle):
 	var si = sign(angle)
 	var diff = abs(abs(angle) - (PI / 2))
 	var pan_amnt = si * (1 - diff / (PI / 2))
-	beat_player.set_pan(beat_voice, clamp(pan_amnt,-1,1), 0, 0)
+	pan_amnt = clamp(pan_amnt,-1,1)
+	
+	var panner = AudioServer.get_bus_effect(bus_index, 1)
+	panner.pan = pan_amnt
+	
 
 #  1: north
 #  0: south
 func calc_north_south(var angle):
 	var pitch_amnt = clamp(1 - (PI - abs(angle)) / PI,0 ,1)
 	pitch_amnt = pitch_amnt * MAX_PITCH_DIFF + MIN_PITCH
-	beat_player.set_pitch_scale(beat_voice, pitch_amnt)
+	var pitcher = AudioServer.get_bus_effect(bus_index, 0)
+	pitcher.pitch_scale = pitch_amnt
+	#beat_player.set_pitch_scale(beat_voice, pitch_amnt)
+	
 
+
+
+
+
+
+
+#old code for detecting if player had passed vision across an axis
 func check_play_cross_sound(var rotation):
 	var aligned = is_aligned(rotation)
 	if !aligned && !was_aligned: 

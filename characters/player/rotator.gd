@@ -1,13 +1,13 @@
 extends Node2D
 
 var rot_speed = 0.03
-var rotation = 0
+var rot = 0
 
 func rotate_body(var body, r_input, align):
 	r_input *= rot_speed
-	rotation += r_input
+	rot += r_input
 	if !align:
-		body.set_global_rot(rotation)
+		body.global_rotation = rot
 	else:
 		align_to_axis(body)
 
@@ -22,5 +22,5 @@ func align_to_axis(var body):
 		final_r = PI
 	elif r < 315 && r >= 225:
 		final_r = 3*PI/2
-	rotation = final_r
-	body.set_global_rot(rotation)
+	rot = final_r
+	body.set_global_rot(rot)

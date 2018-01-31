@@ -3,18 +3,14 @@ extends RayCast2D
 # based on space in a direction determined by the raycast
 const MIN_RANGE = 40
 
-onready var sample_player = get_node("SamplePlayer")
+onready var sample_player = $AudioStreamPlayer #get_node("SamplePlayer")
 
 #export var is_left = true
 var rang = get_cast_to().y - MIN_RANGE
 var voice = 0
 func _ready():
-	voice = sample_player.play("dungeon_ambient_loop")
-	#var pan = -1
-	#if is_left:
-	#	pan = 1
-	#sample_player.set_pan(voice, pan)
-	set_process(true)
+	pass
+	#voice = sample_player.play("dungeon_ambient_loop")
 
 func _process(delta):
 	var distance = rang
@@ -23,4 +19,5 @@ func _process(delta):
 		var start_pos = get_global_pos()
 		distance = (end_point - start_pos).length() - MIN_RANGE
 	var vol = clamp(distance / rang, 0, 1)
-	sample_player.set_volume(voice, vol)
+	#sample_player.set_volume(voice, vol)
+	sample_player.volume_db = -(1 - vol)

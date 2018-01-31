@@ -13,6 +13,8 @@ onready var click_player = get_node("ClickPlayer")
 
 const DIS_PER_TIER = [2, 8, MAX_DISTANCE]
 
+var audio_folder = "res://characters/player/player_audio/echolocation/"
+
 var click_sounds = ["an", "e", "oo"]
 var npc_sound = "na"
 var enemy_sound = "ra"
@@ -41,7 +43,7 @@ func echolocate(var delta):
 # calculate distance from player to where raycast hits
 func calc_distance():
 	var distance = -1
-	var start_pos = get_global_pos()
+	var start_pos = global_position
 	var end_point = ping_ray.get_collision_point()
 	if (ping_ray.is_colliding()):
 		distance = (end_point - start_pos).length()
@@ -86,11 +88,11 @@ func play_click(var tier):
 			elif type == "loot":
 				sound = loot_sound
 	
-	
-	click_player.stop_all()
-	
-	var click_voice = click_player.play(sound)
-	#click_player.set_pitch_scale(click_voice, pitch)
+	click_player.stop()
+	var path = audio_folder + sound + ".wav"
+	click_player.stream = load(path)
+	click_player.play()
+
 
 # some objects react to being echolocated at, e.g. chimes or gongs
 func tap_hit_obj():
@@ -100,4 +102,3 @@ func tap_hit_obj():
 			hit_obj.tap()
 		if hit_obj.is_in_group("enemies"):
 			print("enemy")
-			pass
