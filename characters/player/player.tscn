@@ -34,7 +34,7 @@ radius = 10.0
 custom_solver_bias = 0.0
 radius = 40.0
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
 editor/display_folded = true
 input_pickable = false

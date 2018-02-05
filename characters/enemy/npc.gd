@@ -8,7 +8,7 @@ const attack_range = 20
 const sight_range = 480
 
 #initialize to default values
-var name = "default npc"
+var npc_name = "default npc"
 var attitude = "friendly"
 var move_speed = 2
 var attack_rate = 1.0
@@ -42,7 +42,7 @@ func _ready():
 
 func init_npc():
 	var npc_data = db.get_npc(id)
-	name = npc_data["name"]
+	npc_name = npc_data["name"]
 	attitude = npc_data["attitude"]
 	move_speed = npc_data["move_speed"]
 	attack_rate = npc_data["attack_rate"] * 1.0

@@ -2,7 +2,7 @@ extends StaticBody2D
 
 onready var door = get_node("Door")
 onready var plate = get_node("Plate")
-onready var sound_player = get_node("SamplePlayer2D")
+onready var sound_player = $AudioStreamPlayer2D
 
 export var start_closed = false
 var closed = false
@@ -27,7 +27,7 @@ func close():
 	set_collision_mask(start_msk)
 	set_layer_mask(start_lay)
 	#sound_player.play("close")
-	sound_player.play("Slam")
+	sound_player.play()
 
 func open():
 	closed = false
