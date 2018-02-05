@@ -1,9 +1,8 @@
-extends SamplePlayer2D
+extends AudioStreamPlayer2D
 
 const SOUND_PLAY_RATE = 0.4
 var time_since_last_played = 0
 var cur_sound_to_play = 0
-onready var sound_player = get_node("SamplePlayer2D")
 
 export var sound_key = [0,1,0]
 var cur_key = []
@@ -19,8 +18,7 @@ func _process(delta):
 		time_since_last_played -= SOUND_PLAY_RATE
 		cur_sound_to_play += 1
 		cur_sound_to_play %= sound_key.size()
-		sound_player.stop_all()
-		sound_player.play("Test")
+		play()
 		#voice_set_pitch_scale(v, sound_key[cur_sound_to_play] + 1)
 
 func add_sound(var s):

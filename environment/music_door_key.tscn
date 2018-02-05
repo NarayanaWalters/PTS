@@ -1,39 +1,18 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://music_door_key.gd" type="Script" id=1]
-[ext_resource path="res://Ping_Idee_.wav" type="Sample" id=2]
+[ext_resource path="res://characters/player/player_audio/footstep_1.wav" type="AudioStream" id=1]
+[ext_resource path="res://environment/music_door_key.gd" type="Script" id=2]
 
-[sub_resource type="SampleLibrary" id=1]
+[node name="MusicDoorKey" type="AudioStreamPlayer2D" index="0"]
 
-samples/Ping_Idee_ = {
-"db": 0.0,
-"pitch": 1.0,
-"priority": 0,
-"sample": ExtResource( 2 )
-}
-
-[node name="MusicDoorKey" type="SamplePlayer2D"]
-
-params/volume_db = 0.0
-params/pitch_scale = 1.0
-params/attenuation/min_distance = 1.0
-params/attenuation/max_distance = 2048.0
-params/attenuation/distance_exp = 1.0
-config/polyphony = 1
-config/samples = null
-config/pitch_random = 0.0
-script/script = ExtResource( 1 )
+stream = ExtResource( 1 )
+volume_db = 0.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+script = ExtResource( 2 )
 sound_key = [ 0, 1, 0 ]
-
-[node name="SamplePlayer2D" type="SamplePlayer2D" parent="."]
-
-params/volume_db = 0.0
-params/pitch_scale = 1.0
-params/attenuation/min_distance = 1.0
-params/attenuation/max_distance = 2048.0
-params/attenuation/distance_exp = 1.0
-config/polyphony = 1
-config/samples = SubResource( 1 )
-config/pitch_random = 0.0
 
 

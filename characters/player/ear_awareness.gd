@@ -10,7 +10,7 @@ var rang = get_cast_to().y - MIN_RANGE
 var voice = 0
 func _ready():
 	pass
-	#voice = sample_player.play("dungeon_ambient_loop")
+	sample_player.play()
 
 func _process(delta):
 	var distance = rang
@@ -19,5 +19,4 @@ func _process(delta):
 		var start_pos = get_global_pos()
 		distance = (end_point - start_pos).length() - MIN_RANGE
 	var vol = clamp(distance / rang, 0, 1)
-	#sample_player.set_volume(voice, vol)
-	sample_player.volume_db = lerp(0, 10, vol)
+	sample_player.volume_db = lerp(-85, -15, vol)
