@@ -35,10 +35,10 @@ func calc_east_west(var angle):
 	var si = sign(angle)
 	var diff = abs(abs(angle) - (PI / 2))
 	var pan_amnt = si * (1 - diff / (PI / 2))
-	pan_amnt = clamp(pan_amnt,-1,1)
+	pan_amnt = clamp(pan_amnt, -1, 1)
 	
 	var panner = AudioServer.get_bus_effect(bus_index, 1)
-	panner.pan = pan_amnt
+	panner.pan = -1 * pan_amnt
 	
 
 #  1: north

@@ -20,4 +20,4 @@ func _process(delta):
 		distance = (end_point - start_pos).length() - MIN_RANGE
 	var vol = clamp(distance / rang, 0, 1)
 	#sample_player.set_volume(voice, vol)
-	sample_player.volume_db = -(1 - vol)
+	sample_player.volume_db = lerp(0, 10, vol)

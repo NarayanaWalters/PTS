@@ -4,6 +4,8 @@ const MOVE_SPEED = 0.5 # meters per second
 const STEP_RATE = 0.5 # steps per second
 const FOOTSTEPS = ["footstep_1", "footstep_2", "footstep_3"] #footstep sounds
 
+var audio_folder = "res://characters/player/player_audio/"
+
 var time_since_last_step = 0
 
 onready var move_ray = $MoveRay #get_node("MoveRay") # collision checking
@@ -31,8 +33,9 @@ func attempt_step():
 	if (time_since_last_step > STEP_RATE):
 		time_since_last_step -= STEP_RATE
 		var step_index = randi() % FOOTSTEPS.size()
-		
-		#step_player.play(FOOTSTEPS[step_index])
+		var sample = load(audio_folder + FOOTSTEPS[step_index] + ".wav")
+		step_player.stream = sample
+		step_player.play()
 
 func signal_new_position():
 	get_tree().call_group("doors", "set_player", self)
