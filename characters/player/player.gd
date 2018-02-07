@@ -28,8 +28,10 @@ func _input(ev):
 		inventory_open = !inventory_open
 		if inventory_open:
 			inventory.show()
+			inventory.open()
 		else:
 			inventory.hide()
+			inventory.close()
 		inventory.set_process_input(inventory_open)
 		combat_manager.set_process_input(!inventory_open)
 	
