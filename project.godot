@@ -17,6 +17,7 @@ config/icon="res://icon.png"
 [autoload]
 
 entity_database="*res://entity_database.tscn"
+console="*res://console.tscn"
 
 [input]
 

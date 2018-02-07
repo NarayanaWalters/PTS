@@ -44,6 +44,9 @@ func _input(ev):
 		rotator.rotate_body(self, r, Input.is_action_pressed("align"))
 
 func _process(delta):
+	if (Input.is_action_pressed("exit")):
+		get_tree().quit()
+	
 	if inventory_open:
 		return
 	
@@ -56,8 +59,7 @@ func _process(delta):
 	
 	if (Input.is_action_pressed("ping")):
 		echolocator.echolocate(delta)
-	if (Input.is_action_pressed("exit")):
-		get_tree().quit()
+
 	
 
 func _physics_process(delta):

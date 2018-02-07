@@ -6,12 +6,13 @@
 [ext_resource path="res://characters/enemy/npc.tscn" type="PackedScene" id=4]
 [ext_resource path="res://environment/lootbag.tscn" type="PackedScene" id=5]
 
-[node name="World" type="Node2D" index="0"]
+[node name="World" type="Node2D"]
 
 [node name="Player" parent="." index="0" instance=ExtResource( 1 )]
 
 [node name="TileMap" type="TileMap" parent="." index="1"]
 
+position = Vector2( 0, -2.45547 )
 mode = 0
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
@@ -46,8 +47,5 @@ collision/safe_margin = 0.08
 [node name="LootBag" parent="." index="4" instance=ExtResource( 5 )]
 
 position = Vector2( 198.893, 0 )
-input_pickable = true
-audio_bus_override = false
-audio_bus_name = "Master"
 
 

@@ -1,6 +1,7 @@
-extends Label
+extends Node2D
 
 onready var db = get_node("/root/entity_database")
+onready var console = get_node("/root/console")
 
 enum Tab {PAPER_DOLL, BACKPACK, STATS, JOURNAL}
 enum PDoll {WEAPON, BACKUP, CHEST}
@@ -8,7 +9,7 @@ enum Stats {STR, CON, DEX, INT}
 
 const tabs = ["PAPER_DOLL", "BACKPACK", "STATS", "JOURNAL"]
 
-var cur_tab = BACKPACK
+var cur_tab = 0
 var cur_row = 0
 
 var inv = [
@@ -24,28 +25,38 @@ var inv = [
 
 func _ready():
 	#set_process_input(true)
-	update_text()
+	#update_text()
+	pass
 
 func _input(event):
-	if event.is_action_pressed("move_left"):
+	var update_console = true
+	if Input.is_action_just_released("move_left"):
 		tab_left()
-	if event.is_action_pressed("move_right"):
+	elif Input.is_action_just_released("move_right"):
 		tab_right()
-	if event.is_action_pressed("move_forward"):
+	elif Input.is_action_just_released("move_forward"):
 		row_up()
-	if event.is_action_pressed("move_backward"):
+	elif Input.is_action_just_released("move_backward"):
 		row_down()
-	if event.is_action_pressed("turn_left"):
+	elif Input.is_action_just_released("turn_left"):
 		drop_item()
-	if event.is_action_pressed("turn_right"):
+	elif Input.is_action_just_released("turn_right"):
 		equip_unequip_item()
+	else:
+		update_console = false
 	
 	if inv[cur_tab].size() > 0:
 		cur_row %= inv[cur_tab].size()
 	else:
 		cur_row = 0
 	
-	update_text()
+	
+	var txt = "Inventory : "
+	txt += str(tabs[cur_tab]) + " : "
+	txt += get_current_item_str() + " : "
+	if update_console:
+		console.output(txt)
+
 
 func tab_left():
 	cur_tab = (cur_tab - 1) % Tab.size()
@@ -61,14 +72,26 @@ func row_up():
 func row_down():
 	cur_row += 1
 
+func get_current_item_str():
+	if inv[cur_tab].size() > 0:
+		return str(inv[cur_tab][cur_row]) 
+	else:
+		return "empty"
+
 #drop item from backpack or paper doll
 func drop_item():
-	if cur_tab == PAPER_DOLL && inv[PAPER_DOLL][cur_row] != "":
-		print("dropping " + str(inv[PAPER_DOLL][cur_row]))
-		inv[PAPER_DOLL][cur_row] = ""
-	elif cur_tab == BACKPACK && inv[BACKPACK].size() > 0:
-		print("dropping " + str(inv[BACKPACK][cur_row]))
-		inv[BACKPACK].remove(cur_row)
+	if cur_tab == PAPER_DOLL:
+		if inv[PAPER_DOLL][cur_row] != "":
+			console.output("dropping " + str(inv[PAPER_DOLL][cur_row]))
+			inv[PAPER_DOLL][cur_row] = ""
+		else:
+			console.output("nothing to drop")
+	elif cur_tab == BACKPACK:
+		if inv[BACKPACK].size() > 0:
+			console.output("dropping " + str(inv[BACKPACK][cur_row]))
+			inv[BACKPACK].remove(cur_row)
+		else:
+			console.output("backpack empty")
 
 # equip items from inventory or unequip item from paper doll
 func equip_unequip_item():
