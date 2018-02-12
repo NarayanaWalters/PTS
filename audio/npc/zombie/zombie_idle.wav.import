@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/zombie_idle.wav-3aa7d8cff5c099996884bf2fa438579f.sample"
+
+[deps]
+
+source_file="res://audio/npc/zombie/zombie_idle.wav"
+source_md5="d225d962c3ea0ba522378211e91f37e9"
+
+dest_files=[ "res://.import/zombie_idle.wav-3aa7d8cff5c099996884bf2fa438579f.sample" ]
+dest_md5="3ed46f5d4478f39b03aff894aef72a00"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

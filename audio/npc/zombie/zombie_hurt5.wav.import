@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/zombie_hurt5.wav-2f0624dcf66abf1de0231f5c8155ab8e.sample"
+
+[deps]
+
+source_file="res://audio/npc/zombie/zombie_hurt5.wav"
+source_md5="c82fbae8d42c93664edb25e402734b92"
+
+dest_files=[ "res://.import/zombie_hurt5.wav-2f0624dcf66abf1de0231f5c8155ab8e.sample" ]
+dest_md5="603d8670ac2fa79251408da3e6aec411"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

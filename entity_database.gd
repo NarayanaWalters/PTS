@@ -69,8 +69,22 @@ var npcs = {
 "attributes":["minotaur", "undead"],
 "equipped":{},
 "inventory":[]
+},
+
+"h_zombie": {
+"name" : "Zombie", "attitude": "hostile",
+"health": 80, "move_speed":1, "attack_rate":2.0, "base_damage": 10,
+"attributes":["minotaur", "undead"],
+"equipped":{},
+"inventory":[]
 }
 
+}
+
+var dbs = {
+	"items" : items,
+	"spells" : spells,
+	"npcs" : npcs
 }
 
 func get_item(var id):

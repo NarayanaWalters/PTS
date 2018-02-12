@@ -20,24 +20,22 @@ var player_pos = Vector2(0, 0)
 onready var rc = get_node("RayCast2D")
 onready var health = get_node("Health")
 
+var alert_sound
+var chase_sound
+var prep_attack_sound
+var attack_sound
+var hurt_sound
+
 var time_since_attack = 9999
 
 func _ready():
 	set_fixed_process(true)
 	init_npc()
+	set_meta("attitude", attitude)
 	if attitude == "friendly":
 		set_meta("type", "npc")
 	else:
 		set_meta("type", "enemy")
-	"""
-	print(name)
-	print(attitude)
-	print(move_speed)
-	print(attack_rate)
-	print(base_damage)
-	print(inventory)
-	print(equipped)
-	"""
 
 
 func init_npc():
@@ -67,11 +65,10 @@ func default_init():
 	set_meta("type", "friend")
 
 func _fixed_process(delta):
-	seek_and_attack_player(delta)
+	if attitude == "hostile":
+		seek_and_attack_player(delta)
 
 func seek_and_attack_player(var delta):
-	if attitude != "hostile":
-		return
 	time_since_attack += delta
 	if player_is_in_sight_range() and can_see_player():
 		if player_is_in_range():
