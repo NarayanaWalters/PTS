@@ -9,13 +9,14 @@
 custom_solver_bias = 0.0
 radius = 10.0
 
-[node name="NPC" type="KinematicBody2D" index="0"]
+[node name="NPC" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Pickable", "collision" ]
 id = ""
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
@@ -27,13 +28,13 @@ shape = SubResource( 1 )
 enabled = true
 exclude_parent = true
 cast_to = Vector2( 0, 50 )
-collision_mask = 1
+collision_mask = 2
 
 [node name="Health" parent="." index="2" instance=ExtResource( 2 )]
 
 max_health = 50
 
-[node name="AudioController" type="AudioStreamPlayer" parent="." index="3"]
+[node name="NPCAudioController" type="AudioStreamPlayer" parent="." index="3"]
 
 stream = null
 volume_db = 0.0

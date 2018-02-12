@@ -19,27 +19,21 @@ var equipped = {}
 var player_pos = Vector2(0, 0)
 onready var rc = get_node("RayCast2D")
 onready var health = get_node("Health")
-
-var alert_sound
-var chase_sound
-var prep_attack_sound
-var attack_sound
-var hurt_sound
+onready var audio_controller = $NPCAudioController
 
 var time_since_attack = 9999
 
+var saw_player = false
+
 func _ready():
-	set_fixed_process(true)
 	init_npc()
 	set_meta("attitude", attitude)
-	if attitude == "friendly":
-		set_meta("type", "npc")
-	else:
-		set_meta("type", "enemy")
 
 
 func init_npc():
 	var npc_data = db.get_npc(id)
+	if npc_data.has("sounds"):
+		audio_controller.init_sounds(npc_data["sounds"])
 	npc_name = npc_data["name"]
 	attitude = npc_data["attitude"]
 	move_speed = npc_data["move_speed"]
@@ -54,54 +48,53 @@ func init_npc():
 		var weapon = db.get_item(equipped["main hand"])
 		base_damage = weapon["damage"]
 		attack_rate = weapon["attack_rate"]
-		
 	
-	set_meta("type", "friend")
 	if attitude == "hostile":
 		add_to_group("enemies")
-		set_meta("type", "enemy")
 
-func default_init():
-	set_meta("type", "friend")
-
-func _fixed_process(delta):
+func _physics_process(delta):
 	if attitude == "hostile":
 		seek_and_attack_player(delta)
+		time_since_attack += delta
 
 func seek_and_attack_player(var delta):
-	time_since_attack += delta
 	if player_is_in_sight_range() and can_see_player():
+		if !saw_player:
+			saw_player = true
+			audio_controller.state = 1
+			audio_controller.alert()
 		if player_is_in_range():
 			attack()
 		else:
-			move_to_player_pos()
+			move_to_player_pos(delta)
 
 func player_is_in_sight_range():
-	var pos = get_global_pos()
+	var pos = global_position
 	var dis = player_pos.distance_squared_to(pos)
 	if dis < sight_range * sight_range:
 		return true
 	return false
 
 func player_is_in_range():
-	var pos = get_global_pos()
+	var pos = global_position
 	var dis = player_pos.distance_squared_to(pos)
 	if dis < attack_range * attack_range:
 		return true
 	return false
 
-func move_to_player_pos():
-	var pos = get_global_pos()
+func move_to_player_pos(var delta):
+	var pos = global_position
 	var dir = (player_pos - pos).normalized()
-	move(dir * move_speed)
+	move_and_collide(dir * move_speed * delta)
 
 func can_see_player():
-	rc.set_cast_to(player_pos - get_global_pos())
+	rc.set_cast_to(player_pos - global_position)
 	return rc.is_colliding() && rc.get_collider().has_meta("type") && rc.get_collider().get_meta("type") == "player"
 
 func attack():
 	if time_since_attack > attack_rate:
 		time_since_attack = 0
+		audio_controller.attack()
 		if rc.is_colliding() && rc.get_collider().has_method("deal_damage"):
 			rc.get_collider().deal_damage(base_damage)
 	
@@ -110,8 +103,9 @@ func update_player_pos(var p_pos):
 	player_pos = p_pos
 
 func deal_damage(var dmg):
+	audio_controller.hurt()
 	if attitude != "hostile":
 		attitude = "hostile"
 		add_to_group("enemies")
-		set_meta("type", "enemy")
+		set_meta("attitude", attitude)
 	health.damage(dmg)

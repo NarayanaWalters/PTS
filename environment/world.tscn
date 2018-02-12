@@ -6,7 +6,7 @@
 [ext_resource path="res://characters/enemy/npc.tscn" type="PackedScene" id=4]
 [ext_resource path="res://environment/lootbag.tscn" type="PackedScene" id=5]
 
-[node name="World" type="Node2D" index="0"]
+[node name="World" type="Node2D"]
 
 [node name="Player" parent="." index="0" instance=ExtResource( 1 )]
 
@@ -39,10 +39,7 @@ position = Vector2( 594.225, 0 )
 [node name="NPC" parent="." index="3" instance=ExtResource( 4 )]
 
 position = Vector2( 286.981, 0 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
+id = "h_zombie"
 
 [node name="LootBag" parent="." index="4" instance=ExtResource( 5 )]
 

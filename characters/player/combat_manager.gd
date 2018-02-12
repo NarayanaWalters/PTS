@@ -18,4 +18,5 @@ func attempt_attack():
 		print("attack")
 		last_attack_time = cur_time
 		if is_colliding() && get_collider().has_method("deal_damage"):
+			print("k")
 			get_collider().deal_damage(DAMAGE)

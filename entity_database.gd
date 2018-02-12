@@ -1,10 +1,11 @@
 extends Node
 
-const name = "name"
 const type = "type"
 const stackable = "stackable"
 const value = "value"
 const attack_rate = "attack_rate"
+
+const npc_audio_path = "res://audio/npc/"
 
 var items = {
 "default_item":{
@@ -73,10 +74,17 @@ var npcs = {
 
 "h_zombie": {
 "name" : "Zombie", "attitude": "hostile",
-"health": 80, "move_speed":1, "attack_rate":2.0, "base_damage": 10,
+"health": 80, "move_speed":20, "attack_rate":2.0, "base_damage": 10,
 "attributes":["minotaur", "undead"],
 "equipped":{},
-"inventory":[]
+"inventory":[],
+"sounds" : {
+	"path" : npc_audio_path + "zombie/zombie",
+	"idle":6,
+	"chase":2,
+	"alert":5,
+	"attack":4,
+	"hurt":7}
 }
 
 }
