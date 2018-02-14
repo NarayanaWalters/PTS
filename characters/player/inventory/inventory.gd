@@ -50,11 +50,13 @@ func _input(event):
 	elif Input.is_action_just_released("turn_right"):
 		equip_unequip_item()
 	
-
+# true: open inventory, false: close it
 func open(var b):
 	if b:
 		console.output("inventory opened")
 		audio_controller.open()
+		if cur_tab == BACKPACK or cur_tab == PAPER_DOLL:
+			audio_controller.play_item_stats(get_current_slot_contents())
 		output_pos()
 	else:
 		console.output("inventory closed")
@@ -90,6 +92,16 @@ func clamp_row():
 	else:
 		cur_row = 0
 
+func play_sound_for_current_slot():
+	if cur_tab == BACKPACK or cur_tab == PAPER_DOLL:
+		audio_controller.play_item_stats(get_current_slot_contents())
+
+func get_current_slot_contents():
+	if inv[cur_tab].size() > 0:
+		return inv[cur_tab][cur_row]
+	else:
+		return null
+
 #drop item from backpack or paper doll
 func drop_item():
 	if cur_tab != PAPER_DOLL and cur_tab != BACKPACK:
@@ -97,6 +109,7 @@ func drop_item():
 	
 	if inv[cur_tab].size() > 0:
 		console.output("dropping " + str(inv[cur_tab][cur_row]))
+		audio_controller.drop_item(inv[cur_tab][cur_row])
 		inv[cur_tab].remove(cur_row)
 	else:
 		console.output("nothing to drop")
@@ -104,11 +117,15 @@ func drop_item():
 # equip items from inventory or unequip item from paper doll
 func equip_unequip_item():
 	if cur_tab == PAPER_DOLL:
+		audio_controller.equip_item(get_current_slot_contents())
 		unequip_from_p_doll()
 	elif cur_tab == BACKPACK:
+		audio_controller.unequip_item(get_current_slot_contents())
 		equip_from_backpack()
 
 func unequip_from_p_doll():
+	if inv[PAPER_DOLL].size() == 0:
+		return
 	var item = inv[PAPER_DOLL][cur_row]
 	if item != "":
 		inv[BACKPACK].push_front(item)
@@ -129,6 +146,9 @@ func insert_into_backpack(var item_id):
 	inv[BACKPACK].push_front(item_id)
 
 func output_pos():
+	audio_controller.clear_sound_queue()
+	audio_controller.play_tab_sound(cur_tab)
+	play_sound_for_current_slot()
 	var item_str = "empty"
 	if inv[cur_tab].size() > 0:
 		item_str = str(inv[cur_tab][cur_row]) 
