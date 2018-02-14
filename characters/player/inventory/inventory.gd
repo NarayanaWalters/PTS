@@ -55,8 +55,6 @@ func open(var b):
 	if b:
 		console.output("inventory opened")
 		audio_controller.open()
-		if cur_tab == BACKPACK or cur_tab == PAPER_DOLL:
-			audio_controller.play_item_stats(get_current_slot_contents())
 		output_pos()
 	else:
 		console.output("inventory closed")
@@ -91,10 +89,6 @@ func clamp_row():
 		cur_row = fposmod(cur_row, siz)
 	else:
 		cur_row = 0
-
-func play_sound_for_current_slot():
-	if cur_tab == BACKPACK or cur_tab == PAPER_DOLL:
-		audio_controller.play_item_stats(get_current_slot_contents())
 
 func get_current_slot_contents():
 	if inv[cur_tab].size() > 0:
@@ -142,13 +136,18 @@ func equip_from_backpack():
 	else:
 		console.output("nothing to equip")
 
+func pickup_items(var items_list):
+	pass
+
 func insert_into_backpack(var item_id):
 	inv[BACKPACK].push_front(item_id)
 
 func output_pos():
 	audio_controller.clear_sound_queue()
 	audio_controller.play_tab_sound(cur_tab)
-	play_sound_for_current_slot()
+	if cur_tab == BACKPACK or cur_tab == PAPER_DOLL:
+		audio_controller.play_item_stats(get_current_slot_contents())
+	
 	var item_str = "empty"
 	if inv[cur_tab].size() > 0:
 		item_str = str(inv[cur_tab][cur_row]) 

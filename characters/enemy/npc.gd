@@ -28,6 +28,7 @@ var saw_player = false
 func _ready():
 	init_npc()
 	set_meta("attitude", attitude)
+	set_meta("type", npc)
 
 
 func init_npc():

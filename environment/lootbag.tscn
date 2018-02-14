@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://environment/lootbag.gd" type="Script" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -14,7 +16,9 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
+script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
+contents = [  ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 

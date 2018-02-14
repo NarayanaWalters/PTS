@@ -1,4 +1,4 @@
-extends AudioStreamPlayer
+extends AudioStreamPlayer2D
 
 enum states {IDLE, CHASE}
 var state = 0
