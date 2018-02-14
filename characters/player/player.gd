@@ -16,28 +16,9 @@ var mouse_sens = 0.1
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	set_meta("type", "player")
-	inventory.set_process_input(inventory_open)
-	combat_manager.set_process_input(!inventory_open)
-	inventory.hide()
-	#set_process_input(true)
-	#set_process(true)
-	#set_fixed_process(true)
+
 
 func _input(ev):
-	if ev.is_action_pressed("open_close_inventory"):
-		inventory_open = !inventory_open
-		if inventory_open:
-			inventory.show()
-			inventory.open()
-		else:
-			inventory.hide()
-			inventory.close()
-		inventory.set_process_input(inventory_open)
-		combat_manager.set_process_input(!inventory_open)
-	
-	if inventory_open:
-		return
-	
 	if ev.is_action_pressed("interact"):
 		interactor.attempt_interact()
 	
@@ -46,8 +27,6 @@ func _input(ev):
 		rotator.rotate_body(self, r, Input.is_action_pressed("align"))
 
 func _process(delta):
-	if (Input.is_action_pressed("exit")):
-		get_tree().quit()
 	
 	if inventory_open:
 		return

@@ -2,6 +2,9 @@ extends Node2D
 
 onready var db = get_node("/root/entity_database")
 onready var console = get_node("/root/console")
+onready var audio_controller = $AudioController
+
+var inv_open = false
 
 enum Tab {PAPER_DOLL, BACKPACK, STATS, JOURNAL}
 enum PDoll {WEAPON, BACKUP, CHEST}
@@ -14,7 +17,7 @@ var cur_row = 0
 
 var inv = [
 # Paper Doll
-["w_iron_sword", "", "a_chainmail_vest"],
+["w_iron_sword", "a_chainmail_vest"],
 # Backpack
 ["w_iron_sword", "w_bronze_dagger", "default_item"],
 # Stats
@@ -23,12 +26,17 @@ var inv = [
 ["blah", "blah1", "blah2"]
 ]
 
-func _ready():
-	#set_process_input(true)
-	#update_text()
-	pass
 
 func _input(event):
+	if (Input.is_action_pressed("exit")):
+		get_tree().quit()
+	if Input.is_action_just_released("open_close_inventory"):
+		inv_open = !inv_open
+		open(inv_open)
+		get_tree().paused = inv_open
+	if !inv_open:
+		return
+	
 	if Input.is_action_just_released("move_left"):
 		tab_left()
 	elif Input.is_action_just_released("move_right"):
@@ -43,12 +51,14 @@ func _input(event):
 		equip_unequip_item()
 	
 
-func open():
-	console.output("inventory opened")
-	output_pos()
-
-func close():
-	console.output("inventory closed")
+func open(var b):
+	if b:
+		console.output("inventory opened")
+		audio_controller.open()
+		output_pos()
+	else:
+		console.output("inventory closed")
+		audio_controller.close()
 
 func tab_left():
 	cur_tab = fposmod((cur_tab - 1), Tab.size())
@@ -82,40 +92,41 @@ func clamp_row():
 
 #drop item from backpack or paper doll
 func drop_item():
-	if cur_tab == PAPER_DOLL:
-		if inv[PAPER_DOLL][cur_row] != "":
-			console.output("dropping " + str(inv[PAPER_DOLL][cur_row]))
-			inv[PAPER_DOLL][cur_row] = ""
-		else:
-			console.output("nothing to drop")
-	elif cur_tab == BACKPACK:
-		if inv[BACKPACK].size() > 0:
-			console.output("dropping " + str(inv[BACKPACK][cur_row]))
-			inv[BACKPACK].remove(cur_row)
-		else:
-			console.output("backpack empty")
+	if cur_tab != PAPER_DOLL and cur_tab != BACKPACK:
+		return
+	
+	if inv[cur_tab].size() > 0:
+		console.output("dropping " + str(inv[cur_tab][cur_row]))
+		inv[cur_tab].remove(cur_row)
+	else:
+		console.output("nothing to drop")
 
 # equip items from inventory or unequip item from paper doll
 func equip_unequip_item():
 	if cur_tab == PAPER_DOLL:
-		var item = inv[PAPER_DOLL][cur_row]
-		if item != "":
-			inv[BACKPACK].append(item)
-			inv[PAPER_DOLL][cur_row] = ""
-			console.output("unequipped " + item)
-		else:
-			console.output("nothing to unequip")
+		unequip_from_p_doll()
 	elif cur_tab == BACKPACK:
-		if inv[BACKPACK].size() > 0:
-			inv[PAPER_DOLL][0] = inv[BACKPACK][cur_row]
-			console.output("equipped " + inv[BACKPACK][cur_row])
-			inv[BACKPACK].remove(cur_row)
-		else:
-			console.output("nothing to equip")
+		equip_from_backpack()
 
-func insert_into_backpack(var item):
-	pass
-	#TODO
+func unequip_from_p_doll():
+	var item = inv[PAPER_DOLL][cur_row]
+	if item != "":
+		inv[BACKPACK].push_front(item)
+		inv[PAPER_DOLL].remove(cur_row)
+		console.output("unequipped " + item)
+	else:
+		console.output("nothing to unequip")
+
+func equip_from_backpack():
+	if inv[BACKPACK].size() > 0:
+		inv[PAPER_DOLL].push_front(inv[BACKPACK][cur_row])
+		console.output("equipped " + inv[BACKPACK][cur_row])
+		inv[BACKPACK].remove(cur_row)
+	else:
+		console.output("nothing to equip")
+
+func insert_into_backpack(var item_id):
+	inv[BACKPACK].push_front(item_id)
 
 func output_pos():
 	var item_str = "empty"

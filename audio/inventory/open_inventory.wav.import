@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/open_inventory.wav-9b9e88e3c2e64087cebd536b3cb871d7.sample"
+
+[deps]
+
+source_file="res://audio/inventory/open_inventory.wav"
+source_md5="fff8bbb14efdbcd4fb539fc194d319d2"
+
+dest_files=[ "res://.import/open_inventory.wav-9b9e88e3c2e64087cebd536b3cb871d7.sample" ]
+dest_md5="6bd876a607f7d87d0b1e2ce7f2297f06"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
