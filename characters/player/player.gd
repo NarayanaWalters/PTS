@@ -23,7 +23,7 @@ func _input(ev):
 		interactor.attempt_interact()
 	
 	if ev is InputEventMouseMotion:
-		var r = ev.relative.x * mouse_sens * -1
+		var r = ev.relative.x * mouse_sens
 		rotator.rotate_body(self, r, Input.is_action_pressed("align"))
 
 func _process(delta):
