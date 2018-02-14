@@ -9,5 +9,5 @@ func set_contents(var new_contents):
 	contents = new_contents
 
 func pick_up():
-	#destroy
+	queue_free()
 	return contents

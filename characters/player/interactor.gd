@@ -1,4 +1,11 @@
 extends Area2D
+#script controls interacting with objects in the world,
+# e.g. levers and lootbags, also dropping items into loot bags
+onready var inventory = get_parent().get_node("Inventory")
+var lootbag_scene = ""
+
+#TODO raycast to nearby objects before interact, or just make 
+# interact radius smaller than walls
 
 func attempt_interact():
 	var nearby_objects = get_overlapping_areas()
@@ -16,3 +23,9 @@ func attempt_interact():
 
 	if nearest_interactable_obj.has_method("pick_up"):
 		print(nearest_interactable_obj.pick_up())
+
+func drop_item(var item_id):
+	pass
+
+func get_nearest_object():
+	pass
