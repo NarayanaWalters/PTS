@@ -11,3 +11,6 @@ func set_contents(var new_contents):
 func pick_up():
 	queue_free()
 	return contents
+
+func add_item(var item_id):
+	contents.push_front(item_id)

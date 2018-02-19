@@ -3,6 +3,7 @@ extends Node2D
 onready var db = get_node("/root/entity_database")
 onready var console = get_node("/root/console")
 onready var audio_controller = $AudioController
+onready var interactor = get_parent().get_node("Interactor")
 
 var inv_open = false
 
@@ -104,7 +105,9 @@ func drop_item():
 	if inv[cur_tab].size() > 0:
 		console.output("dropping " + str(inv[cur_tab][cur_row]))
 		audio_controller.drop_item(inv[cur_tab][cur_row])
+		interactor.drop_item(inv[cur_tab][cur_row])
 		inv[cur_tab].remove(cur_row)
+		row_up()
 	else:
 		console.output("nothing to drop")
 
@@ -158,7 +161,8 @@ func equip_from_backpack():
 		console.output("nothing to equip")
 
 func pickup_items(var items_list):
-	pass
+	for item in items_list:
+		inv[BACKPACK].push_front(item)
 
 func insert_into_backpack(var item_id):
 	inv[BACKPACK].push_front(item_id)
