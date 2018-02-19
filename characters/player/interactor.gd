@@ -30,8 +30,12 @@ func attempt_interact():
 #if there's a nearby lootbag, drop item into it,
 # otherwise make a new bag
 func drop_item(var item_id):
+	if get_tree().is_paused():
+		get_tree().paused = false
+		yield(get_tree(), "idle_frame")
+		get_tree().paused = true
+	
 	var nearby_objects = get_overlapping_areas()
-	print(nearby_objects)
 	for object in nearby_objects:
 		if object.has_method("add_item"):
 			object.add_item(item_id)

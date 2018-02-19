@@ -176,6 +176,7 @@ _sections_unfolded = [ "Pause" ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactor" index="0"]
 
 shape = SubResource( 3 )
+_sections_unfolded = [ "Pause" ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="10"]
 
