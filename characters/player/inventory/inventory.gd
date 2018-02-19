@@ -107,7 +107,7 @@ func drop_item():
 		audio_controller.drop_item(inv[cur_tab][cur_row])
 		interactor.drop_item(inv[cur_tab][cur_row])
 		inv[cur_tab].remove(cur_row)
-		row_up()
+		clamp_row()
 	else:
 		console.output("nothing to drop")
 

@@ -8,6 +8,7 @@ var test_items = ["a_leather_vest", "a_chainmail_vest",
 "w_bronze_dagger", "w_iron_sword"]
 
 func _ready():
+	yield(get_tree(), "idle_frame")
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	inventory_pickup_drop_test()
 	inventory_navigation_test()
@@ -32,14 +33,25 @@ func inventory_pickup_drop_test():
 		return false
 	label.text += "all items accounted for\n"
 	inventory.tab_right()
-	drop_test(items_list)
-	label.text += "dropping again\n"
-
+	drop_test(items_list, 0)
+	yield(get_tree(), "idle_frame")
+	inventory.row_down()
+	#drop at edge and drop from nothing
+	for i in [1, 1, 0, 0]:
+		res = drop_test(items_list, i)
+		if !res:
+			label.text += "ERROR IN DROP TEST"
+			return false
+		yield(get_tree(), "idle_frame")
 	return true
 
-func drop_test(var correct):
+func drop_test(var correct, var index):
 	inventory.drop_item()
-	label.text += "should drop: %s\n" % correct.pop_front()
+	if correct.size() > 0:
+		label.text += "dropping: %s\n" % correct[index]
+		correct.remove(index)
+	else:
+		label.text += "dropping: nothing\n"
 	var current = inventory.get_contents_of_backpack()
 	display_contents(current, correct)
 	var res = match_two_arrays(current, correct)

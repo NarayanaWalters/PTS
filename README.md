@@ -33,3 +33,13 @@ An ambient windy sound plays in your ear if there is an opening that way. E.g. a
 
 #### Footsteps: 
 A footstep sound plays every meter you step.
+
+## Unit Tests
+To run: 
+- At the top left of the editor, select Project -> Project Settings
+- In the General tab go to Application -> Run
+- At the top you'll see Main Scene, to the right select the folder icon and click "File.."
+- Navigate to "res://unit_tests" and open "test_manager.tscn"
+- Close Project Settings and click play at the top right (or press F5)
+
+To go back to the main game, repeat the steps except navigate to "res://environment" and open "world.tscn" instead
