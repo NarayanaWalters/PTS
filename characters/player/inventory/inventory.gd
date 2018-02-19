@@ -161,8 +161,11 @@ func equip_from_backpack():
 		console.output("nothing to equip")
 
 func pickup_items(var items_list):
+	#print(inv[BACKPACK])
 	for item in items_list:
+		#print("adding: " + item)
 		inv[BACKPACK].push_front(item)
+	#print("current contents are now : " + str(inv[BACKPACK]))
 
 func insert_into_backpack(var item_id):
 	inv[BACKPACK].push_front(item_id)

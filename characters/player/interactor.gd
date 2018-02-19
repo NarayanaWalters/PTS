@@ -43,7 +43,7 @@ func drop_item(var item_id):
 	var new_bag = lootbag_scene.instance()
 	get_tree().get_root().add_child(new_bag)
 	new_bag.global_position = global_position
-	new_bag.add_item(item_id)
+	new_bag.set_contents([item_id])
 	
 
 
