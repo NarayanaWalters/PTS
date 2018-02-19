@@ -26,8 +26,12 @@ var items = {
 "a_chainmail_vest":{
 "name": "chainmail vest", "type":"armor", "slot":"chest",
 "armor":3, "weaknesses":[],
-"value":5, "stackable":false, "enchantments":["p_fire_protection"]}
+"value":5, "stackable":false, "enchantments":["p_fire_protection"]},
 
+"a_leather_vest":{
+"name": "leather vest", "type":"armor", "slot":"chest",
+"armor":2, "weaknesses":[],
+"value":5, "stackable":false, "enchantments":["p_fire_protection"]}
 }
 
 var spells = {

@@ -19,7 +19,7 @@ var inv = [
 # Paper Doll
 ["w_iron_sword", "a_chainmail_vest"],
 # Backpack
-["w_iron_sword", "w_bronze_dagger", "default_item"],
+["w_iron_sword", "w_bronze_dagger", "default_item", "a_leather_vest"],
 # Stats
 [1101, 2201, 101],
 # Journal
@@ -128,11 +128,32 @@ func unequip_from_p_doll():
 	else:
 		console.output("nothing to unequip")
 
+# equip item at current ro win backpack to paper doll
+# if something is already equipped to the same slot 
+# unequip that item and replace it
 func equip_from_backpack():
 	if inv[BACKPACK].size() > 0:
-		inv[PAPER_DOLL].push_front(inv[BACKPACK][cur_row])
-		console.output("equipped " + inv[BACKPACK][cur_row])
-		inv[BACKPACK].remove(cur_row)
+		var item_id = inv[BACKPACK][cur_row]
+		var item_to_eq = db.get_item(item_id)
+		var type = item_to_eq["type"]
+		var slot = ""
+		if item_to_eq.has("slot"):
+			slot = item_to_eq["slot"]
+			var outp = ""
+			for item in inv[PAPER_DOLL]:
+				var cur_item = db.get_item(item)
+				if cur_item["type"] == type and cur_item["slot"] == slot:
+					inv[PAPER_DOLL].erase(item)
+					inv[BACKPACK].push_front(item)
+					row_down()
+					outp = "unequipped " + item + " : "
+					break
+			inv[PAPER_DOLL].push_front(item_id)
+			inv[BACKPACK].remove(cur_row)
+			console.output(outp + "equipped " + item_id)
+			
+		else:
+			console.output("cannot equip this")
 	else:
 		console.output("nothing to equip")
 
