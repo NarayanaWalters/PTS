@@ -185,3 +185,13 @@ func output_pos():
 	txt += item_str
 	console.output(txt)
 
+#for tests
+func clear():
+	inv[BACKPACK] = []
+	inv[PAPER_DOLL] = []
+
+func get_contents_of_backpack():
+	return inv[BACKPACK]
+
+func get_contents_of_p_doll():
+	return inv[PAPER_DOLL]

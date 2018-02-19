@@ -44,6 +44,5 @@ func drop_item(var item_id):
 	get_tree().get_root().add_child(new_bag)
 	new_bag.global_position = global_position
 	new_bag.set_contents([item_id])
-	
 
 
