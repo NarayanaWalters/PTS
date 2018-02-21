@@ -79,7 +79,7 @@ var npcs = {
 "h_zombie": {
 "name" : "Zombie", "attitude": "hostile",
 "health": 80, "move_speed":20, "attack_rate":2.0, "base_damage": 10,
-"attributes":["minotaur", "undead"],
+"attributes":["undead"],
 "equipped":{},
 "inventory":[],
 "sounds" : {

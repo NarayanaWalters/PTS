@@ -79,9 +79,12 @@ func play_click(var tier):
 		var hit_obj = ping_ray.get_collider()
 		if hit_obj.has_meta("type"):
 			var type = hit_obj.get_meta("type")
-			if type == "npc":
+			var att = ""
+			if hit_obj.has_meta("attitude"):
+				att = hit_obj.get_meta("attitude")
+			if type == "npc" and att == "friendly":
 				sound = npc_sound + sound
-			elif type == "enemy":
+			elif type == "npc" and att == "hostile":
 				sound = enemy_sound + sound
 			elif type == "interactable":
 				sound = int_sound + sound
@@ -99,5 +102,5 @@ func tap_hit_obj():
 		var hit_obj = ping_ray.get_collider()
 		if hit_obj.has_method("tap"):
 			hit_obj.tap()
-		if hit_obj.is_in_group("enemies"):
-			print("enemy")
+		#if hit_obj.is_in_group("enemies"):
+			#print("enemy")

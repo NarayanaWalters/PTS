@@ -8,6 +8,8 @@ onready var inventory = get_node("Inventory")
 onready var interactor = get_node("Interactor")
 onready var combat_manager = get_node("CombatManager")
 
+var max_health = 50
+
 var inventory_open = false
 
 var rot_speed = 0.03
@@ -16,6 +18,7 @@ var mouse_sens = 0.1
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	set_meta("type", "player")
+	health.set_max_health(max_health)
 
 
 func _input(ev):
@@ -27,6 +30,14 @@ func _input(ev):
 		rotator.rotate_body(self, r, Input.is_action_pressed("align"))
 
 func _process(delta):
+	
+	if health.is_dead():
+		get_tree().reload_current_scene()
+		return
+	#read out digits of player health
+	if Input.is_action_just_pressed("health_read"):
+		var hlth_num = health.cur_health
+		inventory.get_node("AudioController").play_number(hlth_num)
 	
 	if inventory_open:
 		return
@@ -44,7 +55,7 @@ func _process(delta):
 	
 
 func _physics_process(delta):
-	if inventory_open:
+	if inventory_open or health.is_dead():
 		return
 	
 	var move_vec = Vector2(0,0)

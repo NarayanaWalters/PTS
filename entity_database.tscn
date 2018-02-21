@@ -2,7 +2,7 @@
 
 [ext_resource path="res://entity_database.gd" type="Script" id=1]
 
-[node name="ItemDatabase" type="Node"]
+[node name="ItemDatabase" type="Node" index="0"]
 
 script = ExtResource( 1 )
 

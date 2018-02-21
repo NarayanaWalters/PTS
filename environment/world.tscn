@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://basic.tres" type="TileSet" id=2]
 [ext_resource path="res://environment/end_zone.tscn" type="PackedScene" id=3]
 [ext_resource path="res://environment/lootbag.tscn" type="PackedScene" id=4]
+[ext_resource path="res://characters/enemy/npc.tscn" type="PackedScene" id=5]
 
-[node name="World" type="Node2D" index="0"]
+[node name="World" type="Node2D"]
 
 [node name="Player" parent="." index="0" instance=ExtResource( 1 )]
+
+max_health = 20
 
 [node name="TileMap" type="TileMap" parent="." index="1"]
 
@@ -37,6 +40,11 @@ position = Vector2( 594.225, 0 )
 
 [node name="LootBag" parent="." index="3" instance=ExtResource( 4 )]
 
-position = Vector2( 91.1453, 0 )
+position = Vector2( 62.5774, -65.2982 )
+
+[node name="NPC" parent="." index="4" instance=ExtResource( 5 )]
+
+position = Vector2( 186.372, -6.8019 )
+id = "h_zombie"
 
 

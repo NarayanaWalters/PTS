@@ -15,8 +15,7 @@ func _input(event):
 func attempt_attack():
 	var cur_time = OS.get_ticks_msec() / 1000.0
 	if cur_time - last_attack_time > ATTACK_RATE:
-		print("attack")
+		#print("attack")
 		last_attack_time = cur_time
 		if is_colliding() && get_collider().has_method("deal_damage"):
-			print("k")
 			get_collider().deal_damage(DAMAGE)

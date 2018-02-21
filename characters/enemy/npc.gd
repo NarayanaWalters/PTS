@@ -28,13 +28,16 @@ var saw_player = false
 func _ready():
 	init_npc()
 	set_meta("attitude", attitude)
-	set_meta("type", npc)
+	set_meta("type", "npc")
 
 
 func init_npc():
 	var npc_data = db.get_npc(id)
 	if npc_data.has("sounds"):
 		audio_controller.init_sounds(npc_data["sounds"])
+		#TODO
+		health.death_sounds = []
+		health.hurt_sounds = []
 	npc_name = npc_data["name"]
 	attitude = npc_data["attitude"]
 	move_speed = npc_data["move_speed"]

@@ -12,7 +12,7 @@ func rotate_body(var body, r_input, align):
 		align_to_axis(body)
 
 func align_to_axis(var body):
-	var r = body.get_global_rotd()
+	var r = body.global_rotation_degrees
 	if r < 0:
 		r += 360
 	var final_r = 0
@@ -23,4 +23,4 @@ func align_to_axis(var body):
 	elif r < 315 && r >= 225:
 		final_r = 3*PI/2
 	rot = final_r
-	body.set_global_rot(rot)
+	body.global_rotation = rot

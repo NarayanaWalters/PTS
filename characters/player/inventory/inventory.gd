@@ -5,6 +5,8 @@ onready var console = get_node("/root/console")
 onready var audio_controller = $AudioController
 onready var interactor = get_parent().get_node("Interactor")
 
+onready var health = get_parent().get_node("Health")
+
 var inv_open = false
 
 enum Tab {PAPER_DOLL, BACKPACK, STATS, JOURNAL}
@@ -31,6 +33,10 @@ var inv = [
 func _input(event):
 	if (Input.is_action_pressed("exit")):
 		get_tree().quit()
+	
+	if health.is_dead():
+		return
+	
 	if Input.is_action_just_released("open_close_inventory"):
 		inv_open = !inv_open
 		open(inv_open)
