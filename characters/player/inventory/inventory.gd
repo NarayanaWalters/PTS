@@ -4,7 +4,7 @@ onready var db = get_node("/root/entity_database")
 onready var console = get_node("/root/console")
 onready var audio_controller = $AudioController
 onready var interactor = get_parent().get_node("Interactor")
-
+onready var combat_manager = get_parent().get_node("CombatManager")
 onready var health = get_parent().get_node("Health")
 
 var inv_open = false
@@ -29,6 +29,11 @@ var inv = [
 ["blah", "blah1", "blah2"]
 ]
 
+func _ready():
+	for item in inv[PAPER_DOLL]:
+		var it = db.get_item(item)
+		if it["type"] == "weapon":
+			combat_manager.equip_wep(it)
 
 func _input(event):
 	if (Input.is_action_pressed("exit")):
@@ -109,6 +114,10 @@ func drop_item():
 		return
 	
 	if inv[cur_tab].size() > 0:
+		if cur_tab == PAPER_DOLL:
+			var cur_slot = get_current_slot_contents()
+			if cur_slot != null and db.get_item(cur_slot)["type"] == "weapon":
+				combat_manager.unequip_wep()
 		console.output("dropping " + str(inv[cur_tab][cur_row]))
 		audio_controller.drop_item(inv[cur_tab][cur_row])
 		interactor.drop_item(inv[cur_tab][cur_row])
@@ -119,11 +128,13 @@ func drop_item():
 
 # equip items from inventory or unequip item from paper doll
 func equip_unequip_item():
+	var cur_slot = get_current_slot_contents()
 	if cur_tab == PAPER_DOLL:
-		audio_controller.equip_item(get_current_slot_contents())
+		audio_controller.unequip_item(cur_slot)
 		unequip_from_p_doll()
+		
 	elif cur_tab == BACKPACK:
-		audio_controller.unequip_item(get_current_slot_contents())
+		audio_controller.equip_item(cur_slot)
 		equip_from_backpack()
 
 func unequip_from_p_doll():
@@ -131,6 +142,8 @@ func unequip_from_p_doll():
 		return
 	var item = inv[PAPER_DOLL][cur_row]
 	if item != "":
+		if db.get_item(item)["type"] == "weapon":
+			combat_manager.unequip_wep()
 		inv[BACKPACK].push_front(item)
 		inv[PAPER_DOLL].remove(cur_row)
 		console.output("unequipped " + item)
@@ -161,6 +174,8 @@ func equip_from_backpack():
 			inv[BACKPACK].remove(cur_row)
 			console.output(outp + "equipped " + item_id)
 			
+			if type == "weapon":
+				combat_manager.equip_wep(item_to_eq)
 		else:
 			console.output("cannot equip this")
 	else:

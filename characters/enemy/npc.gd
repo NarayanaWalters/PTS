@@ -113,3 +113,6 @@ func deal_damage(var dmg):
 		add_to_group("enemies")
 		set_meta("attitude", attitude)
 	health.damage(dmg)
+
+func death():
+	queue_free()

@@ -34,9 +34,8 @@ radius = 10.0
 custom_solver_bias = 0.0
 radius = 40.0
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
-editor/display_folded = true
 input_pickable = false
 collision_layer = 2
 collision_mask = 2
@@ -143,11 +142,20 @@ bus = "RightEar"
 
 [node name="CombatManager" type="RayCast2D" parent="." index="5"]
 
+editor/display_folded = true
 enabled = true
 exclude_parent = true
 cast_to = Vector2( 0, 50 )
 collision_mask = 1
 script = ExtResource( 10 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CombatManager" index="0"]
+
+stream = null
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="6"]
 

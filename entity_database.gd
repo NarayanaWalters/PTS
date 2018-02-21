@@ -6,21 +6,31 @@ const value = "value"
 const attack_rate = "attack_rate"
 
 const npc_audio_path = "res://audio/npc/"
+const wep_audio_path = "res://audio/weapons/"
+
+const sword_sounds = {
+"atk_hit_sound": wep_audio_path + "sword_hit.wav",
+"atk_swing_sound": wep_audio_path + "sword_swing.wav",
+"prep_sound": ""
+}
 
 var items = {
 "default_item":{
 "name": "dagger", "type": "weapon", "slot":"main hand", 
-"damage":5, "attack_rate": 0.3, "attack_type":"slashing",
+"damage":5, "attack_rate": 3, "attack_type":"slashing",
+"sounds":sword_sounds,
 "value":1, "enchantments":[]},
 
 "w_bronze_dagger":{
 "name": "bronze dagger", "type": "weapon", "slot":"main hand", 
-"damage":5, "attack_rate": 0.3, "attack_type":"slashing",
+"damage":5, "attack_rate": 3, "attack_type":"slashing",
+"sounds":sword_sounds,
 "value":1, "enchantments":[]},
 
 "w_iron_sword":{
 "name": "iron sword", "type": "weapon", "slot":"main hand", 
-"damage":12, "attack_rate": 0.5, "attack_type":"slashing",
+"damage":12, "attack_rate": 5, "attack_type":"slashing",
+"sounds":sword_sounds,
 "value":4, "enchantments":[]},
 
 "a_chainmail_vest":{

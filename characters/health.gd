@@ -31,6 +31,8 @@ func damage(var dmg):
 func death():
 	play_rnd_sound(death_sounds)
 	dead = true
+	if get_parent().has_method("death"):
+		get_parent().death()
 
 func is_dead():
 	return dead

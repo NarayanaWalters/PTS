@@ -1,9 +1,20 @@
 extends RayCast2D
 
-const DAMAGE = 10
-const ATTACK_RATE = 0.2
+onready var audio_player = $AudioStreamPlayer
 
-var last_attack_time = 0
+var fist_dmg = 10
+var fist_speed = 0.4
+var fist_hit_snd = "res://audio/weapons/punch.wav"
+var fist_swing_snd = "res://audio/weapons/punch.wav"
+
+var damage = fist_dmg
+var atk_rate = fist_speed
+
+var prep_sound = ""
+var atk_sound = fist_swing_snd
+var atk_hit_sound = fist_hit_snd
+
+var time_since_atk = 0
 
 func _ready():
 	set_process_input(true)
@@ -12,10 +23,33 @@ func _input(event):
 	if event.is_action_pressed("attack"):
 		attempt_attack()
 
+func unequip_wep():
+	damage = fist_dmg
+	atk_rate = fist_speed
+	prep_sound = ""
+	atk_sound = fist_swing_snd
+	atk_hit_sound = fist_hit_snd
+
+#pass dictionary from database
+func equip_wep(var item_to_eq):
+	damage = item_to_eq["damage"]
+	atk_rate = item_to_eq["attack_rate"] / 10.0
+	atk_sound = item_to_eq["sounds"]["atk_swing_sound"]
+	atk_hit_sound = item_to_eq["sounds"]["atk_hit_sound"]
+	prep_sound = item_to_eq["sounds"]["prep_sound"]
+
+func _process(delta):
+	time_since_atk += delta
+	if prep_sound != "":
+		pass
+
+
 func attempt_attack():
-	var cur_time = OS.get_ticks_msec() / 1000.0
-	if cur_time - last_attack_time > ATTACK_RATE:
-		#print("attack")
-		last_attack_time = cur_time
+	if time_since_atk >= atk_rate:
+		time_since_atk = 0
+		var snd_to_play = atk_sound
 		if is_colliding() && get_collider().has_method("deal_damage"):
-			get_collider().deal_damage(DAMAGE)
+			get_collider().deal_damage(damage)
+			snd_to_play = atk_hit_sound
+		audio_player.stream = load(snd_to_play)
+		audio_player.play()

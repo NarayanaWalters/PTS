@@ -3,7 +3,7 @@
 [ext_resource path="res://characters/player/inventory/inventory.gd" type="Script" id=1]
 [ext_resource path="res://characters/player/inventory/inv_audio_controller.gd" type="Script" id=2]
 
-[node name="Inventory" type="Node2D"]
+[node name="Inventory" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
