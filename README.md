@@ -1,7 +1,9 @@
 ## Set Up
-Visit https://godotengine.org/download and download the Godot engine. Run the exe and the project list will open. 
-Click Import on the right and browse to where you downloaded the game folder. Double click on the project.godot file and 
-press "Import & Edit". Press F5 or the play button in the top right to run the game.
+- Visit https://godotengine.org/download and download the Godot engine. 
+- Run the exe and the project list will open. 
+- Click Import on the right and browse to where you downloaded the game folder. 
+- Double click on the project.godot file and press "Import & Edit". 
+- Press F5 or the play button at the top right to run the game.
 
 ## Controls
 - WASD - movement 

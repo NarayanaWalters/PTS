@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/5.wav-a01a66f7305e86b3c927d7ca59a8a0ec.sample"
+
+[deps]
+
+source_file="res://audio/player/numbers/5.wav"
+source_md5="39e185b4a9cd4cdb604077a976a20490"
+
+dest_files=[ "res://.import/5.wav-a01a66f7305e86b3c927d7ca59a8a0ec.sample" ]
+dest_md5="69f183fc57b273aadf4af3c8761bd1e6"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
