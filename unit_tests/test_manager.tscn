@@ -3,7 +3,7 @@
 [ext_resource path="res://unit_tests/test_manager.gd" type="Script" id=1]
 [ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=2]
 
-[node name="TestManager" type="Node2D" index="0"]
+[node name="TestManager" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -33,7 +33,7 @@ scroll_vertical_enabled = true
 scroll_vertical = 0
 _sections_unfolded = [ "Rect" ]
 
-[node name="Label" type="Label" parent="ScrollContainer" index="2"]
+[node name="Label" type="Label" parent="ScrollContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0

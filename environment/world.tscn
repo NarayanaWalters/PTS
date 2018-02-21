@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://basic.tres" type="TileSet" id=2]
 [ext_resource path="res://environment/end_zone.tscn" type="PackedScene" id=3]
+[ext_resource path="res://environment/lootbag.tscn" type="PackedScene" id=4]
 
 [node name="World" type="Node2D" index="0"]
 
@@ -33,5 +34,9 @@ _sections_unfolded = [ "Cell" ]
 [node name="EndZone" parent="." index="2" instance=ExtResource( 3 )]
 
 position = Vector2( 594.225, 0 )
+
+[node name="LootBag" parent="." index="3" instance=ExtResource( 4 )]
+
+position = Vector2( 91.1453, 0 )
 
 

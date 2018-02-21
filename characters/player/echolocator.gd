@@ -13,13 +13,13 @@ onready var click_player = get_node("ClickPlayer")
 
 const DIS_PER_TIER = [2, 8, MAX_DISTANCE]
 
-var audio_folder = "res://characters/player/player_audio/echolocation/"
+var audio_folder = "res://audio/player/echolocation/"
 
-var click_sounds = ["an", "e", "oo"]
-var npc_sound = "na"
-var enemy_sound = "ra"
-var loot_sound = "la"
-var int_sound = "ka"
+var click_sounds = ["aa", "ee", "oo"]
+var npc_sound = "f"
+var enemy_sound = "n"
+var loot_sound = "l"
+var int_sound = "k"
 var alternate = false
 
 
@@ -74,20 +74,19 @@ func calc_click_rate(var distance, var tier):
 func play_click(var tier):
 	#var pitch = MIN_PITCH + tier * PITCH_DIFF_PER_TIER
 	var sound = click_sounds[tier]
-	alternate = !alternate
-	if alternate and (ping_ray.is_colliding()):
+	#alternate = !alternate
+	if (ping_ray.is_colliding()):
 		var hit_obj = ping_ray.get_collider()
 		if hit_obj.has_meta("type"):
 			var type = hit_obj.get_meta("type")
 			if type == "npc":
-				sound = npc_sound
+				sound = npc_sound + sound
 			elif type == "enemy":
-				sound = enemy_sound
+				sound = enemy_sound + sound
 			elif type == "interactable":
-				sound = int_sound
+				sound = int_sound + sound
 			elif type == "loot":
-				sound = loot_sound
-	
+				sound = loot_sound + sound
 	click_player.stop()
 	var path = audio_folder + sound + ".wav"
 	click_player.stream = load(path)
