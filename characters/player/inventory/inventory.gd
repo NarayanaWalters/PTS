@@ -8,6 +8,7 @@ onready var combat_manager = get_parent().get_node("CombatManager")
 onready var health = get_parent().get_node("Health")
 
 var inv_open = false
+var clear_on_output = true
 
 enum Tab {PAPER_DOLL, BACKPACK, STATS, JOURNAL}
 enum PDoll {WEAPON, BACKUP, CHEST}
@@ -67,7 +68,9 @@ func open(var b):
 	if b:
 		console.output("inventory opened")
 		audio_controller.open()
+		clear_on_output = false
 		output_pos()
+		clear_on_output = true
 	else:
 		console.output("inventory closed")
 		audio_controller.close()
@@ -192,7 +195,8 @@ func insert_into_backpack(var item_id):
 	inv[BACKPACK].push_front(item_id)
 
 func output_pos():
-	audio_controller.clear_sound_queue()
+	if clear_on_output:
+		audio_controller.clear_sound_queue()
 	audio_controller.play_tab_sound(cur_tab)
 	if cur_tab == BACKPACK or cur_tab == PAPER_DOLL:
 		audio_controller.play_item_stats(get_current_slot_contents())

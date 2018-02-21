@@ -10,7 +10,7 @@ const wep_audio_path = "res://audio/weapons/"
 
 const sword_sounds = {
 "atk_hit_sound": wep_audio_path + "sword_hit.wav",
-"atk_swing_sound": wep_audio_path + "sword_swing.wav",
+"atk_swing_sound": wep_audio_path + "sword_swish.wav",
 "prep_sound": ""
 }
 

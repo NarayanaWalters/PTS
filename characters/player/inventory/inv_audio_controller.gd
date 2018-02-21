@@ -6,6 +6,7 @@ var audio_path = "res://audio/inventory/"
 var open_sound = "open_inventory"
 var close_sound = "close_inventory"
 var weapon_sound = "metal_clash"
+var atk_rate_sound = "swish"
 var sound_queue = []
 
 func _ready():
@@ -19,6 +20,7 @@ func _process(delta):
 func clear_sound_queue():
 	sound_queue.clear()
 
+#for passing sounds without paths
 func add_sound_to_queue(var sound):
 	sound_queue.push_front(audio_path + sound + ".wav")
 
@@ -43,10 +45,13 @@ func play_tab_sound(var tab):
 # plays id sounds and stats for this item
 func play_item_stats(var item_id):
 	var item_info = db.get_item(item_id)
-	play_item_id_sound(item_id)
-	#TODO numbers and item types
+	#play_item_id_sound(item_id)
+	
 	if item_info.has("type") and item_info["type"] == "weapon":
+		sound_queue.push_front(item_info["sounds"]["atk_swing_sound"])
 		play_number(item_info["damage"])
+		add_sound_to_queue(atk_rate_sound)
+		play_number(item_info["attack_rate"])
 
 #e.g. sword, spell, breastplate
 #use id so I can call from inventory for item pick ups and drops
@@ -55,10 +60,9 @@ func play_item_id_sound(var item_id):
 		return
 	var item_info = db.get_item(item_id)
 	if item_info["type"] == "weapon":
-		pass
+		sound_queue.push_front(item_info["sounds"]["atk_swing_sound"])
 	if item_info["type"] == "armor":
 		pass
-	add_sound_to_queue(weapon_sound)
 	
 
 
