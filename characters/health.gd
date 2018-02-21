@@ -22,7 +22,7 @@ func set_max_health(var hp):
 func damage(var dmg):
 	cur_health -= dmg
 	play_rnd_sound(hurt_sounds)
-	print("took %d dmg at %d hp" % [dmg, cur_health])
+	#print("took %d dmg at %d hp" % [dmg, cur_health])
 	#print (get_parent().name + " took " + str(dmg) + " damage")
 	if cur_health <= 0:
 		cur_health = 0

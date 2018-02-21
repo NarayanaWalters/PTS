@@ -13,6 +13,9 @@ var atk_rate = fist_speed
 var prep_sound = ""
 var atk_sound = fist_swing_snd
 var atk_hit_sound = fist_hit_snd
+var prep_sound_time = 0
+var ranged = false
+var played_prep = false
 
 var time_since_atk = 0
 
@@ -29,6 +32,8 @@ func unequip_wep():
 	prep_sound = ""
 	atk_sound = fist_swing_snd
 	atk_hit_sound = fist_hit_snd
+	ranged = false
+	prep_sound_time = 0
 
 #pass dictionary from database
 func equip_wep(var item_to_eq):
@@ -37,19 +42,27 @@ func equip_wep(var item_to_eq):
 	atk_sound = item_to_eq["sounds"]["atk_swing_sound"]
 	atk_hit_sound = item_to_eq["sounds"]["atk_hit_sound"]
 	prep_sound = item_to_eq["sounds"]["prep_sound"]
+	ranged = item_to_eq["attack_type"] == "range"
+	
 
 func _process(delta):
 	time_since_atk += delta
-	if prep_sound != "":
-		pass
+	if prep_sound != "" and !audio_player.playing and !played_prep:
+		audio_player.stream = load(prep_sound)
+		played_prep = true
+		audio_player.play()
 
 
 func attempt_attack():
 	if time_since_atk >= atk_rate:
 		time_since_atk = 0
 		var snd_to_play = atk_sound
-		if is_colliding() && get_collider().has_method("deal_damage"):
-			get_collider().deal_damage(damage)
-			snd_to_play = atk_hit_sound
+		var coll = get_collider()
+		if is_colliding() and coll.has_method("deal_damage"):
+			var rn = global_position.distance_squared_to(coll.global_position)
+			if ranged or rn < 32 * 32:
+				coll.deal_damage(damage)
+				snd_to_play = atk_hit_sound
 		audio_player.stream = load(snd_to_play)
 		audio_player.play()
+		played_prep = false

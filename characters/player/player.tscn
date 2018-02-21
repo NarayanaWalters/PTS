@@ -34,7 +34,7 @@ radius = 10.0
 custom_solver_bias = 0.0
 radius = 40.0
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 2
@@ -145,7 +145,7 @@ bus = "RightEar"
 editor/display_folded = true
 enabled = true
 exclude_parent = true
-cast_to = Vector2( 0, 50 )
+cast_to = Vector2( 0, 480 )
 collision_mask = 1
 script = ExtResource( 10 )
 

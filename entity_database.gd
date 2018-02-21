@@ -14,11 +14,23 @@ const sword_sounds = {
 "prep_sound": ""
 }
 
+const bow_sounds = {
+"atk_hit_sound": wep_audio_path + "bow_hit.wav",
+"atk_swing_sound": wep_audio_path + "bow_fire.wav",
+"prep_sound": wep_audio_path + "bow_draw.wav"
+}
+
 var items = {
 "default_item":{
 "name": "dagger", "type": "weapon", "slot":"main hand", 
 "damage":5, "attack_rate": 3, "attack_type":"slashing",
 "sounds":sword_sounds,
+"value":1, "enchantments":[]},
+
+"w_bow":{
+"name": "bow", "type": "weapon", "slot":"main hand", 
+"damage":7, "attack_rate": 8, "attack_type":"range",
+"sounds":bow_sounds,
 "value":1, "enchantments":[]},
 
 "w_bronze_dagger":{
@@ -88,7 +100,7 @@ var npcs = {
 
 "h_zombie": {
 "name" : "Zombie", "attitude": "hostile",
-"health": 80, "move_speed":20, "attack_rate":2.0, "base_damage": 10,
+"health": 23, "move_speed":20, "attack_rate":2.0, "base_damage": 10,
 "attributes":["undead"],
 "equipped":{},
 "inventory":[],
