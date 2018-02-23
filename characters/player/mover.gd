@@ -1,6 +1,6 @@
 extends Node2D
 
-const MOVE_SPEED = 0.5 # meters per second
+const MOVE_SPEED = 1 # meters per second
 const STEP_RATE = 0.5 # steps per second
 const FOOTSTEPS = ["footstep_1", "footstep_2", "footstep_3"] #footstep sounds
 

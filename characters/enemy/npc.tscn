@@ -19,7 +19,7 @@ mix_rate = 44100
 stereo = false
 data = PoolByteArray(  )
 
-[node name="NPC" type="KinematicBody2D" index="0"]
+[node name="NPC" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -42,14 +42,12 @@ collision_mask = 2
 
 [node name="Health" parent="." index="2" instance=ExtResource( 2 )]
 
-max_health = 50
-
 [node name="NPCAudioController" type="AudioStreamPlayer2D" parent="." index="3"]
 
 stream = SubResource( 2 )
-volume_db = 10.0
+volume_db = 0.0
 autoplay = false
-max_distance = 2000.0
+max_distance = 500.0
 attenuation = 1.0
 bus = "Master"
 area_mask = 1

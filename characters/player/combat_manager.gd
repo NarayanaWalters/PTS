@@ -19,12 +19,21 @@ var played_prep = false
 
 var time_since_atk = 0
 
-func _ready():
-	set_process_input(true)
+#func _ready():
+#	set_process_input(true)
 
-func _input(event):
-	if event.is_action_pressed("attack"):
+func _process(delta):
+	if Input.is_action_pressed("attack"):
+		time_since_atk += delta
 		attempt_attack()
+	else:
+		time_since_atk = 0
+		
+	
+	if prep_sound != "" and !audio_player.playing and !played_prep:
+		audio_player.stream = load(prep_sound)
+		played_prep = true
+		audio_player.play()
 
 func unequip_wep():
 	damage = fist_dmg
@@ -45,17 +54,10 @@ func equip_wep(var item_to_eq):
 	ranged = item_to_eq["attack_type"] == "range"
 	
 
-func _process(delta):
-	time_since_atk += delta
-	if prep_sound != "" and !audio_player.playing and !played_prep:
-		audio_player.stream = load(prep_sound)
-		played_prep = true
-		audio_player.play()
-
 
 func attempt_attack():
 	if time_since_atk >= atk_rate:
-		time_since_atk = 0
+		time_since_atk -= atk_rate
 		var snd_to_play = atk_sound
 		var coll = get_collider()
 		if is_colliding() and coll.has_method("deal_damage"):
