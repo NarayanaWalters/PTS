@@ -22,6 +22,8 @@ var loot_sound = "l"
 var int_sound = "k"
 var alternate = false
 
+#true if pointing at an npc or interactable
+var looking_at_something = false
 
 var time_since_last_click = 0
 
@@ -70,6 +72,11 @@ func calc_click_rate(var distance, var tier):
 		first_dist = DIS_PER_TIER[tier - 1]
 	var t = (distance - first_dist) / (sec_dist - first_dist)
 	return lerp(MIN_CLICK_RATE, MAX_CLICK_RATE, t)
+
+func _process(delta):
+	looking_at_something = false
+	if (ping_ray.is_colliding() and ping_ray.get_collider().has_meta("type")):
+		looking_at_something = true
 
 func play_click(var tier):
 	#var pitch = MIN_PITCH + tier * PITCH_DIFF_PER_TIER

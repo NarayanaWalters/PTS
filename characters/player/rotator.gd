@@ -1,15 +1,62 @@
 extends Node2D
 
-var rot_speed = 0.03
+onready var echolocator = get_parent().get_node("Echolocator")
+
+var rot_speed = 0.1
 var rot = 0
+#turn slower if pointing at something interesting
+var lock_speed = 0.01
+#slowly locks to axis if within this rotation
+var lock_to_axis_arc = 30
+var lock_to_axis_speed = 0.05
+
 
 func rotate_body(var body, r_input, align):
 	r_input *= rot_speed
 	rot += r_input
 	if !align:
-		body.global_rotation = rot
+		body.global_rotation += r_input * rot_speed
+		if !echolocator.looking_at_something:
+			slow_align(body)
 	else:
 		align_to_axis(body)
+
+func slow_align(var body):
+	var r = body.global_rotation_degrees
+	while r < 0:
+		r += 360
+	var axises = [0, 90, 180, 270]
+	
+	# some stuff so I don't have to finagle with the zero axis
+	r += lock_to_axis_arc + 2
+	r = fposmod(r, 360)
+	var r_speed = 0
+	for axis in axises:
+		axis += lock_to_axis_arc + 2
+		if r == axis:
+			r_speed = 0
+			break
+		if r >= axis - lock_to_axis_arc and r < axis:
+			r_speed = lock_to_axis_speed
+			#print("under arc %f %f" % [axis, r])
+			if r + r_speed > axis:
+				r_speed = 0
+				r = axis
+			break
+		if r <= axis + lock_to_axis_arc and r > axis:
+			r_speed = -lock_to_axis_speed
+			#print("over arc %f %f" % [axis, r])
+			if r - r_speed < axis:
+				r_speed = 0
+				r = axis
+			break
+	
+	#if r_speed == 0:
+		#print("not in arc %f" % [r])
+	r -= lock_to_axis_arc + 2
+	r += r_speed
+	#print(body.global_rotation_degrees)
+	body.global_rotation_degrees = r + r_speed
 
 func align_to_axis(var body):
 	var r = body.global_rotation_degrees
