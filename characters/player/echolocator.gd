@@ -75,8 +75,10 @@ func calc_click_rate(var distance, var tier):
 
 func _process(delta):
 	looking_at_something = false
-	if (ping_ray.is_colliding() and ping_ray.get_collider().has_meta("type")):
-		looking_at_something = true
+	if ping_ray.is_colliding():
+		var coll = ping_ray.get_collider()
+		if coll != null and coll.has_meta("type"):
+			looking_at_something = true
 
 func play_click(var tier):
 	#var pitch = MIN_PITCH + tier * PITCH_DIFF_PER_TIER

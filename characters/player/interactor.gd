@@ -2,6 +2,8 @@ extends Area2D
 #script controls interacting with objects in the world,
 # e.g. levers and lootbags, also dropping items into loot bags
 onready var inventory = get_parent().get_node("Inventory")
+onready var raycaster = $RayCast2D
+
 var lootbag_scene = preload("res://environment/lootbag.tscn")
 
 var process_input = true
@@ -11,6 +13,7 @@ var process_input = true
 func attempt_interact():
 	if !process_input:
 		return
+	"""
 	var nearby_objects = get_overlapping_areas()
 	if nearby_objects.size() == 0:
 		return
@@ -26,6 +29,13 @@ func attempt_interact():
 
 	if nearest_interactable_obj.has_method("pick_up"):
 		inventory.pickup_items(nearest_interactable_obj.pick_up())
+	"""
+	if raycaster.is_colliding():
+		var coll = raycaster.get_collider()
+		if coll.has_method("pick_up"):
+			inventory.pickup_items(coll.pick_up())
+		elif coll.has_method("use"):
+			coll.use()
 
 #if there's a nearby lootbag, drop item into it,
 # otherwise make a new bag
