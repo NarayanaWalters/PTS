@@ -79,7 +79,6 @@ bus = "Compass"
 [node name="Mover" type="Node2D" parent="." index="2"]
 
 editor/display_folded = true
-visible = false
 script = ExtResource( 6 )
 
 [node name="MoveRay" type="RayCast2D" parent="Mover" index="0"]

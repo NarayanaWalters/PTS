@@ -19,7 +19,7 @@ mix_rate = 44100
 stereo = false
 data = PoolByteArray(  )
 
-[node name="NPC" type="KinematicBody2D"]
+[node name="NPC" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -48,7 +48,7 @@ stream = SubResource( 2 )
 volume_db = 0.0
 autoplay = false
 max_distance = 500.0
-attenuation = 1.0
+attenuation = 2.0
 bus = "Master"
 area_mask = 1
 script = ExtResource( 3 )
