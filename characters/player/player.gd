@@ -44,9 +44,9 @@ func _process(delta):
 	
 	var r = 0
 	if (Input.is_action_pressed("turn_right")):
-		r += -1
-	if (Input.is_action_pressed("turn_left")):
 		r += 1
+	if (Input.is_action_pressed("turn_left")):
+		r += -1
 	rotator.rotate_body(self, r, Input.is_action_pressed("align"))
 	
 	if (Input.is_action_pressed("ping")):

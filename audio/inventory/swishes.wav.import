@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/swishes.wav-9aab247e1df10e31ced55c670550d33a.sample"
+
+[deps]
+
+source_file="res://audio/inventory/swishes.wav"
+source_md5="78253dbf171a7ae8632694a568d0ca64"
+
+dest_files=[ "res://.import/swishes.wav-9aab247e1df10e31ced55c670550d33a.sample" ]
+dest_md5="053a5c5ce9e10097e93a26cf87e53320"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

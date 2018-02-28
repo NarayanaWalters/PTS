@@ -2,14 +2,14 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/open_inventory.wav-9b9e88e3c2e64087cebd536b3cb871d7.sample"
+path="res://.import/backpack.wav-a8f0a83fc33c43de2a346fbaaf7ce743.sample"
 
 [deps]
 
-source_file="res://audio/inventory/open_inventory.wav"
+source_file="res://audio/inventory/tabs/backpack.wav"
 source_md5="fff8bbb14efdbcd4fb539fc194d319d2"
 
-dest_files=[ "res://.import/open_inventory.wav-9b9e88e3c2e64087cebd536b3cb871d7.sample" ]
+dest_files=[ "res://.import/backpack.wav-a8f0a83fc33c43de2a346fbaaf7ce743.sample" ]
 dest_md5="6bd876a607f7d87d0b1e2ce7f2297f06"
 
 [params]

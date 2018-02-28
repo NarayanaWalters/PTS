@@ -48,9 +48,9 @@ func unequip_wep():
 func equip_wep(var item_to_eq):
 	damage = item_to_eq["damage"]
 	atk_rate = item_to_eq["attack_rate"] / 10.0
-	atk_sound = item_to_eq["sounds"]["atk_swing_sound"]
-	atk_hit_sound = item_to_eq["sounds"]["atk_hit_sound"]
-	prep_sound = item_to_eq["sounds"]["prep_sound"]
+	atk_sound = item_to_eq["sounds"]["swing"]
+	atk_hit_sound = item_to_eq["sounds"]["hit"]
+	prep_sound = item_to_eq["sounds"]["prep"]
 	ranged = item_to_eq["attack_type"] == "range"
 	
 

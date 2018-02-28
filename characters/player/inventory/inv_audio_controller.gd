@@ -4,10 +4,14 @@ onready var db = get_node("/root/entity_database")
 
 var audio_path = "res://audio/inventory/"
 var open_sound = "open_inventory"
+
+var tabs_sounds = ["equipment", "backpack", "stats", "journal"]
+
 var close_sound = "close_inventory"
-var weapon_sound = "metal_clash"
-var atk_rate_sound = "swish"
+var atk_rate_sound = "swishes2"
 var sound_queue = []
+
+var drop_sound = "metal_clash"
 
 func _ready():
 	pass
@@ -19,6 +23,7 @@ func _process(delta):
 
 func clear_sound_queue():
 	sound_queue.clear()
+	stop()
 
 #for passing sounds without paths
 func add_sound_to_queue(var sound):
@@ -26,32 +31,31 @@ func add_sound_to_queue(var sound):
 
 func open():
 	clear_sound_queue()
-	add_sound_to_queue(open_sound)
+	add_sound_to_queue("tabs/" + tabs_sounds[1])
 
 func close():
 	clear_sound_queue()
 	add_sound_to_queue(close_sound)
 
 func play_tab_sound(var tab):
-	if tab == 0: #paper_doll
-		pass
-	elif tab == 1: #backpack
-		pass
-	elif tab == 2: #stats
-		pass
-	elif tab == 3: #journal
-		pass
+	if tab >= 0 and tab <= 3: #paper_doll
+		add_sound_to_queue("tabs/" + tabs_sounds[tab])
 
 # plays id sounds and stats for this item
 func play_item_stats(var item_id):
 	var item_info = db.get_item(item_id)
 	#play_item_id_sound(item_id)
 	
-	if item_info.has("type") and item_info["type"] == "weapon":
-		sound_queue.push_front(item_info["sounds"]["atk_swing_sound"])
-		play_number(item_info["damage"])
-		add_sound_to_queue(atk_rate_sound)
-		play_number(item_info["attack_rate"])
+	if item_info.has("type"):
+		var type = item_info["type"]
+		if type == "weapon":
+			sound_queue.push_front(item_info["sounds"]["unsheathe"])
+			play_number(item_info["damage"])
+			add_sound_to_queue(atk_rate_sound)
+			play_number(item_info["attack_rate"])
+		elif type == "armor":
+			sound_queue.push_front(item_info["sounds"]["equip"])
+			play_number(item_info["protection"])
 
 #e.g. sword, spell, breastplate
 #use id so I can call from inventory for item pick ups and drops
@@ -60,9 +64,9 @@ func play_item_id_sound(var item_id):
 		return
 	var item_info = db.get_item(item_id)
 	if item_info["type"] == "weapon":
-		sound_queue.push_front(item_info["sounds"]["atk_swing_sound"])
+		sound_queue.push_front(item_info["sounds"]["swing"])
 	if item_info["type"] == "armor":
-		pass
+		sound_queue.push_front(item_info["sounds"]["equip"])
 	
 
 
@@ -82,10 +86,13 @@ func play_number(var num):
 
 #TODO
 func equip_item(var item_id):
-	pass
+	clear_sound_queue()
+	play_item_id_sound(item_id)
 
 func unequip_item(var item_id):
-	pass
+	clear_sound_queue()
+	play_item_id_sound(item_id)
 
 func drop_item(var item_id):
-	pass
+	clear_sound_queue()
+	add_sound_to_queue(drop_sound)

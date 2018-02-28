@@ -10,7 +10,7 @@
 
 [node name="Player" parent="." index="0" instance=ExtResource( 1 )]
 
-position = Vector2( 0, -263.784 )
+position = Vector2( 0, -2.2764 )
 
 [node name="TileMap" type="TileMap" parent="." index="1"]
 

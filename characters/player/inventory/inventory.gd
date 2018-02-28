@@ -63,14 +63,17 @@ func _input(event):
 	elif Input.is_action_just_released("turn_right"):
 		equip_unequip_item()
 	
+	if Input.is_action_just_released("interact"):
+		examine_item()
+	
 # true: open inventory, false: close it
 func open(var b):
 	if b:
 		console.output("inventory opened")
-		audio_controller.open()
-		clear_on_output = false
-		output_pos()
-		clear_on_output = true
+		#audio_controller.open()
+		cur_tab = 1
+		cur_row = 0
+		output_inv_pos(true, true)
 	else:
 		console.output("inventory closed")
 		audio_controller.close()
@@ -78,12 +81,12 @@ func open(var b):
 func tab_left():
 	cur_tab = fposmod((cur_tab - 1), Tab.size())
 	cur_row = 0
-	output_pos()
+	output_inv_pos(true, true)
 
 func tab_right():
 	cur_tab = fposmod((cur_tab + 1), Tab.size())
 	cur_row = 0
-	output_pos()
+	output_inv_pos(true, true)
 
 func row_up():
 	cur_row -= 1
@@ -170,7 +173,9 @@ func equip_from_backpack():
 				if cur_item["type"] == type and cur_item["slot"] == slot:
 					inv[PAPER_DOLL].erase(item)
 					inv[BACKPACK].push_front(item)
-					row_down()
+					#row_down()
+					cur_row += 1
+					clamp_row()
 					outp = "unequipped " + item + " : "
 					break
 			inv[PAPER_DOLL].push_front(item_id)
@@ -195,9 +200,13 @@ func insert_into_backpack(var item_id):
 	inv[BACKPACK].push_front(item_id)
 
 func output_pos():
-	if clear_on_output:
+	output_inv_pos(true, false)
+
+func output_inv_pos(var clear, var play_tab):
+	if clear:
 		audio_controller.clear_sound_queue()
-	audio_controller.play_tab_sound(cur_tab)
+	if play_tab:
+		audio_controller.play_tab_sound(cur_tab)
 	if cur_tab == BACKPACK or cur_tab == PAPER_DOLL:
 		audio_controller.play_item_stats(get_current_slot_contents())
 	
@@ -209,6 +218,9 @@ func output_pos():
 	txt += str(tabs[cur_tab]) + " : "
 	txt += item_str
 	console.output(txt)
+
+func examine_item():
+	output_pos()
 
 #for tests
 func clear():

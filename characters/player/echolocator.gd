@@ -80,6 +80,7 @@ func _process(delta):
 		if coll != null and coll.has_meta("type"):
 			looking_at_something = true
 
+
 func play_click(var tier):
 	#var pitch = MIN_PITCH + tier * PITCH_DIFF_PER_TIER
 	var sound = click_sounds[tier]

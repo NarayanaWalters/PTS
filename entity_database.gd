@@ -7,17 +7,28 @@ const attack_rate = "attack_rate"
 
 const npc_audio_path = "res://audio/npc/"
 const wep_audio_path = "res://audio/weapons/"
+const arm_audio_path = "res://audio/armor/"
 
 const sword_sounds = {
-"atk_hit_sound": wep_audio_path + "sword_hit.wav",
-"atk_swing_sound": wep_audio_path + "sword_swish.wav",
-"prep_sound": ""
+"unsheathe": wep_audio_path + "sword_unsheathe.wav",
+"hit": wep_audio_path + "sword_hit.wav",
+"swing": wep_audio_path + "sword_swish.wav",
+"prep": ""
 }
 
 const bow_sounds = {
-"atk_hit_sound": wep_audio_path + "bow_hit.wav",
-"atk_swing_sound": wep_audio_path + "bow_fire.wav",
-"prep_sound": wep_audio_path + "bow_draw.wav"
+"unsheathe": wep_audio_path + "bow_fire.wav",
+"hit": wep_audio_path + "bow_hit.wav",
+"swing": wep_audio_path + "bow_fire.wav",
+"prep": wep_audio_path + "bow_draw.wav"
+}
+
+const leather_sounds = {
+	"equip": arm_audio_path + "chainmail2.wav"
+}
+
+const chainmail_sounds = {
+	"equip": arm_audio_path + "chainmail2.wav"
 }
 
 var items = {
@@ -47,12 +58,14 @@ var items = {
 
 "a_chainmail_vest":{
 "name": "chainmail vest", "type":"armor", "slot":"chest",
-"armor":3, "weaknesses":[],
+"protection":3, "weaknesses":[],
+"sounds":chainmail_sounds,
 "value":5, "stackable":false, "enchantments":["p_fire_protection"]},
 
 "a_leather_vest":{
 "name": "leather vest", "type":"armor", "slot":"chest",
-"armor":2, "weaknesses":[],
+"protection":2, "weaknesses":[],
+"sounds":leather_sounds,
 "value":5, "stackable":false, "enchantments":["p_fire_protection"]}
 }
 
