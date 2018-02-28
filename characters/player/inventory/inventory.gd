@@ -193,6 +193,7 @@ func pickup_items(var items_list):
 	#print(inv[BACKPACK])
 	for item in items_list:
 		#print("adding: " + item)
+		audio_controller.play_item_id_sound(item)
 		inv[BACKPACK].push_front(item)
 	#print("current contents are now : " + str(inv[BACKPACK]))
 

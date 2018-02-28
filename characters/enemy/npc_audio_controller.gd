@@ -3,6 +3,9 @@ extends AudioStreamPlayer2D
 enum states {IDLE, CHASE}
 var state = 0
 
+var reg_vol = 1
+var muffled_vol = -10
+
 var sounds = {
 	"idle":[],
 	"chase":[],
@@ -50,3 +53,10 @@ func init_sounds(var sound_dict):
 			var tmp = new_sound + str(i) + ".wav"
 			sounds[key].append(tmp)
 			#print(tmp)
+
+func muffle(var b):
+	
+	if b:
+		volume_db = reg_vol
+	else:
+		volume_db = muffled_vol

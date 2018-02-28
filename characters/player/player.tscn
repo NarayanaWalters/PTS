@@ -46,7 +46,6 @@ _sections_unfolded = [ "Collision" ]
 
 [node name="Echolocator" type="Node2D" parent="." index="0"]
 
-editor/display_folded = true
 script = ExtResource( 2 )
 
 [node name="RayCast2D" type="RayCast2D" parent="Echolocator" index="0"]
@@ -56,7 +55,14 @@ exclude_parent = true
 cast_to = Vector2( 0, 480 )
 collision_mask = 3
 
-[node name="ClickPlayer" type="AudioStreamPlayer" parent="Echolocator" index="1"]
+[node name="RayCastLoot" type="RayCast2D" parent="Echolocator" index="1"]
+
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 480 )
+collision_mask = 4
+
+[node name="ClickPlayer" type="AudioStreamPlayer" parent="Echolocator" index="2"]
 
 stream = ExtResource( 3 )
 volume_db = 0.0
@@ -166,6 +172,7 @@ shape = SubResource( 2 )
 
 [node name="Health" type="Node2D" parent="." index="7"]
 
+editor/display_folded = true
 script = ExtResource( 11 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Health" index="0"]
@@ -198,10 +205,12 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+collision_layer = 4
+collision_mask = 4
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 14 )
-_sections_unfolded = [ "Pause" ]
+_sections_unfolded = [ "Collision", "Pause" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactor" index="0"]
 
@@ -213,7 +222,7 @@ _sections_unfolded = [ "Pause" ]
 enabled = true
 exclude_parent = true
 cast_to = Vector2( 0, 33 )
-collision_mask = 1
+collision_mask = 4
 
 [node name="Camera2D" type="Camera2D" parent="." index="10"]
 

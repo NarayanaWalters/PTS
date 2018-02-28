@@ -56,6 +56,10 @@ func init_npc():
 	if attitude == "hostile":
 		add_to_group("enemies")
 
+func _process(delta):
+	audio_controller.muffle(can_see_player())
+
+
 func _physics_process(delta):
 	if attitude == "hostile":
 		seek_and_attack_player(delta)
@@ -93,7 +97,8 @@ func move_to_player_pos(var delta):
 
 func can_see_player():
 	rc.set_cast_to(player_pos - global_position)
-	return rc.is_colliding() && rc.get_collider().has_meta("type") && rc.get_collider().get_meta("type") == "player"
+	var se = rc.is_colliding() and rc.get_collider().has_meta("type") and rc.get_collider().get_meta("type") == "player"
+	return se
 
 func attack():
 	if time_since_attack > attack_rate:

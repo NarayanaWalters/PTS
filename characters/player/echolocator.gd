@@ -9,6 +9,7 @@ const MIN_PITCH = 1
 const PITCH_DIFF_PER_TIER = 1.5
 
 onready var ping_ray = get_node("RayCast2D")
+onready var loot_ray = $RayCastLoot
 onready var click_player = get_node("ClickPlayer")
 
 const DIS_PER_TIER = [2, 8, MAX_DISTANCE]
@@ -33,21 +34,26 @@ func _ready():
 # send and play echolocation pings
 # delta: time since last frame
 func echolocate(var delta):
-	var distance = calc_distance()
+	var distance = calc_distance(ping_ray)
+	var distance2 = calc_distance(loot_ray)
+	var ray = ping_ray
+	if distance2 < distance:
+		distance = distance2
+		ray = loot_ray
 	var tier = calc_dis_tier(distance)
 	var click_rate = calc_click_rate(distance, tier)
 	time_since_last_click += delta
 	if time_since_last_click >= click_rate:
 		time_since_last_click -= click_rate
-		play_click(tier)
+		play_click(tier, ray)
 		tap_hit_obj()
 
 # calculate distance from player to where raycast hits
-func calc_distance():
+func calc_distance(var ray):
 	var distance = -1
 	var start_pos = global_position
-	var end_point = ping_ray.get_collision_point()
-	if (ping_ray.is_colliding()):
+	var end_point = ray.get_collision_point()
+	if (ray.is_colliding()):
 		distance = (end_point - start_pos).length()
 	if distance < 0:
 		return MAX_DISTANCE
@@ -81,12 +87,18 @@ func _process(delta):
 			looking_at_something = true
 
 
-func play_click(var tier):
-	#var pitch = MIN_PITCH + tier * PITCH_DIFF_PER_TIER
+func play_click(var tier, var ray):
+	if is_loot_in_front_of_enemy():
+		alternate = !alternate
+		if alternate:
+			ray = ping_ray
+		else:
+			ray = loot_ray
+		tier = calc_dis_tier(calc_distance(ray))
+	
 	var sound = click_sounds[tier]
-	#alternate = !alternate
-	if (ping_ray.is_colliding()):
-		var hit_obj = ping_ray.get_collider()
+	if (ray.is_colliding()):
+		var hit_obj = ray.get_collider()
 		if hit_obj.has_meta("type"):
 			var type = hit_obj.get_meta("type")
 			var att = ""
@@ -105,6 +117,28 @@ func play_click(var tier):
 	click_player.stream = load(path)
 	click_player.play()
 
+# since loot can be walked over, I want to be able to alternate
+# enemy and loot sounds
+func is_loot_in_front_of_enemy():
+	var distance1 = calc_distance(ping_ray)
+	var distance2 = calc_distance(loot_ray)
+	
+	if distance1 < distance2:
+		return false
+	
+	if ping_ray.is_colliding() and loot_ray.is_colliding():
+		var hit_obj1 = ping_ray.get_collider()
+		var hit_obj2 = loot_ray.get_collider()
+		if hit_obj1.has_meta("type") and hit_obj2.has_meta("type"):
+			var type1 = hit_obj1.get_meta("type")
+			var type2 = hit_obj2.get_meta("type")
+			var att = ""
+			if hit_obj1.has_meta("attitude"):
+				att = hit_obj1.get_meta("attitude")
+			
+			if att == "hostile" and type1 == "npc" and type2 == "loot":
+				return true
+	return false
 
 # some objects react to being echolocated at, e.g. chimes or gongs
 func tap_hit_obj():
