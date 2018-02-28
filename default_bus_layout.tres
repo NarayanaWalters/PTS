@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=5 format=2]
+[gd_resource type="AudioBusLayout" load_steps=7 format=2]
 
 [sub_resource type="AudioEffectPitchShift" id=1]
 
@@ -19,6 +19,16 @@ pan = -1.0
 
 resource_name = "Panner"
 pan = 1.0
+
+[sub_resource type="AudioEffectPitchShift" id=5]
+
+resource_name = "PitchShift"
+pitch_scale = 1.0
+
+[sub_resource type="AudioEffectPitchShift" id=6]
+
+resource_name = "PitchShift"
+pitch_scale = 1.0
 
 [resource]
 
@@ -54,4 +64,20 @@ bus/3/volume_db = 0.0
 bus/3/send = "Master"
 bus/3/effect/0/effect = SubResource( 4 )
 bus/3/effect/0/enabled = true
+bus/4/name = "HealthScaler"
+bus/4/solo = false
+bus/4/mute = false
+bus/4/bypass_fx = false
+bus/4/volume_db = 0.0
+bus/4/send = "Master"
+bus/4/effect/0/effect = SubResource( 5 )
+bus/4/effect/0/enabled = true
+bus/5/name = "HealthCeiling"
+bus/5/solo = false
+bus/5/mute = false
+bus/5/bypass_fx = false
+bus/5/volume_db = 0.0
+bus/5/send = "Master"
+bus/5/effect/0/effect = SubResource( 6 )
+bus/5/effect/0/enabled = true
 

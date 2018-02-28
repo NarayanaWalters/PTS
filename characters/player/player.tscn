@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://characters/player/player.gd" type="Script" id=1]
 [ext_resource path="res://characters/player/echolocator.gd" type="Script" id=2]
@@ -10,9 +10,10 @@
 [ext_resource path="res://characters/player/ear_awareness.gd" type="Script" id=8]
 [ext_resource path="res://characters/player/player_audio/echo_amb.wav" type="AudioStream" id=9]
 [ext_resource path="res://characters/player/combat_manager.gd" type="Script" id=10]
-[ext_resource path="res://characters/health.tscn" type="PackedScene" id=11]
-[ext_resource path="res://characters/player/inventory/inventory.tscn" type="PackedScene" id=12]
-[ext_resource path="res://characters/player/interactor.gd" type="Script" id=13]
+[ext_resource path="res://characters/player/player_health.gd" type="Script" id=11]
+[ext_resource path="res://audio/npc/zombie/zombie_hurt0.wav" type="AudioStream" id=12]
+[ext_resource path="res://characters/player/inventory/inventory.tscn" type="PackedScene" id=13]
+[ext_resource path="res://characters/player/interactor.gd" type="Script" id=14]
 
 [sub_resource type="AudioStreamSample" id=1]
 
@@ -163,9 +164,27 @@ bus = "Master"
 
 shape = SubResource( 2 )
 
-[node name="Health" parent="." index="7" instance=ExtResource( 11 )]
+[node name="Health" type="Node2D" parent="." index="7"]
 
-[node name="Inventory" parent="." index="8" instance=ExtResource( 12 )]
+script = ExtResource( 11 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Health" index="0"]
+
+stream = ExtResource( 12 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "HealthScaler"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Health" index="1"]
+
+stream = ExtResource( 12 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "HealthCeiling"
+
+[node name="Inventory" parent="." index="8" instance=ExtResource( 13 )]
 
 pause_mode = 2
 _sections_unfolded = [ "Pause" ]
@@ -181,7 +200,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
-script = ExtResource( 13 )
+script = ExtResource( 14 )
 _sections_unfolded = [ "Pause" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactor" index="0"]
