@@ -168,18 +168,26 @@ func equip_from_backpack():
 		if item_to_eq.has("slot"):
 			slot = item_to_eq["slot"]
 			var outp = ""
+			var index = 0
+			var item_to_swap = ""
+			var swap = false
 			for item in inv[PAPER_DOLL]:
 				var cur_item = db.get_item(item)
 				if cur_item["type"] == type and cur_item["slot"] == slot:
 					inv[PAPER_DOLL].erase(item)
-					inv[BACKPACK].push_front(item)
+					swap = true
+					item_to_swap = item
+					#inv[BACKPACK].push_front(item)
 					#row_down()
-					cur_row += 1
-					clamp_row()
+					#cur_row += 1
+					#clamp_row()
 					outp = "unequipped " + item + " : "
 					break
+				index += 1
 			inv[PAPER_DOLL].push_front(item_id)
 			inv[BACKPACK].remove(cur_row)
+			if swap:
+				inv[BACKPACK].insert(cur_row, item_to_swap)
 			console.output(outp + "equipped " + item_id)
 			
 			if type == "weapon":
