@@ -21,9 +21,9 @@ var cur_row = 0
 
 var inv = [
 # Paper Doll
-["w_iron_sword", "a_chainmail_vest"],
+["w_iron_sword", "a_leather_vest"],
 # Backpack
-["w_bow", "w_iron_sword", "w_bronze_dagger", "default_item", "a_leather_vest"],
+[],#"w_bow", "w_iron_sword", "w_bronze_dagger", "default_item", "a_leather_vest"],
 # Stats
 [1101, 2201, 101],
 # Journal

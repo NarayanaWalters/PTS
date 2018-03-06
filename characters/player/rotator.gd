@@ -8,15 +8,19 @@ var rot = 0
 var lock_speed = 0.01
 #slowly locks to axis if within this rotation
 var lock_to_axis_arc = 30
-var lock_to_axis_speed = 0.05
+var lock_to_axis_speed = 0.15
 
 
 func rotate_body(var body, r_input, align):
 	r_input *= rot_speed
 	rot += r_input
 	if !align:
-		body.global_rotation += r_input * rot_speed
-		if !echolocator.looking_at_something:
+		var turn_speed = rot_speed
+		if echolocator.looking_at_something:
+			turn_speed = lock_speed
+		body.global_rotation += r_input * turn_speed
+		
+		if !echolocator.looking_at_something and r_input == 0:
 			slow_align(body)
 	else:
 		align_to_axis(body)

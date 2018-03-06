@@ -50,4 +50,5 @@ health_read=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_nam
 
 [rendering]
 
+environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"

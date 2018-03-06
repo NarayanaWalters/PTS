@@ -19,7 +19,7 @@ mix_rate = 44100
 stereo = false
 data = PoolByteArray(  )
 
-[node name="NPC" type="KinematicBody2D" index="0"]
+[node name="NPC" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1

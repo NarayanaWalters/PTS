@@ -18,7 +18,7 @@ func _ready():
 # dir_vector: direction to move
 # delta: time since last frame
 func move_body(var kine_body, var dir_vector, var delta):
-	var last_pos = global_position
+	var start_pos = global_position
 	var rot = atan2(dir_vector.x, dir_vector.y)
 	var our_rot = global_rotation
 	
@@ -28,14 +28,26 @@ func move_body(var kine_body, var dir_vector, var delta):
 		attempt_step()
 	#print("cur: %s last: %s" % [cur_pos, last_pos])
 	var cur_pos = global_position
-	distance_since_last_step += cur_pos.distance_to(last_pos)
+	
+	if made_invalid_move():
+		kine_body.global_position = last_pos
+		cur_pos = last_pos
+	else:
+		distance_since_last_step += cur_pos.distance_to(start_pos)
+	
+	last_pos = cur_pos
 
 
-func bump_away_from_walls(var body):
+func made_invalid_move():
+	var space_state = get_world_2d().direct_space_state
+	var result = space_state.intersect_ray(last_pos, global_position,[get_parent()])
+	return result
+	"""
 	if move_ray.is_colliding():
 		var norm = move_ray.get_collision_normal()
 		print(norm)
 		body.move_and_collide(norm)
+	"""
 
 func can_move(var rot):
 	move_ray.rotation = rot * -1

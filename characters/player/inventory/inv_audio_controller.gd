@@ -43,6 +43,9 @@ func play_tab_sound(var tab):
 
 # plays id sounds and stats for this item
 func play_item_stats(var item_id):
+	
+	if item_id == null or item_id == "":
+		return
 	var item_info = db.get_item(item_id)
 	#play_item_id_sound(item_id)
 	
@@ -60,7 +63,7 @@ func play_item_stats(var item_id):
 #e.g. sword, spell, breastplate
 #use id so I can call from inventory for item pick ups and drops
 func play_item_id_sound(var item_id):
-	if item_id == null:
+	if item_id == null or item_id == "":
 		return
 	var item_info = db.get_item(item_id)
 	if item_info["type"] == "weapon":

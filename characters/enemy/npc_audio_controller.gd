@@ -58,5 +58,7 @@ func muffle(var b):
 	
 	if b:
 		volume_db = reg_vol
+		attenuation = 1
 	else:
 		volume_db = muffled_vol
+		attenuation = 2
