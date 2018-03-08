@@ -12,6 +12,7 @@ var max_health = 50
 
 var inventory_open = false
 
+const KEYBOARD_TURN_SPEED = 3
 var rot_speed = 0.03
 var mouse_sens = 0.1
 
@@ -44,9 +45,9 @@ func _process(delta):
 	
 	var r = 0
 	if (Input.is_action_pressed("turn_right")):
-		r += 1
+		r += KEYBOARD_TURN_SPEED
 	if (Input.is_action_pressed("turn_left")):
-		r += -1
+		r += -KEYBOARD_TURN_SPEED
 	rotator.rotate_body(self, r, Input.is_action_pressed("align"))
 	
 	if (Input.is_action_pressed("ping")):

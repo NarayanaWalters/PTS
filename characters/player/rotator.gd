@@ -18,10 +18,12 @@ func rotate_body(var body, r_input, align):
 		var turn_speed = rot_speed
 		if echolocator.looking_at_something:
 			turn_speed = lock_speed
-		body.global_rotation += r_input * turn_speed
 		
+		body.global_rotation += r_input * turn_speed
+		"""
 		if !echolocator.looking_at_something and r_input == 0:
 			slow_align(body)
+		"""
 	else:
 		align_to_axis(body)
 
