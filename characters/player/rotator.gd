@@ -10,11 +10,14 @@ var lock_speed = 0.01
 var lock_to_axis_arc = 30
 var lock_to_axis_speed = 0.15
 
+var snap_turn_velo = 0
+const max_snap_turn_velo = 6
 
 func rotate_body(var body, r_input, align):
 	r_input *= rot_speed
 	rot += r_input
 	if !align:
+		snap_turn_velo = 0
 		var turn_speed = rot_speed
 		if echolocator.looking_at_something:
 			turn_speed = lock_speed
@@ -25,7 +28,14 @@ func rotate_body(var body, r_input, align):
 			slow_align(body)
 		"""
 	else:
+		snap_turn_velo += r_input
+		if abs(snap_turn_velo) >= max_snap_turn_velo:
+			body.global_rotation += 90 * sign(snap_turn_velo)
+			snap_turn_velo = 0
 		align_to_axis(body)
+
+func rotate_snap():
+	pass
 
 func slow_align(var body):
 	var r = body.global_rotation_degrees
