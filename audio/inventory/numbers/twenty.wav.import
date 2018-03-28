@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/twenty.wav-0ec66331a015f100969dd5a024374735.sample"
+
+[deps]
+
+source_file="res://audio/inventory/numbers/twenty.wav"
+source_md5="f4bbd37a32e39cdce41d004c2d1a35d2"
+
+dest_files=[ "res://.import/twenty.wav-0ec66331a015f100969dd5a024374735.sample" ]
+dest_md5="e08fecf11c613e09af2e96f51e5a3f84"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

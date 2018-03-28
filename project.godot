@@ -11,7 +11,7 @@ config_version=3
 [application]
 
 config/name="PTS"
-run/main_scene="res://environment/world.tscn"
+run/main_scene="res://unit_tests/test_manager.tscn"
 config/icon="res://icon.png"
 
 [autoload]

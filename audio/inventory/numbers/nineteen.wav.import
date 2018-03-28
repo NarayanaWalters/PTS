@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/nineteen.wav-f5902b9615ac6ab13a290cbbb8d47d2b.sample"
+
+[deps]
+
+source_file="res://audio/inventory/numbers/nineteen.wav"
+source_md5="feb0ece60919292601c4f74933bccf2e"
+
+dest_files=[ "res://.import/nineteen.wav-f5902b9615ac6ab13a290cbbb8d47d2b.sample" ]
+dest_md5="09849a7f34e9048f8a8c1fc929ad2975"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

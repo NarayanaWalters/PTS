@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/three.wav-537ee58e00a6bf37286c196928fab5ea.sample"
+
+[deps]
+
+source_file="res://audio/inventory/numbers/three.wav"
+source_md5="fe102cfce05c2a9300c302a5a5c433f0"
+
+dest_files=[ "res://.import/three.wav-537ee58e00a6bf37286c196928fab5ea.sample" ]
+dest_md5="dd30bfc09a4bef76b11283d567c44e66"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

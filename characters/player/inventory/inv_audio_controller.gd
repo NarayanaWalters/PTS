@@ -13,6 +13,15 @@ var sound_queue = []
 
 var drop_sound = "metal_clash"
 
+const single_dig_numbers = ["zero", "one", "two", "three", 
+"four", "five", "six", "seven", "eight", "nine"]
+const teen_numbers = ["ten", "eleven", "twelve", "thirteen",
+ "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]
+const double_dig_numbers = ["twenty", "thirty", "forty", "fifty",
+"sixty", "seventy", "eighty", "ninety"]
+const number_overflow = "overflow"
+const hundred_number = "hundred"
+
 func _ready():
 	pass
 
@@ -72,20 +81,45 @@ func play_item_id_sound(var item_id):
 		sound_queue.push_front(item_info["sounds"]["equip"])
 	
 
-
+# plays audio for a number between 0 and 999 (inclusive)
 func play_number(var num):
-	var nums_to_play = []
 	num = int(num)
-	if num < 0:
-		num = 0
+	if num > 999 or num < 0:
+		add_sound_to_queue("numbers/" + number_overflow)
+		print("number overflow: " + num)
+		return
+		
+	var nums_to_play = []
+	#separates number into three digits
+	
 	while num > 0:
 		var n = int(fposmod(num, 10))
 		nums_to_play.push_front(n)
 		num /= 10
-	#print(nums_to_play)
-	while nums_to_play.size() > 0:
-		var snd = "numbers/" + str(nums_to_play.pop_front())
-		add_sound_to_queue(snd)
+	
+	var sound_list = []
+	var num_size = nums_to_play.size()
+	if num_size == 3:
+		#sound_list.push_back(single_dig_numbers[nums_to_play[0]])
+		#sound_list.push_back(hundred_number)
+		add_sound_to_queue("numbers/" + single_dig_numbers[nums_to_play[0]])
+		add_sound_to_queue("numbers/" + hundred_number)
+		nums_to_play.pop_front()
+		num_size -= 1
+	
+	if num_size == 2:
+		if nums_to_play[0] == 1:
+			var snd = teen_numbers[nums_to_play[1]]
+			add_sound_to_queue("numbers/" + snd)
+		if nums_to_play[0] > 1:
+			add_sound_to_queue("numbers/" + double_dig_numbers[nums_to_play[0] - 2])
+
+		if nums_to_play[0] != 1 and nums_to_play[1] != 0:
+			nums_to_play.pop_front()
+			num_size -= 1
+	
+	if num_size == 1:
+		add_sound_to_queue("numbers/" + single_dig_numbers[nums_to_play[0]])
 
 #TODO
 func equip_item(var item_id):

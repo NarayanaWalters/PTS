@@ -3,7 +3,7 @@
 [ext_resource path="res://unit_tests/test_manager.gd" type="Script" id=1]
 [ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=2]
 
-[node name="TestManager" type="Node2D"]
+[node name="TestManager" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -43,6 +43,7 @@ margin_right = 200.0
 margin_bottom = 500.0
 rect_min_size = Vector2( 200, 500 )
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1

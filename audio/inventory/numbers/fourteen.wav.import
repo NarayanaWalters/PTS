@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/fourteen.wav-6df004fd7456d296db14274ffaf93066.sample"
+
+[deps]
+
+source_file="res://audio/inventory/numbers/fourteen.wav"
+source_md5="19791527022949b39319195007ac2bc3"
+
+dest_files=[ "res://.import/fourteen.wav-6df004fd7456d296db14274ffaf93066.sample" ]
+dest_md5="038c60f7feb393c68fdae7649dfd7556"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
