@@ -83,14 +83,21 @@ func play_item_id_sound(var item_id):
 
 # plays audio for a number between 0 and 999 (inclusive)
 func play_number(var num):
+	var nums = num_to_str_array(num)
+	for num in nums:
+		 add_sound_to_queue("numbers/" + num)
+
+func num_to_str_array(var num):
 	num = int(num)
 	if num > 999 or num < 0:
-		add_sound_to_queue("numbers/" + number_overflow)
-		print("number overflow: " + num)
-		return
-		
+		return [number_overflow]
+		#print("number overflow: " + num)
+	
+	if num == 0:
+		return [single_dig_numbers[0]]
+	
 	var nums_to_play = []
-	#separates number into three digits
+	#separates number into array of digits
 	
 	while num > 0:
 		var n = int(fposmod(num, 10))
@@ -100,26 +107,24 @@ func play_number(var num):
 	var sound_list = []
 	var num_size = nums_to_play.size()
 	if num_size == 3:
-		#sound_list.push_back(single_dig_numbers[nums_to_play[0]])
-		#sound_list.push_back(hundred_number)
-		add_sound_to_queue("numbers/" + single_dig_numbers[nums_to_play[0]])
-		add_sound_to_queue("numbers/" + hundred_number)
+		sound_list.append(single_dig_numbers[nums_to_play[0]])
+		sound_list.append(hundred_number)
 		nums_to_play.pop_front()
 		num_size -= 1
 	
 	if num_size == 2:
 		if nums_to_play[0] == 1:
-			var snd = teen_numbers[nums_to_play[1]]
-			add_sound_to_queue("numbers/" + snd)
+			sound_list.append(teen_numbers[nums_to_play[1]])
+			return sound_list
 		if nums_to_play[0] > 1:
-			add_sound_to_queue("numbers/" + double_dig_numbers[nums_to_play[0] - 2])
-
-		if nums_to_play[0] != 1 and nums_to_play[1] != 0:
-			nums_to_play.pop_front()
-			num_size -= 1
+			sound_list.append(double_dig_numbers[nums_to_play[0] - 2])
+		nums_to_play.pop_front()
+		num_size -= 1
 	
-	if num_size == 1:
-		add_sound_to_queue("numbers/" + single_dig_numbers[nums_to_play[0]])
+	if num_size == 1 and nums_to_play[0] != 0:
+		sound_list.append(single_dig_numbers[nums_to_play[0]])
+	
+	return sound_list
 
 #TODO
 func equip_item(var item_id):
