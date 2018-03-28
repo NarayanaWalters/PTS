@@ -14,7 +14,8 @@ func _ready():
 	yield(get_tree(), "idle_frame")
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	label.text = ""
-	all_numbers_output_test(true)
+	inventory.pickup_items(test_items)
+	#all_numbers_output_test(false)
 	#inventory_pickup_drop_test()
 	#inventory_navigation_test()
 	#inventory_equip_unequip_test()

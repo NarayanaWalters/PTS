@@ -7,10 +7,10 @@ path="res://.import/stats.wav-c74d0dca9bc5f7d7da3e03d4a2f8fa07.sample"
 [deps]
 
 source_file="res://audio/inventory/tabs/stats.wav"
-source_md5="e816b428c95ee09e73380727de8252eb"
+source_md5="d5952c9b95782f64a39e05c4e38d5195"
 
 dest_files=[ "res://.import/stats.wav-c74d0dca9bc5f7d7da3e03d4a2f8fa07.sample" ]
-dest_md5="5413d89b5a87434d297f517d6a8e9fab"
+dest_md5="82e228ba298ca8c29f00c1bc15e314e9"
 
 [params]
 

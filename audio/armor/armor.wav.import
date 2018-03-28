@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/armor.wav-04397fc73c5dd9b25f75c667ce92cafd.sample"
+
+[deps]
+
+source_file="res://audio/armor/armor.wav"
+source_md5="fde607fc168b8a5e524cf9fadf428405"
+
+dest_files=[ "res://.import/armor.wav-04397fc73c5dd9b25f75c667ce92cafd.sample" ]
+dest_md5="c38fc202c000e3a2a3ff51e837387ec5"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

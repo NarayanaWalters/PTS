@@ -10,6 +10,7 @@ const wep_audio_path = "res://audio/weapons/"
 const arm_audio_path = "res://audio/armor/"
 
 const sword_sounds = {
+"id": wep_audio_path + "sword.wav",
 "unsheathe": wep_audio_path + "sword_unsheathe.wav",
 "hit": wep_audio_path + "sword_hit.wav",
 "swing": wep_audio_path + "sword_swish.wav",
@@ -17,6 +18,7 @@ const sword_sounds = {
 }
 
 const bow_sounds = {
+"id": wep_audio_path + "bow.wav",
 "unsheathe": wep_audio_path + "bow_fire.wav",
 "hit": wep_audio_path + "bow_hit.wav",
 "swing": wep_audio_path + "bow_fire.wav",
@@ -24,10 +26,12 @@ const bow_sounds = {
 }
 
 const leather_sounds = {
+	"id": arm_audio_path + "armor.wav",
 	"equip": arm_audio_path + "chainmail2.wav"
 }
 
 const chainmail_sounds = {
+	"id": arm_audio_path + "armor.wav",
 	"equip": arm_audio_path + "chainmail2.wav"
 }
 

@@ -8,10 +8,13 @@ var open_sound = "open_inventory"
 var tabs_sounds = ["equipment", "backpack", "stats", "journal"]
 
 var close_sound = "close_inventory"
-var atk_rate_sound = "swishes2"
+var atk_rate_sound = "description/attack_rate"
 var sound_queue = []
 
-var drop_sound = "metal_clash"
+const equip_sound = "action/equipped"
+const unequip_sound = "action/unequipped"
+const drop_sound = "action/dropped"
+const pickup_sound = "action/picked_up"
 
 const single_dig_numbers = ["zero", "one", "two", "three", 
 "four", "five", "six", "seven", "eight", "nine"]
@@ -52,7 +55,6 @@ func play_tab_sound(var tab):
 
 # plays id sounds and stats for this item
 func play_item_stats(var item_id):
-	
 	if item_id == null or item_id == "":
 		return
 	var item_info = db.get_item(item_id)
@@ -60,13 +62,16 @@ func play_item_stats(var item_id):
 	
 	if item_info.has("type"):
 		var type = item_info["type"]
+		play_item_id_sound(item_id)
 		if type == "weapon":
-			sound_queue.push_front(item_info["sounds"]["unsheathe"])
+			#sound_queue.push_front(item_info["sounds"]["unsheathe"])
+			add_sound_to_queue("description/damage")
 			play_number(item_info["damage"])
-			add_sound_to_queue(atk_rate_sound)
+			add_sound_to_queue("description/attack_rate")
 			play_number(item_info["attack_rate"])
 		elif type == "armor":
-			sound_queue.push_front(item_info["sounds"]["equip"])
+			#sound_queue.push_front(item_info["sounds"]["equip"])
+			add_sound_to_queue("description/protection")
 			play_number(item_info["protection"])
 
 #e.g. sword, spell, breastplate
@@ -75,11 +80,7 @@ func play_item_id_sound(var item_id):
 	if item_id == null or item_id == "":
 		return
 	var item_info = db.get_item(item_id)
-	if item_info["type"] == "weapon":
-		sound_queue.push_front(item_info["sounds"]["swing"])
-	if item_info["type"] == "armor":
-		sound_queue.push_front(item_info["sounds"]["equip"])
-	
+	sound_queue.push_front(item_info["sounds"]["id"])
 
 # plays audio for a number between 0 and 999 (inclusive)
 func play_number(var num):
@@ -126,15 +127,25 @@ func num_to_str_array(var num):
 	
 	return sound_list
 
-#TODO
-func equip_item(var item_id):
-	clear_sound_queue()
+func equip_item(var item_id, var clear):
+	if clear:
+		clear_sound_queue()
+	add_sound_to_queue(equip_sound)
 	play_item_id_sound(item_id)
 
-func unequip_item(var item_id):
-	clear_sound_queue()
+func unequip_item(var item_id, var clear):
+	if clear:
+		clear_sound_queue()
+	add_sound_to_queue(unequip_sound)
 	play_item_id_sound(item_id)
+
+func pickup_items(var item_list):
+	clear_sound_queue()
+	add_sound_to_queue(pickup_sound)
+	for item in item_list:
+		play_item_id_sound(item)
 
 func drop_item(var item_id):
 	clear_sound_queue()
 	add_sound_to_queue(drop_sound)
+	play_item_id_sound(item_id)

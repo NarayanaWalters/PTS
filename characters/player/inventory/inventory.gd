@@ -136,11 +136,11 @@ func drop_item():
 func equip_unequip_item():
 	var cur_slot = get_current_slot_contents()
 	if cur_tab == PAPER_DOLL:
-		audio_controller.unequip_item(cur_slot)
+		audio_controller.unequip_item(cur_slot, true)
 		unequip_from_p_doll()
 		
 	elif cur_tab == BACKPACK:
-		audio_controller.equip_item(cur_slot)
+		audio_controller.equip_item(cur_slot, true)
 		equip_from_backpack()
 
 func unequip_from_p_doll():
@@ -182,6 +182,7 @@ func equip_from_backpack():
 					#cur_row += 1
 					#clamp_row()
 					outp = "unequipped " + item + " : "
+					audio_controller.unequip_item(item, false)
 					break
 				index += 1
 			inv[PAPER_DOLL].push_front(item_id)
@@ -198,12 +199,9 @@ func equip_from_backpack():
 		console.output("nothing to equip")
 
 func pickup_items(var items_list):
-	#print(inv[BACKPACK])
+	audio_controller.pickup_items(items_list)
 	for item in items_list:
-		#print("adding: " + item)
-		audio_controller.play_item_id_sound(item)
-		inv[BACKPACK].push_front(item)
-	#print("current contents are now : " + str(inv[BACKPACK]))
+		insert_into_backpack(item)
 
 func insert_into_backpack(var item_id):
 	inv[BACKPACK].push_front(item_id)

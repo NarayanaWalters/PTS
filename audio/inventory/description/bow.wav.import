@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/bow.wav-845ab9b42bbc547ec14acd1af499871a.sample"
+
+[deps]
+
+source_file="res://audio/inventory/description/bow.wav"
+source_md5="af5ab05bdb8bc50f71199f4bab439f42"
+
+dest_files=[ "res://.import/bow.wav-845ab9b42bbc547ec14acd1af499871a.sample" ]
+dest_md5="2683513aa2b3d3c9dd2f22195d647eb1"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
