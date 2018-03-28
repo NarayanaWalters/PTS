@@ -30,13 +30,12 @@ func rotate_body(var body, r_input, align):
 	else:
 		snap_turn_velo += r_input
 		if abs(snap_turn_velo) >= max_snap_turn_velo:
-			body.global_rotation += 90 * sign(snap_turn_velo)
-			snap_turn_velo = 0
+			snap_turn(body, sign(snap_turn_velo))
 		align_to_axis(body)
 
-func rotate_snap():
-	#TODO
-	pass
+func snap_turn(var body, var dir):
+	body.global_rotation += 90 * sign(dir)
+	snap_turn_velo = 0
 
 func slow_align(var body):
 	var r = body.global_rotation_degrees

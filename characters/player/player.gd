@@ -17,6 +17,7 @@ var rot_speed = 0.03
 var mouse_sens = 0.1
 
 func _ready():
+	mover.kine_body = self
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	set_meta("type", "player")
 	health.set_max_health(max_health)
@@ -69,7 +70,8 @@ func _physics_process(delta):
 	if (Input.is_action_pressed("move_left")):
 		move_vec.x += 1
 	
-	mover.move_body(self, move_vec, delta)
+	#mover.move_body(self, move_vec, delta)
+	mover.dir_vector = move_vec
 	
 
 func deal_damage(var dmg):
