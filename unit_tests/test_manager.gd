@@ -7,15 +7,15 @@ onready var inv_audio_manager = $Player/Inventory/AudioController
 
 var test_items = ["a_leather_vest", "a_chainmail_vest", 
 "w_bronze_dagger", "w_iron_sword"]
-
+var fails = 0
 
 
 func _ready():
 	yield(get_tree(), "idle_frame")
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	label.text = ""
-	inventory.pickup_items(test_items)
-	#all_numbers_output_test(false)
+	complete_numbers_output_test(false)
+	complete_inv_audio_tests()
 	#inventory_pickup_drop_test()
 	#inventory_navigation_test()
 	#inventory_equip_unequip_test()
@@ -38,26 +38,88 @@ const nums_to_test = {
 999: ["nine", "hundred", "ninety", "nine"],
 1000: ["overflow"]}
 
-func all_numbers_output_test(var use_audio):
-	label.text += "BEGIN NUMBER OUTPUT TESTS\n"
-	var fails = 0
+func complete_numbers_output_test(var use_audio):
+	label.text += "\nBEGIN NUMBER OUTPUT TESTS\n"
+	fails = 0
 	for key in nums_to_test.keys():
-		var b = number_output_test(key, nums_to_test[key], use_audio)
-		if !b:
-			fails += 1
+		number_output_test(key, nums_to_test[key], use_audio)
+
 	label.text += "NUMBER OUTPUT TESTS COMPLETE failed: %s\n" % fails
 
 func number_output_test(var num, var correct, var use_audio):
-	
 	if use_audio:
 		inv_audio_manager.play_number(num)
 	var result = inv_audio_manager.num_to_str_array(num)
 	if result != correct:
+		fails += 1
 		label.text += "FAILED NUM TEST: num %s : output %s : correct %s \n" % [num, result, correct]
 	else:
 		label.text += "passed: %s %s\n" % [num, result]
 	
 	return result == correct
+
+var test_items_for_audio = ["a_leather_vest", "a_chainmail_vest", "w_bronze_dagger", "w_bow"]
+
+func complete_inv_audio_tests():
+	var bow_dam = "seven"
+	var bow_atk_rate = "eight"
+	reset_inv()
+	var correct = []
+	fails = 0
+	label.text += "\nBEGIN INVENTORY AUDIO TESTS\n"
+	inventory.pickup_items(test_items_for_audio)
+	correct = ["bow", "sword", "armor","armor", "picked_up"]
+	inventory_audio_test(correct)
+	inventory.open(true)
+	correct = [bow_atk_rate, "attack_rate", bow_dam, "damage","bow", "backpack"]
+	inventory_audio_test(correct)
+	
+	inventory.tab_right()
+	correct = ["stats"]
+	inventory_audio_test(correct)
+	
+	inventory.tab_left()
+	correct = [bow_atk_rate, "attack_rate", bow_dam, "damage","bow", "backpack"]
+	inventory_audio_test(correct)
+	
+	inventory.row_down()
+	inventory.row_down()
+	inventory.drop_item()
+	correct = ["armor", "dropped"]
+	inventory_audio_test(correct)
+	inventory.row_up()
+	inventory.equip_unequip_item()
+	correct = ["sword", "equipped"]
+	inventory_audio_test(correct)
+	inventory.row_up()
+	inventory.equip_unequip_item()
+	correct = ["sword", "unequipped", "bow", "equipped"]
+	inventory_audio_test(correct)
+	
+	inventory.tab_left()
+	correct = [bow_atk_rate, "attack_rate", bow_dam, "damage","bow", "equipment"]
+	inventory_audio_test(correct)
+	
+	inventory.tab_left()
+	correct = ["journal"]
+	inventory_audio_test(correct)
+	inventory.tab_left()
+	correct = ["stats"]
+	inventory_audio_test(correct)
+	inventory.open(false)
+	label.text += "INVENTORY AUDIO TESTS COMPLETE failed: %s\n" % fails
+
+func inventory_audio_test(var correct):
+	var result = []
+	for snd in inv_audio_manager.sound_queue:
+		result.append(snd.get_file().get_basename())
+	var b = result == correct
+	if !b:
+		fails += 1
+		label.text += "FAILED output %s correct %s \n" % [result, correct]
+	else:
+		label.text += "passed output %s\n" % [result]
+	return b
 	
 
 
@@ -136,6 +198,9 @@ func inventory_navigation_test():
 func inventory_equip_unequip_test():
 	pass
 
+func reset_inv():
+	inventory.clear()
+	inv_audio_manager.clear_sound_queue()
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
