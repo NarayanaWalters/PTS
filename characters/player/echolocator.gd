@@ -9,6 +9,8 @@ const MIN_PITCH = 1
 const PITCH_DIFF_PER_TIER = 1.5
 
 onready var ping_ray = get_node("RayCast2D")
+onready var ping_ray_l = get_node("RayCast2DL")
+onready var ping_ray_r = get_node("RayCast2DR")
 onready var loot_ray = $RayCastLoot
 onready var click_player = get_node("ClickPlayer")
 
@@ -29,17 +31,29 @@ var looking_at_something = false
 var time_since_last_click = 0
 
 func _ready():
+	var player = get_parent()
+	ping_ray.add_exception(player)
+	ping_ray_l.add_exception(player)
+	ping_ray_r.add_exception(player)
+	
 	ping_ray.set_cast_to(Vector2(0, MAX_DISTANCE * PIXELS_PER_METER))
+	ping_ray_l.set_cast_to(Vector2(-10, MAX_DISTANCE * PIXELS_PER_METER))
+	ping_ray_r.set_cast_to(Vector2(10, MAX_DISTANCE * PIXELS_PER_METER))
 
 # send and play echolocation pings
 # delta: time since last frame
 func echolocate(var delta):
+	"""
 	var distance = calc_distance(ping_ray)
 	var distance2 = calc_distance(loot_ray)
 	var ray = ping_ray
 	if distance2 < distance:
 		distance = distance2
 		ray = loot_ray
+	"""
+	var ray = pick_ray()
+	var distance = calc_distance(ray)
+	
 	var tier = calc_dis_tier(distance)
 	var click_rate = calc_click_rate(distance, tier)
 	time_since_last_click += delta
@@ -47,6 +61,17 @@ func echolocate(var delta):
 		time_since_last_click -= click_rate
 		play_click(tier, ray)
 		tap_hit_obj()
+
+func pick_ray():
+	var ray = ping_ray
+	var dist = calc_distance(ray)
+	var rays = [ping_ray_l, ping_ray_r, loot_ray]
+	for r in rays:
+		var d = calc_distance(r)
+		if (d < dist):
+			ray = r
+			dist = d
+	return ray
 
 # calculate distance from player to where raycast hits
 func calc_distance(var ray):
