@@ -65,7 +65,7 @@ func echolocate(var delta):
 func pick_ray():
 	var ray = ping_ray
 	var dist = calc_distance(ray)
-	var rays = [ping_ray_l, ping_ray_r, loot_ray]
+	var rays = [loot_ray] # ping_ray_l, ping_ray_r, 
 	for r in rays:
 		var d = calc_distance(r)
 		if (d < dist):

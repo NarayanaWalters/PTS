@@ -18,7 +18,7 @@ var mouse_sens = 0.1
 
 func _ready():
 	mover.kine_body = self
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	set_meta("type", "player")
 	health.set_max_health(max_health)
 
