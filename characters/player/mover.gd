@@ -15,6 +15,7 @@ var travel_time = 0
 var goal_pos = Vector2()
 var last_pos = Vector2()
 var cur_vector = Vector2()
+var col_shape = CircleShape2D.new()
 const move_vecs = [
 Vector2(0, 1),
 Vector2(1, 0),
@@ -27,6 +28,19 @@ onready var move_ray = $MoveRay #get_node("MoveRay") # collision checking
 onready var step_player = $StepPlayer #get_node("StepPlayer")
 
 func _ready():
+	var rad = shape_obj.shape.radius
+	col_shape.radius = rad
+	var par = get_parent()
+	var pos = par.global_position
+	"""
+	var offset = Vector2(sign(pos.x) * rad, sign(pos.y) * rad)
+	pos /= 16
+	pos.x = int(pos.x)
+	pos.y = int(pos.y)
+	pos += offset
+	print(pos)
+	par.global_position = pos
+	"""
 	last_pos = global_position
 
 # dir_vector: direction to move
@@ -39,19 +53,25 @@ func _physics_process(delta):
 	if !moving and dir_vector.length_squared() > 0:
 		cur_vector = calc_move_vec(dir_vector.rotated(global_rotation))
 		goal_pos = cur_vector * 16 + global_position
+		goal_pos.x = int(goal_pos.x)
+		goal_pos.y = int(goal_pos.y)
 		if can_move():
 			signal_new_position(goal_pos)
 			moving = true
-	
-	if moving:
-		travel_time += delta
-		kine_body.move_and_collide(cur_vector * STEP_RATE)
 	
 	if travel_time >= STEP_RATE:
 		travel_time = 0
 		moving = false
 		kine_body.global_position = goal_pos
+		shape_obj.position = Vector2()
 		play_step()
+	
+	if moving:
+		shape_obj.global_position = goal_pos
+		travel_time += delta
+		kine_body.move_and_collide(cur_vector * STEP_RATE)
+	
+
 """
 func move_body(var kine_body, var dir_vector, var delta):
 	
@@ -94,18 +114,15 @@ func can_move():
 	var motion = goal_pos - global_position
 	var query = Physics2DShapeQueryParameters.new()
 	query.motion = motion
-	query.set_shape(shape_obj.shape)
+	query.set_shape(col_shape)
 	query.collision_layer = 1
-	query.transform = shape_obj.transform
+	query.exclude = [get_parent()]
+	query.transform = get_parent().transform
 	var result = space_state.cast_motion(query)
-	print(result)
-	return true
-	"""
-	detector.global_position = goal_pos
-	#yield(get_tree(), "idle_frame")
-	print("check:", detector.get_overlapping_bodies())
-	return detector.get_overlapping_bodies().size() == 0
-	"""
+	#print(result)
+	#print(global_position)
+	return result.size() == 2 and result[0] == 1 and result[1] == 1
+	
 	"""
 	move_ray.rotation = rot * -1
 	return !move_ray.is_colliding()

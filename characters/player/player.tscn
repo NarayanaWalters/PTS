@@ -26,12 +26,12 @@ mix_rate = 44100
 stereo = false
 data = PoolByteArray(  )
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
 radius = 7.0
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id=3]
 
 custom_solver_bias = 0.0
 radius = 40.0
@@ -47,7 +47,6 @@ _sections_unfolded = [ "Collision", "collision" ]
 
 [node name="Echolocator" type="Node2D" parent="." index="0"]
 
-editor/display_folded = true
 script = ExtResource( 2 )
 
 [node name="RayCast2D" type="RayCast2D" parent="Echolocator" index="0"]
@@ -57,32 +56,14 @@ exclude_parent = true
 cast_to = Vector2( 0, 480 )
 collision_mask = 3
 
-[node name="RayCast2DL" type="RayCast2D" parent="Echolocator" index="1"]
-
-position = Vector2( 10, 0 )
-enabled = true
-exclude_parent = true
-cast_to = Vector2( -10, 480 )
-collision_mask = 3
-_sections_unfolded = [ "Transform" ]
-
-[node name="RayCast2DR" type="RayCast2D" parent="Echolocator" index="2"]
-
-position = Vector2( -10, 0 )
-enabled = true
-exclude_parent = true
-cast_to = Vector2( 10, 480 )
-collision_mask = 3
-_sections_unfolded = [ "Transform" ]
-
-[node name="RayCastLoot" type="RayCast2D" parent="Echolocator" index="3"]
+[node name="RayCastLoot" type="RayCast2D" parent="Echolocator" index="1"]
 
 enabled = true
 exclude_parent = true
 cast_to = Vector2( 0, 480 )
 collision_mask = 4
 
-[node name="ClickPlayer" type="AudioStreamPlayer" parent="Echolocator" index="4"]
+[node name="ClickPlayer" type="AudioStreamPlayer" parent="Echolocator" index="2"]
 
 stream = ExtResource( 3 )
 volume_db = 0.0
@@ -105,6 +86,7 @@ bus = "Compass"
 
 [node name="Mover" type="Node2D" parent="." index="2"]
 
+editor/display_folded = true
 script = ExtResource( 6 )
 
 [node name="MoveRay" type="RayCast2D" parent="Mover" index="0"]
@@ -187,7 +169,7 @@ bus = "Master"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="6"]
 
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="Health" type="Node2D" parent="." index="7"]
 
@@ -233,7 +215,7 @@ _sections_unfolded = [ "Collision", "Pause" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactor" index="0"]
 
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 _sections_unfolded = [ "Pause" ]
 
 [node name="RayCast2D" type="RayCast2D" parent="Interactor" index="1"]

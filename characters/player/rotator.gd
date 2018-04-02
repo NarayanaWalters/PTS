@@ -36,6 +36,7 @@ func rotate_body(var body, r_input, align):
 func snap_turn(var body, var dir):
 	body.global_rotation += 90 * sign(dir)
 	snap_turn_velo = 0
+	align_to_axis(body)
 
 func slow_align(var body):
 	var r = body.global_rotation_degrees

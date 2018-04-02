@@ -29,7 +29,7 @@ func _input(ev):
 	
 	if ev is InputEventMouseMotion:
 		var r = ev.relative.x * mouse_sens
-		rotator.rotate_body(self, r, Input.is_action_pressed("align"))
+		rotator.rotate_body(self, r, !Input.is_action_pressed("align"))
 
 func _process(delta):
 	
@@ -44,12 +44,18 @@ func _process(delta):
 	if inventory_open:
 		return
 	
+	var align = !Input.is_action_pressed("align")
 	var r = 0
 	if (Input.is_action_pressed("turn_right")):
 		r += KEYBOARD_TURN_SPEED
 	if (Input.is_action_pressed("turn_left")):
 		r += -KEYBOARD_TURN_SPEED
-	rotator.rotate_body(self, r, Input.is_action_pressed("align"))
+	rotator.rotate_body(self, r, align)
+	
+	if align and Input.is_action_just_pressed("turn_right"):
+		rotator.snap_turn(self, 1)
+	if align and Input.is_action_just_pressed("turn_left"):
+		rotator.snap_turn(self, -1)
 	
 	if (Input.is_action_pressed("ping")):
 		echolocator.echolocate(delta)

@@ -9,8 +9,6 @@ const MIN_PITCH = 1
 const PITCH_DIFF_PER_TIER = 1.5
 
 onready var ping_ray = get_node("RayCast2D")
-onready var ping_ray_l = get_node("RayCast2DL")
-onready var ping_ray_r = get_node("RayCast2DR")
 onready var loot_ray = $RayCastLoot
 onready var click_player = get_node("ClickPlayer")
 
@@ -33,13 +31,8 @@ var time_since_last_click = 0
 func _ready():
 	var player = get_parent()
 	ping_ray.add_exception(player)
-	ping_ray_l.add_exception(player)
-	ping_ray_r.add_exception(player)
 	
 	ping_ray.set_cast_to(Vector2(0, MAX_DISTANCE * PIXELS_PER_METER))
-	ping_ray_l.set_cast_to(Vector2(-10, MAX_DISTANCE * PIXELS_PER_METER))
-	ping_ray_r.set_cast_to(Vector2(10, MAX_DISTANCE * PIXELS_PER_METER))
-
 # send and play echolocation pings
 # delta: time since last frame
 func echolocate(var delta):
