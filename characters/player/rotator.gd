@@ -1,6 +1,10 @@
 extends Node2D
 
 onready var echolocator = get_parent().get_node("Echolocator")
+onready var stream_player = $AudioStreamPlayer
+
+const audio_path = "res://audio/directions/"
+var dirs = ["north", "east", "south", "west"]
 
 var rot_speed = 0.1
 var rot = 0
@@ -37,6 +41,21 @@ func snap_turn(var body, var dir):
 	body.global_rotation += 90 * sign(dir)
 	snap_turn_velo = 0
 	align_to_axis(body)
+	
+	var r = body.global_rotation_degrees
+	if r < 0:
+		r += 360
+	
+	var id = 2
+	if r < 135 and r >= 45:
+		id = 3
+	elif r < 225 and r >= 135:
+		id = 0
+	elif r < 315 and r >= 225:
+		id = 1
+	
+	stream_player.stream = load(audio_path + dirs[id] + ".wav")
+	stream_player.play()
 
 func slow_align(var body):
 	var r = body.global_rotation_degrees

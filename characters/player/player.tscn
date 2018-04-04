@@ -109,7 +109,17 @@ bus = "Master"
 
 script = ExtResource( 7 )
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Rotator" index="0"]
+
+stream = null
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
 [node name="SideAwareness" type="Node2D" parent="." index="4"]
+
+editor/display_folded = true
 
 [node name="LeftEar" type="RayCast2D" parent="SideAwareness" index="0"]
 

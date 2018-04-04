@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/north.wav-edb1d53bfb797bfb723a17d182db095f.sample"
+
+[deps]
+
+source_file="res://audio/directions/north.wav"
+source_md5="f5c8c935c25a7cc3591c29ad03448d27"
+
+dest_files=[ "res://.import/north.wav-edb1d53bfb797bfb723a17d182db095f.sample" ]
+dest_md5="8c9ca9234b51a202036934a3d6eaa014"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

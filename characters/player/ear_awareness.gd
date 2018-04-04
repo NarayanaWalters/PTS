@@ -9,7 +9,7 @@ onready var sample_player = $AudioStreamPlayer #get_node("SamplePlayer")
 var rang = get_cast_to().y - MIN_RANGE
 var voice = 0
 func _ready():
-	pass
+	add_exception(get_parent().get_parent())
 	sample_player.play()
 
 func _process(delta):
