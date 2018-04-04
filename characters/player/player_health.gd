@@ -15,6 +15,9 @@ const min_hp_pitch = 0.95
 var bus_index1 = 0
 var bus_index2 = 0
 
+var equipped_armor = {}
+var protection = 0
+
 var max_health = 100
 var cur_health = max_health
 var dead = false
@@ -36,7 +39,27 @@ func set_max_health(var hp):
 	max_health = hp
 	cur_health = max_health
 
+func equip_armor(var name, var a):
+	equipped_armor[name] = a
+	update_armor()
+
+func unequip_armor(var name):
+	if equipped_armor.has(name):
+		equipped_armor.erase(name)
+		update_armor()
+
+func update_armor():
+	protection = 0
+	for armor in equipped_armor:
+		protection += equipped_armor[armor]
+
+func clear_armor():
+	equipped_armor = {}
+	protection = 0
+
 func damage(var dmg):
+	if dmg >= protection:
+		dmg -= protection
 	cur_health -= dmg
 	play_rnd_sound(hurt_sounds)
 	cur_health = clamp(cur_health, 0, max_health)
@@ -73,3 +96,4 @@ func play_rnd_sound(var list):
 	#audio_player2.stop()
 	#audio_player2.stream = load(list[index])
 	#audio_player2.play()
+	

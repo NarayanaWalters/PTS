@@ -62,13 +62,13 @@ var items = {
 
 "a_chainmail_vest":{
 "name": "chainmail vest", "type":"armor", "slot":"chest",
-"protection":3, "weaknesses":[],
+"protection":2, "weaknesses":[],
 "sounds":chainmail_sounds,
 "value":5, "stackable":false, "enchantments":["p_fire_protection"]},
 
 "a_leather_vest":{
 "name": "leather vest", "type":"armor", "slot":"chest",
-"protection":2, "weaknesses":[],
+"protection":1, "weaknesses":[],
 "sounds":leather_sounds,
 "value":5, "stackable":false, "enchantments":["p_fire_protection"]}
 }

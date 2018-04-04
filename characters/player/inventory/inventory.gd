@@ -21,7 +21,7 @@ var cur_row = 0
 
 var inv = [
 # Paper Doll
-["w_bronze_dagger"],
+["w_bronze_dagger", "a_leather_vest"],
 # Backpack
 [],#"w_bow", "w_iron_sword", "w_bronze_dagger", "default_item", "a_leather_vest"],
 # Stats
@@ -35,6 +35,8 @@ func _ready():
 		var it = db.get_item(item)
 		if it["type"] == "weapon":
 			combat_manager.equip_wep(it)
+		if it["type"] == "armor":
+			health.equip_armor(item, it["protection"])
 
 func _input(event):
 	if (Input.is_action_pressed("exit")):
@@ -154,6 +156,8 @@ func unequip_from_p_doll():
 	if item != "":
 		if db.get_item(item)["type"] == "weapon":
 			combat_manager.unequip_wep()
+		if db.get_item(item)["type"] == "armor":
+			health.unequip_armor(item)
 		inv[BACKPACK].push_front(item)
 		inv[PAPER_DOLL].remove(cur_row)
 		console.output("unequipped " + item)
@@ -178,6 +182,8 @@ func equip_from_backpack():
 			for item in inv[PAPER_DOLL]:
 				var cur_item = db.get_item(item)
 				if cur_item["type"] == type and cur_item["slot"] == slot:
+					if type == "armor":
+						health.unequip_armor(item)
 					inv[PAPER_DOLL].erase(item)
 					swap = true
 					item_to_swap = item
@@ -197,6 +203,8 @@ func equip_from_backpack():
 			
 			if type == "weapon":
 				combat_manager.equip_wep(item_to_eq)
+			if type == "armor":
+				health.equip_armor(item_id, item_to_eq["protection"])
 		else:
 			console.output("cannot equip this")
 	else:
