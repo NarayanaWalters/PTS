@@ -264,22 +264,13 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="11"]
 
-layer = 1
+layer = 0
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="Sprite" type="Sprite" parent="CanvasLayer" index="0"]
-
-visible = false
-position = Vector2( 506.866, 291.107 )
-rotation = 3.14159
-texture = ExtResource( 15 )
-flip_v = true
-_sections_unfolded = [ "Offset", "Transform" ]
-
-[node name="Label" type="Label" parent="CanvasLayer" index="1"]
+[node name="Label" type="Label" parent="CanvasLayer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -300,5 +291,13 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Anchor" ]
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer" index="1"]
+
+position = Vector2( 506.866, 291.107 )
+rotation = 3.14159
+texture = ExtResource( 15 )
+flip_v = true
+_sections_unfolded = [ "Offset", "Transform" ]
 
 

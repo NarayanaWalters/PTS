@@ -27,6 +27,8 @@ var time_since_attack = 9999
 
 var saw_player = false
 
+var last_saw_player = null
+
 func _ready():
 	init_npc()
 	set_meta("attitude", attitude)
@@ -77,7 +79,9 @@ func seek_and_attack_player(var delta):
 		if player_is_in_range():
 			attack()
 		else:
-			move_to_player_pos(delta)
+			move_to_pos(player_pos, delta)
+	if !can_see_player() and last_saw_player != null:
+		move_to_pos(last_saw_player, delta)
 
 func player_is_in_sight_range():
 	var pos = global_position
@@ -93,14 +97,16 @@ func player_is_in_range():
 		return true
 	return false
 
-func move_to_player_pos(var delta):
+func move_to_pos(var p_pos, var delta):
 	var pos = global_position
-	var dir = (player_pos - pos).normalized()
+	var dir = (p_pos - pos).normalized()
 	move_and_collide(dir * move_speed * delta)
 
 func can_see_player():
 	rc.set_cast_to(player_pos - global_position)
 	var se = rc.is_colliding() and rc.get_collider().has_meta("type") and rc.get_collider().get_meta("type") == "player"
+	if se:
+		last_saw_player = player_pos
 	return se
 
 func attack():
