@@ -13,10 +13,14 @@ func _ready():
 	sample_player.play()
 
 func _process(delta):
-	var distance = rang
+	#var distance = rang
+	var vol = 1
 	if (is_colliding()):
+		vol = 0
+		"""
 		var end_point = get_collision_point()
 		var start_pos = global_position
 		distance = (end_point - start_pos).length() - MIN_RANGE
-	var vol = clamp(distance / rang, 0, 1)
+		"""
+	#var vol = clamp(distance / rang, 0, 1)
 	sample_player.volume_db = lerp(-85, -15, vol)
