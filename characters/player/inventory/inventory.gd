@@ -6,7 +6,7 @@ onready var audio_controller = $AudioController
 onready var interactor = get_parent().get_node("Interactor")
 onready var combat_manager = get_parent().get_node("CombatManager")
 onready var health = get_parent().get_node("Health")
-
+onready var stats_manager = $Stats
 var inv_open = false
 var clear_on_output = true
 
@@ -25,7 +25,7 @@ var inv = [
 # Backpack
 [],#"w_bow", "w_iron_sword", "w_bronze_dagger", "default_item", "a_leather_vest"],
 # Stats
-[1101, 2201, 101],
+["melee", "ranged", "magic", "experience"],
 # Journal
 ["blah", "blah1", "blah2"]
 ]
@@ -216,7 +216,10 @@ func output_inv_pos(var clear, var play_tab):
 		audio_controller.play_tab_sound(cur_tab)
 	if cur_tab == BACKPACK or cur_tab == PAPER_DOLL:
 		audio_controller.play_item_stats(get_current_slot_contents())
-	
+	if cur_tab == STATS:
+		if play_tab:
+			audio_controller.play_stat("skill_points")
+		audio_controller.play_stat(inv[cur_tab][cur_row])
 	var item_str = "empty"
 	if inv[cur_tab].size() > 0:
 		item_str = str(inv[cur_tab][cur_row]) 

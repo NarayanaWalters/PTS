@@ -1,14 +1,14 @@
 extends AudioStreamPlayer
 
 onready var db = get_node("/root/entity_database")
+onready var stats_manager = get_parent().get_node("Stats")
+const audio_path = "res://audio/inventory/"
+const open_sound = "open_inventory"
 
-var audio_path = "res://audio/inventory/"
-var open_sound = "open_inventory"
+const tabs_sounds = ["equipment", "backpack", "stats", "journal"]
 
-var tabs_sounds = ["equipment", "backpack", "stats", "journal"]
-
-var close_sound = "close_inventory"
-var atk_rate_sound = "description/attack_rate"
+const close_sound = "close_inventory"
+const atk_rate_sound = "description/attack_rate"
 var sound_queue = []
 
 const equip_sound = "action/equipped"
@@ -24,6 +24,16 @@ const double_dig_numbers = ["twenty", "thirty", "forty", "fifty",
 "sixty", "seventy", "eighty", "ninety"]
 const number_overflow = "overflow"
 const hundred_number = "hundred"
+
+const stats_sounds = {
+	"melee": "stats/melee",
+	"ranged": "stats/ranged",
+	"magic": "stats/magic"
+}
+const experience_snd = "stats/experience"
+const skill_pnt_snd = "stats/skill_points"
+const out_of_snd = "stats/out_of"
+const level_up = "stats/level_up"
 
 func _ready():
 	pass
@@ -149,3 +159,16 @@ func drop_item(var item_id):
 	clear_sound_queue()
 	add_sound_to_queue(drop_sound)
 	play_item_id_sound(item_id)
+
+func play_stat(var stat):
+	if stat == "experience":
+		add_sound_to_queue(experience_snd)
+		play_number(stats_manager.experience)
+		add_sound_to_queue(out_of_snd)
+		play_number(stats_manager.exp_to_next_level)
+	elif stat == "skill_points" and stats_manager.skill_points > 0:
+		add_sound_to_queue(skill_pnt_snd)
+		play_number(stats_manager.skill_points)
+	elif stats_manager.stats.has(stat):
+		add_sound_to_queue(stats_sounds[stat])
+		play_number(stats_manager.stats[stat])

@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://characters/player/inventory/inventory.gd" type="Script" id=1]
 [ext_resource path="res://characters/player/inventory/inv_audio_controller.gd" type="Script" id=2]
+[ext_resource path="res://characters/player/inventory/stats.gd" type="Script" id=3]
 
-[node name="Inventory" type="Node2D"]
+[node name="Inventory" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -15,5 +16,9 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 script = ExtResource( 2 )
+
+[node name="Stats" type="Node2D" parent="." index="1"]
+
+script = ExtResource( 3 )
 
 
