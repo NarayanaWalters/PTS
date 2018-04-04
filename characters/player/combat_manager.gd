@@ -1,7 +1,7 @@
 extends RayCast2D
 
 onready var audio_player = $AudioStreamPlayer
-
+onready var stats_manager = get_parent().get_node("Inventory/Stats")
 var fist_dmg = 10
 var fist_speed = 0.4
 var fist_hit_snd = "res://audio/weapons/punch.wav"
@@ -51,7 +51,14 @@ func equip_wep(var item_to_eq):
 	atk_sound = item_to_eq["sounds"]["swing"]
 	atk_hit_sound = item_to_eq["sounds"]["hit"]
 	prep_sound = item_to_eq["sounds"]["prep"]
-	ranged = item_to_eq["attack_type"] == "range"
+	var attack_type = item_to_eq["attack_type"]
+	ranged = attack_type == "range"
+	if attack_type == "range":
+		damage += stats_manager.stats["ranged"]
+	elif attack_type == "melee":
+		damage += stats_manager.stats["melee"] 
+	elif attack_type == "magic":
+		damage += stats_manager.stats["magic"] 
 	
 
 

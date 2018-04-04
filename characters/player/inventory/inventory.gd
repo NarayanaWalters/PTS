@@ -142,6 +142,10 @@ func equip_unequip_item():
 	elif cur_tab == BACKPACK:
 		audio_controller.equip_item(cur_slot, true)
 		equip_from_backpack()
+	elif cur_tab == STATS:
+		stats_manager.spend_skill_point(inv[cur_tab][cur_row])
+		output_pos()
+		audio_controller.play_stat("skill_points")
 
 func unequip_from_p_doll():
 	if inv[PAPER_DOLL].size() == 0:
@@ -242,3 +246,5 @@ func get_contents_of_backpack():
 
 func get_contents_of_p_doll():
 	return inv[PAPER_DOLL]
+
+#TODO: loading and saving from/to file

@@ -15,6 +15,8 @@ var attack_rate = 1.0
 var base_damage = 30
 var inventory = []
 var equipped = {}
+var xp = 1
+
 
 var player_pos = Vector2(0, 0)
 onready var rc = get_node("RayCast2D")
@@ -44,7 +46,8 @@ func init_npc():
 	attack_rate = npc_data["attack_rate"] * 1.0
 	base_damage = npc_data["base_damage"]
 	health.set_max_health(npc_data["health"])
-	
+	if npc_data.has("xp"):
+		xp = npc_data["xp"]
 	inventory = npc_data["inventory"]
 	equipped = npc_data["equipped"]
 	
@@ -120,4 +123,5 @@ func deal_damage(var dmg):
 	health.damage(dmg)
 
 func death():
+	get_tree().call_group("stats", "increase_exp", xp)
 	queue_free()

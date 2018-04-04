@@ -172,3 +172,6 @@ func play_stat(var stat):
 	elif stats_manager.stats.has(stat):
 		add_sound_to_queue(stats_sounds[stat])
 		play_number(stats_manager.stats[stat])
+
+func play_level_up():
+	add_sound_to_queue(level_up)
