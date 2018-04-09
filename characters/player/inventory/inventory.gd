@@ -25,7 +25,7 @@ var inv = [
 # Backpack
 [],#"w_bow", "w_iron_sword", "w_bronze_dagger", "default_item", "a_leather_vest"],
 # Stats
-["melee", "ranged", "magic", "experience"],
+["melee", "ranged", "magic", "health", "experience"],
 # Journal
 ["blah", "blah1", "blah2"]
 ]

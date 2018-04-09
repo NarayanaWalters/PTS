@@ -8,7 +8,6 @@ onready var inventory = get_node("Inventory")
 onready var interactor = get_node("Interactor")
 onready var combat_manager = get_node("CombatManager")
 
-var max_health = 70
 
 var inventory_open = false
 
@@ -20,7 +19,6 @@ func _ready():
 	mover.kine_body = self
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	set_meta("type", "player")
-	health.set_max_health(max_health)
 
 
 func _input(ev):

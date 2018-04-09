@@ -28,7 +28,8 @@ const hundred_number = "hundred"
 const stats_sounds = {
 	"melee": "stats/melee",
 	"ranged": "stats/ranged",
-	"magic": "stats/magic"
+	"magic": "stats/magic",
+	"health": "stats/health"
 }
 const experience_snd = "stats/experience"
 const skill_pnt_snd = "stats/skill_points"

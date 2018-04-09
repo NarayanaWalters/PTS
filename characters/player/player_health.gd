@@ -32,6 +32,7 @@ var hurt_sounds = [
 "res://audio/player/injury/pain3.wav"]
 
 func _ready():
+	add_to_group("health")
 	bus_index1 = AudioServer.get_bus_index(audio_player1.bus)
 	bus_index2 = AudioServer.get_bus_index(audio_player2.bus)
 
@@ -56,6 +57,11 @@ func update_armor():
 func clear_armor():
 	equipped_armor = {}
 	protection = 0
+
+func heal(var amt):
+	cur_health += amt
+	if cur_health > max_health:
+		cur_health = max_health
 
 func damage(var dmg):
 	if dmg >= protection:
