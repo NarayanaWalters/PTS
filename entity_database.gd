@@ -48,6 +48,12 @@ var items = {
 "sounds":bow_sounds,
 "value":1, "enchantments":[]},
 
+"w_fireball":{
+"name": "fireball", "type": "weapon", "slot":"main hand", 
+"damage":20, "attack_rate": 15, "attack_type":"magic",
+"attack_radius":2,
+"sounds":bow_sounds},
+
 "w_bronze_dagger":{
 "name": "bronze dagger", "type": "weapon", "slot":"main hand", 
 "damage":5, "attack_rate": 3, "attack_type":"slashing",

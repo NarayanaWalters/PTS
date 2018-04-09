@@ -38,6 +38,9 @@ func _process(delta):
 	if Input.is_action_just_pressed("health_read"):
 		var hlth_num = health.cur_health
 		inventory.get_node("AudioController").play_number(hlth_num)
+	if Input.is_action_just_pressed("prot_read"):
+		var prot_num = health.protection
+		inventory.get_node("AudioController").play_number(prot_num)
 	
 	if inventory_open:
 		return

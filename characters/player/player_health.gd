@@ -13,7 +13,7 @@ const max_hp_pitch = 1.2
 const min_hp_pitch = 0.95
 
 var bus_index1 = 0
-var bus_index2 = 0
+
 
 var equipped_armor = {}
 var protection = 0
@@ -31,14 +31,18 @@ var hurt_sounds = [
 "res://audio/player/injury/pain2.wav",
 "res://audio/player/injury/pain3.wav"]
 
+const low_hp_sound = "res://audio/player/injury/pain0.wav"
+
 func _ready():
 	add_to_group("health")
+	audio_player2.stream = load(low_hp_sound)
 	bus_index1 = AudioServer.get_bus_index(audio_player1.bus)
-	bus_index2 = AudioServer.get_bus_index(audio_player2.bus)
+	#bus_index2 = AudioServer.get_bus_index(audio_player2.bus)
 
 func set_max_health(var hp):
 	max_health = hp
 	cur_health = max_health
+	audio_player2.stop()
 
 func equip_armor(var name, var a):
 	equipped_armor[name] = a
@@ -62,6 +66,9 @@ func heal(var amt):
 	cur_health += amt
 	if cur_health > max_health:
 		cur_health = max_health
+	
+	if cur_health >= 15 and audio_player2.playing:
+		audio_player2.stop()
 
 func damage(var dmg):
 	if dmg >= protection:
@@ -71,13 +78,13 @@ func damage(var dmg):
 	cur_health = clamp(cur_health, 0, max_health)
 	
 	var pitcher1 = AudioServer.get_bus_effect(bus_index1, 0)
-	var pitcher2 = AudioServer.get_bus_effect(bus_index2, 0)
+	#var pitcher2 = AudioServer.get_bus_effect(bus_index2, 0)
+	
+	if cur_health < 15 and !audio_player2.playing:
+		audio_player2.play()
 	
 	var t = cur_health * 1.0 / max_health
 	pitcher1.pitch_scale = lerp(min_hp_pitch, max_hp_pitch, t)
-	pitcher2.pitch_scale = max_hp_pitch
-	if cur_health < max_health / 2:
-		pitcher2.pitch_scale = min_hp_pitch
 	
 	if cur_health <= 0:
 		cur_health = 0
@@ -99,7 +106,4 @@ func play_rnd_sound(var list):
 	audio_player1.stop()
 	audio_player1.stream = load(list[index])
 	audio_player1.play()
-	#audio_player2.stop()
-	#audio_player2.stream = load(list[index])
-	#audio_player2.play()
 	

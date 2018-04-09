@@ -9,12 +9,14 @@ var fist_swing_snd = "res://audio/weapons/punch.wav"
 
 var damage = fist_dmg
 var atk_rate = fist_speed
+var atk_radius = 0
 
 var prep_sound = ""
 var atk_sound = fist_swing_snd
 var atk_hit_sound = fist_hit_snd
 var prep_sound_time = 0
 var ranged = false
+var attack_type = "melee"
 var played_prep = false
 
 var time_since_atk = 0
@@ -42,6 +44,7 @@ func unequip_wep():
 	atk_sound = fist_swing_snd
 	atk_hit_sound = fist_hit_snd
 	ranged = false
+	attack_type = "melee"
 	prep_sound_time = 0
 
 #pass dictionary from database
@@ -51,14 +54,15 @@ func equip_wep(var item_to_eq):
 	atk_sound = item_to_eq["sounds"]["swing"]
 	atk_hit_sound = item_to_eq["sounds"]["hit"]
 	prep_sound = item_to_eq["sounds"]["prep"]
-	var attack_type = item_to_eq["attack_type"]
-	ranged = attack_type == "range"
+	attack_type = item_to_eq["attack_type"]
+	ranged = attack_type == "range" or attack_type == "magic"
 	if attack_type == "range":
 		damage += stats_manager.stats["ranged"]
 	elif attack_type == "melee":
 		damage += stats_manager.stats["melee"] 
 	elif attack_type == "magic":
 		damage += stats_manager.stats["magic"] 
+		atk_radius = item_to_eq["attack_radius"]
 	
 
 
@@ -70,8 +74,15 @@ func attempt_attack():
 		if is_colliding() and coll.has_method("deal_damage"):
 			var rn = global_position.distance_squared_to(coll.global_position)
 			if ranged or rn < 32 * 32:
-				coll.deal_damage(damage)
+				if attack_type == "magic":
+					area_damage(coll.global_position)
+					#TODO: area affect for spells
+				else:
+					coll.deal_damage(damage)
 				snd_to_play = atk_hit_sound
 		audio_player.stream = load(snd_to_play)
 		audio_player.play()
 		played_prep = false
+
+func area_damage(var hit_pos):
+	pass
