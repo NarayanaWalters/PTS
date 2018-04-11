@@ -3,7 +3,7 @@ extends Node2D
 onready var music_player = $MusicPlayer
 onready var note_player = $NotePlayer
 
-export var correct_music_comb = [0, 1, 1]
+export var correct_music_comb = [0, 1, 2]
 var cur_music_comb = []
 
 const audio_path = "res://puzzles/music_puzzle/"
@@ -60,7 +60,7 @@ func _process(delta):
 		return
 	
 	if time_since_last_played >= note_play_rate:
-		play_note(music_player, quiet_notes_list, cur_note_id)
+		play_note(music_player, quiet_notes_list, correct_music_comb[cur_note_id])
 		cur_note_id += 1
 		if cur_note_id >= correct_music_comb.size():
 			cur_note_id = 0

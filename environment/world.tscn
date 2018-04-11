@@ -9,7 +9,7 @@
 [ext_resource path="res://puzzles/music_puzzle/music_puzzle.tscn" type="PackedScene" id=7]
 [ext_resource path="res://puzzles/pressure_pad/pressure_pad.tscn" type="PackedScene" id=8]
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" index="0"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
@@ -100,17 +100,22 @@ position = Vector2( -104, 24 )
 
 [node name="MusicPuzzle" parent="StoneGate" index="2" instance=ExtResource( 7 )]
 
-editor/display_folded = true
 position = Vector2( 0, 48 )
 _sections_unfolded = [ "Transform" ]
+correct_music_comb = [ 0, 1, 2 ]
 
 [node name="PressurePad" parent="StoneGate/MusicPuzzle" index="1" instance=ExtResource( 8 )]
 
 position = Vector2( 0, -16 )
+id = 2
 
 [node name="PressurePad2" parent="StoneGate/MusicPuzzle" index="2" instance=ExtResource( 8 )]
 
 id = 1
+
+[node name="PressurePad3" parent="StoneGate/MusicPuzzle" index="3" instance=ExtResource( 8 )]
+
+position = Vector2( 16, 0 )
 
 [connection signal="completed" from="StoneGate/MusicPuzzle" to="StoneGate" method="open"]
 

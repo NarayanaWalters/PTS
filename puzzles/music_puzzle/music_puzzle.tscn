@@ -7,7 +7,7 @@
 [node name="MusicPuzzle" type="Node2D"]
 
 script = ExtResource( 1 )
-correct_music_comb = [ 0, 1, 1 ]
+correct_music_comb = [ 0, 1, 2 ]
 
 [node name="MusicPlayer" type="AudioStreamPlayer2D" parent="." index="0"]
 
