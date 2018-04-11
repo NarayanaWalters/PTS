@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://puzzles/music_puzzle/music_puzzle.gd" type="Script" id=1]
+[ext_resource path="res://audio/gate_slam.wav" type="AudioStream" id=2]
+
+[node name="MusicPuzzle" type="Node2D"]
+
+script = ExtResource( 1 )
+correct_music_comb = [ 0, 1, 1 ]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="0"]
+
+stream = ExtResource( 2 )
+volume_db = 0.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+

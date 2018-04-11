@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://basic.tres" type="TileSet" id=1]
 [ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://environment/lootbag.tscn" type="PackedScene" id=3]
 [ext_resource path="res://characters/enemy/npc.tscn" type="PackedScene" id=4]
 [ext_resource path="res://environment/ladder.tscn" type="PackedScene" id=5]
+[ext_resource path="res://puzzles/music_puzzle/music_puzzle.tscn" type="PackedScene" id=6]
+[ext_resource path="res://puzzles/pressure_pad/pressure_pad.tscn" type="PackedScene" id=7]
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" index="0"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
@@ -31,7 +33,7 @@ _sections_unfolded = [ "Cell", "Collision", "Transform" ]
 
 [node name="Player" parent="." index="1" instance=ExtResource( 2 )]
 
-position = Vector2( -72, -24 )
+position = Vector2( -8, 8 )
 _sections_unfolded = [ "Collision", "Transform", "collision" ]
 
 [node name="LootBag" parent="." index="2" instance=ExtResource( 3 )]
@@ -90,5 +92,18 @@ id = "h_zombie"
 [node name="Ladder" parent="." index="12" instance=ExtResource( 5 )]
 
 position = Vector2( 376, 456 )
+
+[node name="MusicPuzzle" parent="." index="13" instance=ExtResource( 6 )]
+
+position = Vector2( -8, 72 )
+
+[node name="PressurePad" parent="MusicPuzzle" index="1" instance=ExtResource( 7 )]
+
+position = Vector2( 0, -32 )
+
+[node name="PressurePad2" parent="MusicPuzzle" index="2" instance=ExtResource( 7 )]
+
+position = Vector2( 0, -16 )
+id = 1
 
 
