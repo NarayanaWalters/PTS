@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://basic.tres" type="TileSet" id=1]
 [ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://environment/lootbag.tscn" type="PackedScene" id=3]
 [ext_resource path="res://characters/enemy/npc.tscn" type="PackedScene" id=4]
 [ext_resource path="res://environment/ladder.tscn" type="PackedScene" id=5]
-[ext_resource path="res://puzzles/music_puzzle/music_puzzle.tscn" type="PackedScene" id=6]
-[ext_resource path="res://puzzles/pressure_pad/pressure_pad.tscn" type="PackedScene" id=7]
+[ext_resource path="res://utility/stone_gate.tscn" type="PackedScene" id=6]
+[ext_resource path="res://puzzles/music_puzzle/music_puzzle.tscn" type="PackedScene" id=7]
+[ext_resource path="res://puzzles/pressure_pad/pressure_pad.tscn" type="PackedScene" id=8]
 
 [node name="World" type="Node2D"]
 
@@ -93,17 +94,24 @@ id = "h_zombie"
 
 position = Vector2( 376, 456 )
 
-[node name="MusicPuzzle" parent="." index="13" instance=ExtResource( 6 )]
+[node name="StoneGate" parent="." index="13" instance=ExtResource( 6 )]
 
-position = Vector2( -8, 72 )
+position = Vector2( -104, 24 )
 
-[node name="PressurePad" parent="MusicPuzzle" index="1" instance=ExtResource( 7 )]
+[node name="MusicPuzzle" parent="StoneGate" index="2" instance=ExtResource( 7 )]
 
-position = Vector2( 0, -32 )
+editor/display_folded = true
+position = Vector2( 0, 48 )
+_sections_unfolded = [ "Transform" ]
 
-[node name="PressurePad2" parent="MusicPuzzle" index="2" instance=ExtResource( 7 )]
+[node name="PressurePad" parent="StoneGate/MusicPuzzle" index="1" instance=ExtResource( 8 )]
 
 position = Vector2( 0, -16 )
+
+[node name="PressurePad2" parent="StoneGate/MusicPuzzle" index="2" instance=ExtResource( 8 )]
+
 id = 1
+
+[connection signal="completed" from="StoneGate/MusicPuzzle" to="StoneGate" method="open"]
 
 

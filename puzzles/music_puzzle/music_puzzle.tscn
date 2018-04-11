@@ -4,7 +4,7 @@
 [ext_resource path="res://puzzles/music_puzzle/quiet_chime_b3.wav" type="AudioStream" id=2]
 [ext_resource path="res://puzzles/music_puzzle/chime_b3.wav" type="AudioStream" id=3]
 
-[node name="MusicPuzzle" type="Node2D" index="0"]
+[node name="MusicPuzzle" type="Node2D"]
 
 script = ExtResource( 1 )
 correct_music_comb = [ 0, 1, 1 ]
@@ -14,7 +14,7 @@ correct_music_comb = [ 0, 1, 1 ]
 stream = ExtResource( 2 )
 volume_db = -15.0
 autoplay = false
-max_distance = 2000.0
+max_distance = 160.0
 attenuation = 1.0
 bus = "Master"
 area_mask = 1
