@@ -1,16 +1,27 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://puzzles/music_puzzle/music_puzzle.gd" type="Script" id=1]
-[ext_resource path="res://audio/gate_slam.wav" type="AudioStream" id=2]
+[ext_resource path="res://puzzles/music_puzzle/quiet_chime_b3.wav" type="AudioStream" id=2]
+[ext_resource path="res://puzzles/music_puzzle/chime_b3.wav" type="AudioStream" id=3]
 
-[node name="MusicPuzzle" type="Node2D"]
+[node name="MusicPuzzle" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 correct_music_comb = [ 0, 1, 1 ]
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="0"]
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="." index="0"]
 
 stream = ExtResource( 2 )
+volume_db = -15.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="NotePlayer" type="AudioStreamPlayer2D" parent="." index="1"]
+
+stream = ExtResource( 3 )
 volume_db = 0.0
 autoplay = false
 max_distance = 2000.0

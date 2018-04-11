@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/quiet_chime_d3.wav-bcfb8ba5dad2fc7fef4ebff875208d7e.sample"
+
+[deps]
+
+source_file="res://puzzles/music_puzzle/quiet_chime_d3.wav"
+source_md5="e8af80e2938e5ace51240d6cd6a0e04d"
+
+dest_files=[ "res://.import/quiet_chime_d3.wav-bcfb8ba5dad2fc7fef4ebff875208d7e.sample" ]
+dest_md5="6dbfe0763d0aa529dd00ffbbcff589fc"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
