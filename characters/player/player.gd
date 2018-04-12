@@ -8,7 +8,7 @@ onready var inventory = get_node("Inventory")
 onready var interactor = get_node("Interactor")
 onready var combat_manager = get_node("CombatManager")
 
-
+var turning = false
 var inventory_open = false
 
 const KEYBOARD_TURN_SPEED = 3
@@ -30,7 +30,7 @@ func _input(ev):
 		rotator.rotate_body(self, r, !Input.is_action_pressed("align"))
 
 func _process(delta):
-	
+	turning = false
 	if health.is_dead():
 		get_tree().reload_current_scene()
 		return

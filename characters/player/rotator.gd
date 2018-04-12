@@ -2,6 +2,7 @@ extends Node2D
 
 onready var echolocator = get_parent().get_node("Echolocator")
 onready var stream_player = $AudioStreamPlayer
+onready var coll = get_parent().get_node("CollisionShape2D")
 
 const audio_path = "res://audio/directions/"
 var dirs = ["north", "east", "south", "west"]
@@ -38,9 +39,13 @@ func rotate_body(var body, r_input, align):
 		align_to_axis(body)
 
 func snap_turn(var body, var dir):
+	get_parent().turning = true
+	
 	body.global_rotation += 90 * sign(dir)
 	snap_turn_velo = 0
 	align_to_axis(body)
+	
+	get_parent().turning = false
 	
 	var r = body.global_rotation_degrees
 	if r < 0:

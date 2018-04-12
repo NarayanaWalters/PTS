@@ -1,5 +1,8 @@
 extends Node2D
 
+#plays sequence of notes, requires that sequence 
+#to be entered to complete
+
 onready var music_player = $MusicPlayer
 onready var note_player = $NotePlayer
 
@@ -27,9 +30,9 @@ const note_play_rate = 4.0
 signal completed
 
 func _ready():
-	pass
 	for child in get_children():
-		child.connect("activated", self, "add_note")
+		if child.get_signal_list()[0]["name"] == "activated":
+			child.connect("activated", self, "add_note")
 
 func add_note(id):
 	if solved:

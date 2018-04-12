@@ -6,6 +6,8 @@ export var id = 0
 export var sound_on_enter = ""
 export var sound_on_exit = ""
 
+var occupied = false 
+
 signal activated
 
 func _ready():
@@ -13,12 +15,12 @@ func _ready():
 	connect("body_exited", self, "stepped_off")
 
 func stepped_on(body):
-	#print("enter",body)
+	if body.get("turning") and body.turning:
+		return
 	emit_signal("activated", id)
 	play_sound(sound_on_enter)
 
 func stepped_off(body):
-	#print("exit",body)
 	play_sound(sound_on_exit)
 
 func play_sound(var snd):

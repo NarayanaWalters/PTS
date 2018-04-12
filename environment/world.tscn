@@ -102,7 +102,6 @@ position = Vector2( -104, 24 )
 
 position = Vector2( 0, 48 )
 _sections_unfolded = [ "Transform" ]
-correct_music_comb = [ 0, 1, 2 ]
 
 [node name="PressurePad" parent="StoneGate/MusicPuzzle" index="1" instance=ExtResource( 8 )]
 

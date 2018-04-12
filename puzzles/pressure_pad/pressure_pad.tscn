@@ -10,7 +10,6 @@ extents = Vector2( 7, 7 )
 
 [node name="PressurePad" type="Area2D"]
 
-editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
