@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://characters/player/player.gd" type="Script" id=1]
 [ext_resource path="res://characters/player/echolocator.gd" type="Script" id=2]
@@ -12,9 +12,10 @@
 [ext_resource path="res://characters/player/combat_manager.gd" type="Script" id=10]
 [ext_resource path="res://characters/player/player_health.gd" type="Script" id=11]
 [ext_resource path="res://audio/npc/zombie/zombie_hurt0.wav" type="AudioStream" id=12]
-[ext_resource path="res://characters/player/inventory/inventory.tscn" type="PackedScene" id=13]
-[ext_resource path="res://characters/player/interactor.gd" type="Script" id=14]
-[ext_resource path="res://ptsicon-2ztbbbcw.png" type="Texture" id=15]
+[ext_resource path="res://audio/player/injury/low_hp_warning.wav" type="AudioStream" id=13]
+[ext_resource path="res://characters/player/inventory/inventory.tscn" type="PackedScene" id=14]
+[ext_resource path="res://characters/player/interactor.gd" type="Script" id=15]
+[ext_resource path="res://ptsicon-2ztbbbcw.png" type="Texture" id=16]
 
 [sub_resource type="AudioStreamSample" id=1]
 
@@ -36,7 +37,7 @@ radius = 7.0
 custom_solver_bias = 0.0
 radius = 40.0
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 3
@@ -195,13 +196,13 @@ bus = "HealthScaler"
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Health" index="1"]
 
-stream = ExtResource( 12 )
-volume_db = 0.0
+stream = ExtResource( 13 )
+volume_db = -20.0
 autoplay = false
 mix_target = 0
 bus = "HealthCeiling"
 
-[node name="Inventory" parent="." index="8" instance=ExtResource( 13 )]
+[node name="Inventory" parent="." index="8" instance=ExtResource( 14 )]
 
 pause_mode = 2
 _sections_unfolded = [ "Pause" ]
@@ -219,7 +220,7 @@ collision_layer = 4
 collision_mask = 4
 audio_bus_override = false
 audio_bus_name = "Master"
-script = ExtResource( 14 )
+script = ExtResource( 15 )
 _sections_unfolded = [ "Collision", "Pause" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactor" index="0"]
@@ -296,7 +297,7 @@ _sections_unfolded = [ "Anchor" ]
 visible = false
 position = Vector2( 506.866, 291.107 )
 rotation = 3.14159
-texture = ExtResource( 15 )
+texture = ExtResource( 16 )
 flip_v = true
 _sections_unfolded = [ "Offset", "Transform" ]
 

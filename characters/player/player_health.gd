@@ -31,7 +31,7 @@ var hurt_sounds = [
 "res://audio/player/injury/pain2.wav",
 "res://audio/player/injury/pain3.wav"]
 
-const low_hp_sound = "res://audio/player/injury/pain0.wav"
+const low_hp_sound = "res://audio/player/injury/low_hp_warning.wav"
 
 func _ready():
 	add_to_group("health")

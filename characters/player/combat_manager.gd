@@ -2,6 +2,8 @@ extends RayCast2D
 
 onready var audio_player = $AudioStreamPlayer
 onready var stats_manager = get_parent().get_node("Inventory/Stats")
+var explosion = preload("res://utility/explosion.tscn")
+
 var fist_dmg = 10
 var fist_speed = 0.4
 var fist_hit_snd = "res://audio/weapons/punch.wav"
@@ -71,18 +73,20 @@ func attempt_attack():
 		time_since_atk -= atk_rate
 		var snd_to_play = atk_sound
 		var coll = get_collider()
-		if is_colliding() and coll.has_method("deal_damage"):
-			var rn = global_position.distance_squared_to(coll.global_position)
+		var hit_pnt = get_collision_point()
+		if is_colliding():
+			var rn = global_position.distance_squared_to(hit_pnt)
 			if ranged or rn < 32 * 32:
 				if attack_type == "magic":
-					area_damage(coll.global_position)
-					#TODO: area affect for spells
-				else:
+					cast_spell(hit_pnt)
+				elif coll.has_method("deal_damage"):
 					coll.deal_damage(damage)
-				snd_to_play = atk_hit_sound
+					snd_to_play = atk_hit_sound
 		audio_player.stream = load(snd_to_play)
 		audio_player.play()
 		played_prep = false
 
-func area_damage(var hit_pos):
-	pass
+func cast_spell(var pos):
+	var spell = explosion.instance()
+	get_tree().get_root().add_child(spell)
+	spell.init_expl(damage, atk_radius, pos)
