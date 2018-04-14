@@ -78,7 +78,10 @@ func attempt_attack():
 			var rn = global_position.distance_squared_to(hit_pnt)
 			if ranged or rn < 32 * 32:
 				if attack_type == "magic":
-					cast_spell(hit_pnt)
+					var spell_pos = hit_pnt
+					if coll.has_method("deal_damage"):
+						spell_pos = coll.global_position
+					cast_spell(spell_pos)
 				elif coll.has_method("deal_damage"):
 					coll.deal_damage(damage)
 					snd_to_play = atk_hit_sound

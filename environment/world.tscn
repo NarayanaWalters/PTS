@@ -31,7 +31,7 @@ _sections_unfolded = [ "Cell", "Collision", "Transform" ]
 
 [node name="Player" parent="." index="1" instance=ExtResource( 2 )]
 
-position = Vector2( -8, 8 )
+position = Vector2( -72, -24 )
 _sections_unfolded = [ "Collision", "Transform", "collision" ]
 
 [node name="LootBag" parent="." index="2" instance=ExtResource( 3 )]
