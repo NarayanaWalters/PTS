@@ -7,6 +7,7 @@ const attack_rate = "attack_rate"
 
 const npc_audio_path = "res://audio/npc/"
 const wep_audio_path = "res://audio/weapons/"
+const spell_audio_path = "res://audio/spells/"
 const arm_audio_path = "res://audio/armor/"
 
 const sword_sounds = {
@@ -23,6 +24,14 @@ const bow_sounds = {
 "hit": wep_audio_path + "bow_hit.wav",
 "swing": wep_audio_path + "bow_fire.wav",
 "prep": wep_audio_path + "bow_draw.wav"
+}
+
+const fireball_sounds = {
+"id": spell_audio_path + "fireball.wav",
+"unsheathe": spell_audio_path + "ignite.wav",
+"hit": spell_audio_path + "explosion.wav",
+"swing": spell_audio_path + "cast.wav",
+"prep": spell_audio_path + "charge.wav"
 }
 
 const leather_sounds = {
@@ -52,7 +61,7 @@ var items = {
 "name": "fireball", "type": "weapon", "slot":"main hand", 
 "damage":20, "attack_rate": 15, "attack_type":"magic",
 "attack_radius":2,
-"sounds":bow_sounds},
+"sounds":fireball_sounds},
 
 "w_bronze_dagger":{
 "name": "bronze dagger", "type": "weapon", "slot":"main hand", 
