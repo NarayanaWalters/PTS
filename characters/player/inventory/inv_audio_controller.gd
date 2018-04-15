@@ -80,6 +80,9 @@ func play_item_stats(var item_id):
 			play_number(item_info["damage"])
 			add_sound_to_queue("description/attack_rate")
 			play_number(item_info["attack_rate"])
+			if item_info["attack_type"] == "magic":
+				add_sound_to_queue("description/area")
+				play_number(item_info["attack_radius"])
 		elif type == "armor":
 			#sound_queue.push_front(item_info["sounds"]["equip"])
 			add_sound_to_queue("description/protection")

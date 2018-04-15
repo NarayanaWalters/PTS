@@ -7,10 +7,10 @@ path="res://.import/charge.wav-1df05d58873ec566032da8979c67c81d.sample"
 [deps]
 
 source_file="res://audio/spells/charge.wav"
-source_md5="c809a0f1faf8acd7836956d4a67a2b94"
+source_md5="f75d92d290dfa643bd109d4928f123ca"
 
 dest_files=[ "res://.import/charge.wav-1df05d58873ec566032da8979c67c81d.sample" ]
-dest_md5="4c6f71d31abca4d9542ad41fc450ab62"
+dest_md5="ae6b371629b12a4da960984eb99ca6db"
 
 [params]
 

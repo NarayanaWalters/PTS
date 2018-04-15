@@ -29,7 +29,7 @@ const bow_sounds = {
 const fireball_sounds = {
 "id": spell_audio_path + "fireball.wav",
 "unsheathe": spell_audio_path + "ignite.wav",
-"hit": spell_audio_path + "explosion.wav",
+"hit": spell_audio_path + "cast.wav",
 "swing": spell_audio_path + "cast.wav",
 "prep": spell_audio_path + "charge.wav"
 }
@@ -59,7 +59,7 @@ var items = {
 
 "w_fireball":{
 "name": "fireball", "type": "weapon", "slot":"main hand", 
-"damage":20, "attack_rate": 15, "attack_type":"magic",
+"damage":30, "attack_rate": 20, "attack_type":"magic",
 "attack_radius":2,
 "sounds":fireball_sounds},
 
@@ -92,7 +92,7 @@ var spells = {
 # offensive
 "fireball": {
 "name" : "fireball", "type": "range",
-"effect": "damage","damage": 15, "aoe": 10, "cast time": 0.6, 
+"effect": "damage","damage": 30, "aoe": 10, "cast time": 0.6, 
 "magic_type": "fire"},
 
 # enchantments
