@@ -27,7 +27,9 @@ func rotate_body(var body, r_input, align):
 		if echolocator.looking_at_something:
 			turn_speed = lock_speed
 		
+		get_parent().turning = true
 		body.global_rotation += r_input * turn_speed
+		get_parent().turning = false
 		"""
 		if !echolocator.looking_at_something and r_input == 0:
 			slow_align(body)
