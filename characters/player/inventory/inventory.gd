@@ -232,6 +232,8 @@ func output_inv_pos(var clear, var play_tab):
 		if play_tab:
 			audio_controller.play_stat("skill_points")
 		audio_controller.play_stat(inv[cur_tab][cur_row])
+	if cur_tab == JOURNAL:
+		audio_controller.play_journal_entry(inv[cur_tab][cur_row])
 	var item_str = "empty"
 	if inv[cur_tab].size() > 0:
 		item_str = str(inv[cur_tab][cur_row]) 
