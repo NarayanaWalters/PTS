@@ -17,8 +17,12 @@ var mouse_sens = 0.1
 
 func _ready():
 	mover.kine_body = self
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	set_meta("type", "player")
+	
+	var t_map = get_parent().get_node("TileMap")
+	mover.tile_map = t_map
+	
 
 
 func _input(ev):
