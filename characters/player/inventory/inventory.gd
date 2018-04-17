@@ -27,7 +27,7 @@ var inv = [
 # Stats
 ["melee", "ranged", "magic", "health", "experience"],
 # Journal
-["movement", "turning"]
+["movement", "turning", "echolocation"]
 ]
 
 func _ready():
