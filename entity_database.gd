@@ -9,6 +9,7 @@ const npc_audio_path = "res://audio/npc/"
 const wep_audio_path = "res://audio/weapons/"
 const spell_audio_path = "res://audio/spells/"
 const arm_audio_path = "res://audio/armor/"
+const potion_audio_path = "res://audio/potions/"
 
 const sword_sounds = {
 "id": wep_audio_path + "sword.wav",
@@ -32,6 +33,11 @@ const fireball_sounds = {
 "hit": spell_audio_path + "cast.wav",
 "swing": spell_audio_path + "cast.wav",
 "prep": spell_audio_path + "charge.wav"
+}
+
+const potion_sounds = {
+"id": potion_audio_path + "potion.wav",
+"drink": ""
 }
 
 const leather_sounds = {
@@ -89,7 +95,7 @@ var items = {
 
 "p_hp_basic_potion":{
 	"name": "basic health potion", "type":"potion",
-	"heals":10, "sounds":sword_sounds}
+	"heals":10, "sounds": potion_sounds}
 
 }
 

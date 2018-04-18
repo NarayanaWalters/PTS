@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/drank.wav-c6d21d89eb8d8a0eadcd6b1151de926f.sample"
+
+[deps]
+
+source_file="res://audio/inventory/action/drank.wav"
+source_md5="e8f9b578b07add2769a43d85331b965a"
+
+dest_files=[ "res://.import/drank.wav-c6d21d89eb8d8a0eadcd6b1151de926f.sample" ]
+dest_md5="e0fb518b3e0c155c142718396779fc3a"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

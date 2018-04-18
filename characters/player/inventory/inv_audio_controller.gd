@@ -11,6 +11,8 @@ const close_sound = "close_inventory"
 const atk_rate_sound = "description/attack_rate"
 var sound_queue = []
 
+const drank_sound = "action/drank"
+const healed_sound = "action/healed"
 const equip_sound = "action/equipped"
 const unequip_sound = "action/unequipped"
 const drop_sound = "action/dropped"
@@ -146,8 +148,15 @@ func num_to_str_array(var num):
 func equip_item(var item_id, var clear):
 	if clear:
 		clear_sound_queue()
-	add_sound_to_queue(equip_sound)
-	play_item_id_sound(item_id)
+	var item_info = db.get_item(item_id)
+	if item_info["type"] == "potion":
+		add_sound_to_queue(drank_sound)
+		play_item_id_sound(item_id)
+		add_sound_to_queue(healed_sound)
+		play_number(item_info["heals"])
+	else:
+		add_sound_to_queue(equip_sound)
+		play_item_id_sound(item_id)
 
 func unequip_item(var item_id, var clear):
 	if clear:

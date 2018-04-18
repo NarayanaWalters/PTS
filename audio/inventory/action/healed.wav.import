@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/healed.wav-af625253df0e9fb5c4335138dfe2082f.sample"
+
+[deps]
+
+source_file="res://audio/inventory/action/healed.wav"
+source_md5="2c66310d3fc429422c8b3b9519574144"
+
+dest_files=[ "res://.import/healed.wav-af625253df0e9fb5c4335138dfe2082f.sample" ]
+dest_md5="c1255f87cd770d476449cbd7ced3c074"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
