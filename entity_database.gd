@@ -142,12 +142,30 @@ var npcs = {
 "equipped":{},
 "inventory":[],
 "sounds" : {
+	"direct_path": false,
 	"path" : npc_audio_path + "zombie/zombie",
 	"idle":6,
 	"chase":2,
 	"alert":5,
 	"attack":4,
 	"hurt":7}
+},
+
+"h_large_zombie": {
+"name" : "Large Zombie", "attitude": "hostile",
+"health": 50, "move_speed":20, "attack_rate":3.0, "base_damage": 18,
+"attributes":["undead"],
+"equipped":{},
+"inventory":[],
+
+"sounds" : {
+	"direct_path": true,
+	"path" : npc_audio_path + "large_monster/",
+	"idle":"Large Monster Death 01",
+	"chase":"Large Monster Death 01",
+	"alert":"Large Monster Grunt Hit 01",
+	"attack":"Large Monster Grunt Hit 01",
+	"hurt":"Large Monster Grunt Hit 01"}
 }
 
 }

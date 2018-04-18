@@ -9,7 +9,7 @@
 [ext_resource path="res://puzzles/music_puzzle/music_puzzle.tscn" type="PackedScene" id=7]
 [ext_resource path="res://puzzles/pressure_pad/pressure_pad.tscn" type="PackedScene" id=8]
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" index="0"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
@@ -34,7 +34,7 @@ _sections_unfolded = [ "Cell", "Collision", "Transform" ]
 
 [node name="Player" parent="." index="1" instance=ExtResource( 2 )]
 
-position = Vector2( -8, 8 )
+position = Vector2( -8, -24 )
 _sections_unfolded = [ "Collision", "Transform", "collision" ]
 
 [node name="LootBag" parent="." index="2" instance=ExtResource( 3 )]
@@ -58,7 +58,7 @@ contents = [ "a_leather_vest" ]
 [node name="NPC" parent="." index="5" instance=ExtResource( 4 )]
 
 position = Vector2( 72, -24 )
-id = "h_zombie"
+id = "h_large_zombie"
 
 [node name="NPC2" parent="." index="6" instance=ExtResource( 4 )]
 

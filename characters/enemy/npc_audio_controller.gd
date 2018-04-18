@@ -44,15 +44,21 @@ func play_rnd_sound(var list):
 	play()
 
 func init_sounds(var sound_dict):
+	var dir_path = sound_dict["direct_path"]
+	
 	for key in sound_dict.keys():
-		if key == "path":
+		if key == "path" or key == "direct_path":
 			continue
 		var new_sound = sound_dict["path"]
 		new_sound += "_" + key
-		for i in sound_dict[key]:
-			var tmp = new_sound + str(i) + ".wav"
-			sounds[key].append(tmp)
-			#print(tmp)
+		if dir_path:
+			
+			sounds[key].append(sound_dict["path"] + sound_dict[key] + ".wav")
+		else:
+			for i in sound_dict[key]:
+				var tmp = new_sound + str(i) + ".wav"
+				sounds[key].append(tmp)
+
 
 func muffle(var b):
 	
