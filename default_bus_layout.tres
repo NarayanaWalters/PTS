@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=7 format=2]
+[gd_resource type="AudioBusLayout" load_steps=8 format=2]
 
 [sub_resource type="AudioEffectPitchShift" id=1]
 
@@ -29,6 +29,18 @@ pitch_scale = 1.0
 
 resource_name = "PitchShift"
 pitch_scale = 1.0
+
+[sub_resource type="AudioEffectReverb" id=7]
+
+resource_name = "Reverb"
+predelay_msec = 150.0
+predelay_feedback = 0.4
+room_size = 0.5
+damping = 0.2
+spread = 0.2
+hipass = 1.0
+dry = 1.0
+wet = 0.1
 
 [resource]
 
@@ -80,4 +92,12 @@ bus/5/volume_db = 0.0
 bus/5/send = "Master"
 bus/5/effect/0/effect = SubResource( 6 )
 bus/5/effect/0/enabled = true
+bus/6/name = "Footsteps"
+bus/6/solo = false
+bus/6/mute = false
+bus/6/bypass_fx = false
+bus/6/volume_db = 0.0
+bus/6/send = "Master"
+bus/6/effect/0/effect = SubResource( 7 )
+bus/6/effect/0/enabled = true
 

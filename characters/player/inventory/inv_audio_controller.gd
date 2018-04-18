@@ -73,6 +73,7 @@ func play_item_stats(var item_id):
 	
 	if item_info.has("type"):
 		var type = item_info["type"]
+		
 		play_item_id_sound(item_id)
 		if type == "weapon":
 			#sound_queue.push_front(item_info["sounds"]["unsheathe"])
@@ -94,6 +95,7 @@ func play_item_id_sound(var item_id):
 	if item_id == null or item_id == "":
 		return
 	var item_info = db.get_item(item_id)
+	
 	sound_queue.push_front(item_info["sounds"]["id"])
 
 # plays audio for a number between 0 and 999 (inclusive)

@@ -23,7 +23,7 @@ var inv = [
 # Paper Doll
 ["w_bow"], 
 # Backpack
-["w_fireball"],#"w_bow", "w_iron_sword", "w_bronze_dagger", "default_item", "a_leather_vest"],
+["p_hp_basic_potion"],#"w_fireball", "w_iron_sword", "w_bronze_dagger", "default_item", "a_leather_vest"],
 # Stats
 ["melee", "ranged", "magic", "health", "experience"],
 # Journal
@@ -172,6 +172,12 @@ func equip_from_backpack():
 		var item_id = inv[BACKPACK][cur_row]
 		var item_to_eq = db.get_item(item_id)
 		var type = item_to_eq["type"]
+		if type == "potion" and item_to_eq.has("heals"):
+			health.heal(item_to_eq["heals"])
+			inv[cur_tab].remove(cur_row)
+			clamp_row()
+			return
+		
 		var slot = ""
 		if item_to_eq.has("slot"):
 			slot = item_to_eq["slot"]

@@ -85,7 +85,12 @@ var items = {
 "name": "leather vest", "type":"armor", "slot":"chest",
 "protection":1, "weaknesses":[],
 "sounds":leather_sounds,
-"value":5, "stackable":false, "enchantments":["p_fire_protection"]}
+"value":5, "stackable":false, "enchantments":["p_fire_protection"]},
+
+"p_hp_basic_potion":{
+	"name": "basic health potion", "type":"potion",
+	"heals":10, "sounds":sword_sounds}
+
 }
 
 var spells = {

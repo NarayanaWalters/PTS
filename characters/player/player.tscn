@@ -37,7 +37,7 @@ radius = 7.0
 custom_solver_bias = 0.0
 radius = 40.0
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 3
@@ -88,7 +88,6 @@ bus = "Compass"
 
 [node name="Mover" type="Node2D" parent="." index="2"]
 
-editor/display_folded = true
 script = ExtResource( 6 )
 
 [node name="MoveRay" type="RayCast2D" parent="Mover" index="0"]
@@ -104,7 +103,7 @@ stream = SubResource( 1 )
 volume_db = 0.0
 autoplay = false
 mix_target = 0
-bus = "Master"
+bus = "Footsteps"
 
 [node name="Rotator" type="Node2D" parent="." index="3"]
 

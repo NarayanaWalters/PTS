@@ -3,8 +3,9 @@ extends Node2D
 const MOVE_SPEED = 1 # meters per second
 const STEP_RATE = 0.5 #time to travel one grid place
 const FOOTSTEPS = ["footstep_1", "footstep_2", "footstep_3"] #footstep sounds
-const S_ECHO_FOOTSTEPS = ["footstep_1"]
-const L_ECHO_FOOTSTEPS = ["footstep_1"]
+
+const small_echo = 0.5
+const large_echo = 1
 
 var tile_map = null
 const small_echo_tile_ind = 1
@@ -33,7 +34,10 @@ onready var shape_obj = get_parent().get_node("CollisionShape2D")
 onready var move_ray = $MoveRay #get_node("MoveRay") # collision checking
 onready var step_player = $StepPlayer #get_node("StepPlayer")
 
+var bus_index = 0
+
 func _ready():
+	bus_index = AudioServer.get_bus_index(step_player.bus)
 	var rad = shape_obj.shape.radius
 	col_shape.radius = rad
 	var par = get_parent()
@@ -98,23 +102,32 @@ func can_move():
 	
 
 func play_step():
-	var footsteps = get_footstep_array()
-	var step_index = randi() % footsteps.size()
+	set_footstep_echo()
+	var step_index = randi() % FOOTSTEPS.size()
 	var sample = load(audio_folder + FOOTSTEPS[step_index] + ".wav")
 	step_player.stream = sample
 	step_player.play()
 
-func get_footstep_array():
+func set_footstep_echo():
+	var reverb = AudioServer.get_bus_effect(bus_index, 0)
+	reverb.dry = 1
+	reverb.wet = 0
+	
 	if tile_map == null:
-		return FOOTSTEPS
+		return
+	
 	var t_pos = tile_map.world_to_map(global_position)
 	var t_ind = tile_map.get_cellv(t_pos)
 	
 	if t_ind == 1:
-		return S_ECHO_FOOTSTEPS
+		reverb.dry = 0.9
+		reverb.wet = 0.5
+		reverb.room_size = 0.4
 	if t_ind == 2:
-		return L_ECHO_FOOTSTEPS
-	return FOOTSTEPS
+		reverb.dry = 0.8
+		reverb.wet = 1
+		reverb.room_size = 1
+	return
 
 func signal_new_position(var pos):
 	get_tree().call_group("doors", "set_player", self)
