@@ -197,7 +197,7 @@ func reset_inv():
 	inventory.clear()
 	inv_audio_manager.clear_sound_queue()
 
-const cor_echo_results = ["oo", "oo", "oo", "oo"]
+const cor_echo_results = ["aa", "aa", "aa", "ee", "ee", "ee", "oo", "oo"]
 var echo_results = []
 func echo_test():
 	echolocator.connect("click", self, "add_echo")
@@ -205,11 +205,19 @@ func echo_test():
 	label.text += "\nBegin Echolocate Tests \n"
 	
 	echolocator.perform_echolocate()
-	#change position, rotation
+	player.position -= Vector2(0, 14)
 	echolocator.perform_echolocate()
-	#change position, rotation
+	player.position -= Vector2(0, 5)
 	echolocator.perform_echolocate()
-	#change position, rotation
+	player.position -= Vector2(0, 16)
+	echolocator.perform_echolocate()
+	player.position -= Vector2(0, 32)
+	echolocator.perform_echolocate()
+	player.position -= Vector2(0, 48)
+	echolocator.perform_echolocate()
+	player.position -= Vector2(0, 16)
+	echolocator.perform_echolocate()
+	player.position -= Vector2(0, 16)
 	echolocator.perform_echolocate()
 	
 	var passed = cor_echo_results == echo_results
