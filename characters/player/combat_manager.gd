@@ -28,16 +28,22 @@ var time_since_atk = 0
 
 func _process(delta):
 	if Input.is_action_pressed("attack"):
+		if time_since_atk == 0:
+			audio_player.stream = load(prep_sound)
+			audio_player.play()
 		time_since_atk += delta
 		attempt_attack()
 	else:
+		if time_since_atk > 0 and audio_player.stream == load(prep_sound):
+			audio_player.stop()
 		time_since_atk = 0
 		
-	
+	"""
 	if prep_sound != "" and !audio_player.playing and !played_prep:
 		audio_player.stream = load(prep_sound)
 		played_prep = true
 		audio_player.play()
+	"""
 
 func unequip_wep():
 	damage = fist_dmg

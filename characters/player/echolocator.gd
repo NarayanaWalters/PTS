@@ -23,6 +23,8 @@ var loot_sound = "l"
 var int_sound = "k"
 var alternate = false
 
+signal click
+
 #true if pointing at an npc or interactable
 var looking_at_something = false
 
@@ -55,8 +57,17 @@ func echolocate(var delta):
 		play_click(tier, ray)
 		tap_hit_obj()
 
+func perform_echolocate():
+	var ray = pick_ray()
+	var distance = calc_distance(ray)
+	var tier = calc_dis_tier(distance)
+	play_click(tier, ray)
+	tap_hit_obj()
+
 func pick_ray():
 	var ray = ping_ray
+	return ray
+	"""
 	var dist = calc_distance(ray)
 	var rays = [loot_ray] # ping_ray_l, ping_ray_r, 
 	for r in rays:
@@ -65,6 +76,7 @@ func pick_ray():
 			ray = r
 			dist = d
 	return ray
+	"""
 
 # calculate distance from player to where raycast hits
 func calc_distance(var ray):
@@ -106,13 +118,15 @@ func _process(delta):
 
 
 func play_click(var tier, var ray):
+	"""
 	if is_loot_in_front_of_enemy():
 		alternate = !alternate
 		if alternate:
 			ray = ping_ray
 		else:
 			ray = loot_ray
-		tier = calc_dis_tier(calc_distance(ray))
+	"""
+	tier = calc_dis_tier(calc_distance(ray))
 	
 	var sound = click_sounds[tier]
 	if (ray.is_colliding()):
@@ -130,6 +144,8 @@ func play_click(var tier, var ray):
 				sound = int_sound + sound
 			elif type == "loot":
 				sound = loot_sound + sound
+	
+	emit_signal("click", sound)
 	click_player.stop()
 	var path = audio_folder + sound + ".wav"
 	click_player.stream = load(path)

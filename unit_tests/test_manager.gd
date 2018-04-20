@@ -2,7 +2,9 @@ extends Node2D
 
 onready var label = $CanvasLayer/ScrollContainer/Label
 onready var player = $Player
+onready var echolocator = $Player/Echolocator
 onready var inventory = $Player/Inventory
+onready var stats = $Player/Inventory/Stats
 onready var inv_audio_manager = $Player/Inventory/AudioController
 
 var test_items = ["a_leather_vest", "a_chainmail_vest", 
@@ -16,9 +18,8 @@ func _ready():
 	label.text = ""
 	complete_numbers_output_test(false)
 	complete_inv_audio_tests()
-	#inventory_pickup_drop_test()
-	#inventory_navigation_test()
-	#inventory_equip_unequip_test()
+	
+	echo_test()
 
 const nums_to_test = {
 -1: ["overflow"],
@@ -61,6 +62,9 @@ func number_output_test(var num, var correct, var use_audio):
 var test_items_for_audio = ["a_leather_vest", "a_chainmail_vest", "w_bronze_dagger", "w_bow"]
 
 func complete_inv_audio_tests():
+	stats.stats["melee"] = 0
+	stats.skill_points = 1
+	
 	var bow_dam = "seven"
 	var bow_atk_rate = "eight"
 	reset_inv()
@@ -75,7 +79,7 @@ func complete_inv_audio_tests():
 	inventory_audio_test(correct)
 	
 	inventory.tab_right()
-	correct = ["stats"]
+	correct = ["zero", "melee", "one", "skill_points", "stats"]
 	inventory_audio_test(correct)
 	
 	inventory.tab_left()
@@ -101,10 +105,10 @@ func complete_inv_audio_tests():
 	inventory_audio_test(correct)
 	
 	inventory.tab_left()
-	correct = ["journal"]
+	correct = ["movement", "journal"]
 	inventory_audio_test(correct)
 	inventory.tab_left()
-	correct = ["stats"]
+	correct = ["zero", "melee", "one", "skill_points", "stats"]
 	inventory_audio_test(correct)
 	inventory.open(false)
 	label.text += "INVENTORY AUDIO TESTS COMPLETE failed: %s\n" % fails
@@ -189,20 +193,31 @@ func display_contents(var current, var correct):
 	label.text += "current contents are : " + str(current) + "\n"
 	label.text += "correct contents are : " + str(correct) + "\n"
 
-#TODO
-#move around, test positions
-func inventory_navigation_test():
-	pass
-
-#TODO
-func inventory_equip_unequip_test():
-	pass
-
 func reset_inv():
 	inventory.clear()
 	inv_audio_manager.clear_sound_queue()
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+const cor_echo_results = ["oo", "oo", "oo", "oo"]
+var echo_results = []
+func echo_test():
+	echolocator.connect("click", self, "add_echo")
+	echo_results = []
+	label.text += "\nBegin Echolocate Tests \n"
+	
+	echolocator.perform_echolocate()
+	#change position, rotation
+	echolocator.perform_echolocate()
+	#change position, rotation
+	echolocator.perform_echolocate()
+	#change position, rotation
+	echolocator.perform_echolocate()
+	
+	var passed = cor_echo_results == echo_results
+	if passed:
+		label.text += "PASSED"
+	else:
+		label.text += "FAILED: correct result: " + str(cor_echo_results) + "\n"
+	label.text += " results of your echo test : " + str(echo_results)
+
+func add_echo(var snd):
+	echo_results.push_back(snd)
