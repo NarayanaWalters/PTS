@@ -3,7 +3,7 @@ extends Area2D
 onready var audio_player = $AudioStreamPlayer2D
 
 export var id = 0
-export var sound_on_enter = ""
+export var sound_on_enter = "res://audio/plate.wav"
 export var sound_on_exit = ""
 
 var occupied = false 

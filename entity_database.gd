@@ -162,7 +162,7 @@ var npcs = {
 
 "h_large_zombie": {
 "name" : "Large Zombie", "attitude": "hostile",
-"health": 50, "move_speed":20, "attack_rate":3.0, "base_damage": 18,
+"health": 120, "move_speed":20, "attack_rate":3.0, "base_damage": 18,
 "attributes":["undead"],
 "equipped":{},
 "inventory":[],

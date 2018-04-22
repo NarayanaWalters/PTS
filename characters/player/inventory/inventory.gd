@@ -21,9 +21,9 @@ var cur_row = 0
 
 var inv = [
 # Paper Doll
-["w_bow"], 
+["w_bronze_dagger"], 
 # Backpack
-["w_fireball", "p_hp_basic_potion"],#"w_fireball", "w_iron_sword", "w_bronze_dagger", "default_item", "a_leather_vest"],
+["p_hp_basic_potion"],#"w_fireball", "w_iron_sword", "w_bronze_dagger", "default_item", "a_leather_vest"],
 # Stats
 ["melee", "ranged", "magic", "health", "experience"],
 # Journal

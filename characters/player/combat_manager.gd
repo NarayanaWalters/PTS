@@ -24,8 +24,6 @@ var played_prep = false
 
 var time_since_atk = 0
 
-#func _ready():
-#	set_process_input(true)
 
 func _process(delta):
 	if Input.is_action_pressed("attack"):

@@ -7,16 +7,21 @@
 
 ## Controls
 - WASD - movement 
-- Mouse or Q E keys - turn left and right 
-- LMB - attack 
-- Space echolocate 
+- QE - turn left and right
+- Shift + Mouse or QE - free look left and right
+- LCTRL or LMB (hold) - attack 
+- Space - echolocate 
+- R - open chest
 - T - open/close inventory
+- H - output health
+- B - output protection
 
 #### Inventory Controls
 - WS - scroll up and down 
 - AD - switch tabs 
 - Q - drop item 
-- E - equip/unequip item
+- E - equip/unequip item, drink potion, spend skill point
+- R - examine object
 
 ## Mechanics
 #### Audio Compass: 
@@ -34,7 +39,7 @@ and 'l' for loot. So, for example, if an enemy is 3 meters in front of you, echo
 An ambient windy sound plays in your ear if there is an opening that way. E.g. a corridor to your right and a wall to your left will result in the sound playing in your right ear.
 
 #### Footsteps: 
-A footstep sound plays every meter you step.
+A footstep sound plays every meter you step. listen to the echo of your steps to tell when you're at an intersection or in a large room.
 
 ## Unit Tests
 To run: 

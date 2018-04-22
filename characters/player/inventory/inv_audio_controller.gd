@@ -5,6 +5,8 @@ onready var stats_manager = get_parent().get_node("Stats")
 const audio_path = "res://audio/inventory/"
 const open_sound = "open_inventory"
 
+const start_snd = "res://audio/start.wav"
+
 const tabs_sounds = ["equipment", "backpack", "stats", "journal"]
 
 const close_sound = "close_inventory"
@@ -39,7 +41,8 @@ const out_of_snd = "stats/out_of"
 const level_up = "stats/level_up"
 
 func _ready():
-	pass
+	stream = load(start_snd)
+	play()
 
 func _process(delta):
 	if sound_queue.size() > 0 and !playing:

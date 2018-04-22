@@ -37,7 +37,7 @@ radius = 7.0
 custom_solver_bias = 0.0
 radius = 40.0
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 3
@@ -298,7 +298,6 @@ _sections_unfolded = [ "Anchor" ]
 
 [node name="Sprite" type="Sprite" parent="CanvasLayer" index="1"]
 
-visible = false
 position = Vector2( 506.866, 291.107 )
 rotation = 3.14159
 texture = ExtResource( 16 )
