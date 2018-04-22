@@ -13,12 +13,13 @@ var damage = fist_dmg
 var atk_rate = fist_speed
 var atk_radius = 0
 
-var prep_sound = ""
+var prep_sound = null
 var atk_sound = fist_swing_snd
 var atk_hit_sound = fist_hit_snd
 var prep_sound_time = 0
 var ranged = false
 var attack_type = "melee"
+
 var played_prep = false
 
 var time_since_atk = 0
@@ -28,14 +29,16 @@ var time_since_atk = 0
 
 func _process(delta):
 	if Input.is_action_pressed("attack"):
-		if time_since_atk == 0:
-			audio_player.stream = load(prep_sound)
+		if !played_prep and !audio_player.is_playing():
+			audio_player.stream = prep_sound
 			audio_player.play()
+			played_prep = true
 		time_since_atk += delta
 		attempt_attack()
 	else:
-		if time_since_atk > 0 and audio_player.stream == load(prep_sound):
+		if audio_player.stream == prep_sound:
 			audio_player.stop()
+		played_prep = false
 		time_since_atk = 0
 		
 	"""
@@ -61,7 +64,7 @@ func equip_wep(var item_to_eq):
 	atk_rate = item_to_eq["attack_rate"] / 10.0
 	atk_sound = item_to_eq["sounds"]["swing"]
 	atk_hit_sound = item_to_eq["sounds"]["hit"]
-	prep_sound = item_to_eq["sounds"]["prep"]
+	prep_sound = load(item_to_eq["sounds"]["prep"])
 	attack_type = item_to_eq["attack_type"]
 	ranged = attack_type == "range" or attack_type == "magic"
 	if attack_type == "range":
@@ -76,6 +79,7 @@ func equip_wep(var item_to_eq):
 
 func attempt_attack():
 	if time_since_atk >= atk_rate:
+		played_prep = false
 		time_since_atk -= atk_rate
 		var snd_to_play = atk_sound
 		var coll = get_collider()

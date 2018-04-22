@@ -36,8 +36,7 @@ const fireball_sounds = {
 }
 
 const potion_sounds = {
-"id": potion_audio_path + "potion.wav",
-"drink": ""
+"id": potion_audio_path + "potion.wav"
 }
 
 const leather_sounds = {
@@ -95,7 +94,11 @@ var items = {
 
 "p_hp_basic_potion":{
 	"name": "basic health potion", "type":"potion",
-	"heals":10, "sounds": potion_sounds}
+	"heals":15, "sounds": potion_sounds},
+	
+"p_hp_strong_potion":{
+	"name": "strong health potion", "type":"potion",
+	"heals":30, "sounds": potion_sounds}
 
 }
 
