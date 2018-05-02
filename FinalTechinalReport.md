@@ -117,11 +117,11 @@ Also, the design challenges were much harder to solve than I anticipated. Easily
 
 
 ### References:
-1. Godot Engine: https://godotengine.org/
-1. AudioGames Community: http://forum.audiogames.net/
-1. Festival: http://www.cstr.ed.ac.uk/projects/festival/
-1. A Blind Legend: https://store.steampowered.com/app/437530/A_Blind_Legend/
-1. Papa Sangre: https://en.wikipedia.org/wiki/Papa_Sangre
-1. OpenGameArt: https://opengameart.org/
+1. Godot Engine. 2018. Godot Engine - Free and open source 2d and 3d game engine. Retrieved from https://godotengine.org/
+1. AudioGames. 2018. AudioGames.net Forum. Retrieved from http://forum.audiogames.net/
+1. Festival. 2018. The Festival Speech Synthesis System. Retrieved from http://www.cstr.ed.ac.uk/projects/festival/
+1. A Blind Legend. 2018. A Blind Legend on Steam. Retrieved from https://store.steampowered.com/app/437530/A_Blind_Legend/
+1. Papa Sangre. 2018. Papa Sangre - Wikipedia. Retrieved from https://en.wikipedia.org/wiki/Papa_Sangre
+1. OpenGameArt. 2018. OpenGameArt.org. Retrieved from https://opengameart.org/
 
 
