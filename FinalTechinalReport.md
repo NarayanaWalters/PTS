@@ -90,6 +90,7 @@ The feedback on mechanics is somewhat mixed, mostly with the echolocation system
 Also, navigation of large areas is still confusing, especially because of the grid-based movement system. I feel it would be better if I had made the project more like old-school dungeon crawler rpgs that are just corridors. But to make a proper rpg would require large areas, so this will need to be explored and studied more.
 
 ### Final Features:
+Feature | Implementation Feedback
 -------------|-------------------
 Echolocation | Solid, but not perfect. Could use full info alternative.
 Audio Compass | Takes a moment to interpret, but works as intended, though not very precise.
