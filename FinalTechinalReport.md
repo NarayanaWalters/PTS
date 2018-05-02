@@ -9,11 +9,11 @@ The goal of this project was to make a fully functional first-person role-playin
 Audio game, audiogame, role playing game, rpg, audio based, blind gamers, visually impaired
 
 ### Table of contents
-- Overview
-- Features
-- Design and Creation
-- Results
-- Conclusions
+* Overview
+* Features
+* Design and Creation
+* Results
+* Conclusions
 
 ### Overview
 Audiogames are computer games designed to be playable by visually impaired or blind gamers. The problem is that these games are extremely niche and hard to find. For example, on Steam there is only one audiogame: The Blind Legend, a high-quality linear action-adventure game with about four hours of gameplay. There was also Papa Sangre, a puzzle game for IOS that was removed from the app store due to faulty audoi-spatial software. Most other audiogames are small, experimental games; there are very few full-length games with high quality production.
@@ -24,7 +24,7 @@ The main design problem with audiogames is conveying a world using audio only. I
 
 Most navigation issues were completely addressed; the only ones not fully addressed are easy travel through large open spaces and a way to obtain precise world location coordinates of the player.
 
-### Features:
+### Features
 
 #### Echolocation 
 Echolocating plays syllables. There are tiers of distance that correspond to these. 'aa' means something is 0 to 2 meters in front of you, 'ee' means 2 to 8, and 'oo' means 8+. Notice they are in alphabetical order. These syllables play more rapidly the closer you are to something. Also, consonants are added if something interesting is in front of you; 'n' for enemy, 'f' for friendly, 'k' for interactable, and 'l' for loot. So, for example, if an enemy is 3 meters in front of you, echolocating will play the sound 'nee' repeatedly. If a chest is 1 meter from you, ‘laa’ will play.
@@ -89,8 +89,10 @@ The feedback on mechanics is somewhat mixed, mostly with the echolocation system
 
 Also, navigation of large areas is still confusing, especially because of the grid-based movement system. I feel it would be better if I had made the project more like old-school dungeon crawler rpgs that are just corridors. But to make a proper rpg would require large areas, so this will need to be explored and studied more.
 
+Technically, the game runs fine, with no lag or frame rate issues. Sometimes the audio has quality issues but is clear the majority of the time.
+
 ### Final Features:
-Feature | Implementation Feedback
+Feature | Implementation
 -------------|-------------------
 Echolocation | Solid, but not perfect. Could use full info alternative.
 Audio Compass | Takes a moment to interpret, but works as intended, though not very precise.
@@ -103,8 +105,6 @@ NPC enemies | Easy to create and use, and for players to understand what the npc
 NPC basic navigation | Works well enough for the goals of this project
 Music Combination Puzzle | Fun, original puzzle, but needs better sound design.
 Gameplay | The current demo offers about 15 minutes of gameplay and could be easily expanded for more.
-
-The game runs fine, with no lag or frame rate issues. Sometimes the audio has quality issues but is clear the majority of the time.
 
 
 ### Conclusions
