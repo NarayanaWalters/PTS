@@ -5,7 +5,7 @@
 ### Abstract
 The goal of this project was to make a fully functional first-person role-playing game (rpg) for blind or visually impaired players. The game was to be entirely audio-based and require no special technology beyond a computer, keyboard, headphones and, optionally, a mouse. The methods used to design and create the game was to follow the skateboard agile design philosophy to have a playable demo at every stage, adding features and making design decisions to solve new problems that arose. I used the open-source game engine Godot to rapidly prototype demos that could be playtested by volunteers. Sound effects were pulled from sources such as OpenGameArt, SoundBible, and Freesound and edited with open-source software Audacity. Design involved creating a fully immersive and intuitive first person character controller that uses only audio for gameplay feedback. The results were a game that has received positive feedback from the community of visually impaired gamers on the AudioGames.net forums. It is a fully-featured dungeon crawler complete with stats, weapons, armor, potions, leveling, magic, a journal, enemies, a boss, puzzles, and chests.
 
-###Keywords
+### Keywords
 Audio game, audiogame, role playing game, rpg, audio based, blind gamers, visually impaired
 
 ### Table of contents
@@ -16,7 +16,7 @@ Audio game, audiogame, role playing game, rpg, audio based, blind gamers, visual
 - Conclusions
 
 ### Overview
-	Audiogames are computer games designed to be playable by visually impaired or blind gamers. The problem is that these games are extremely niche and hard to find. For example, on Steam there is only one audiogame: The Blind Legend, a high-quality linear action-adventure game with about four hours of gameplay. There was also Papa Sangre, a puzzle game for IOS that was removed from the app store due to faulty audoi-spatial software. Most other audiogames are small, experimental games; there are very few full-length games with high quality production.
+Audiogames are computer games designed to be playable by visually impaired or blind gamers. The problem is that these games are extremely niche and hard to find. For example, on Steam there is only one audiogame: The Blind Legend, a high-quality linear action-adventure game with about four hours of gameplay. There was also Papa Sangre, a puzzle game for IOS that was removed from the app store due to faulty audoi-spatial software. Most other audiogames are small, experimental games; there are very few full-length games with high quality production.
 
 My goal with this project was to create a game that could be used as a solid foundation to build rpgs for visually impaired gamers that can have plenty of content and high-quality design. 
 
@@ -26,7 +26,7 @@ Most navigation issues were completely addressed; the only ones not fully addres
 
 ### Features:
 
-Echolocation 
+#### Echolocation 
 Echolocating plays syllables. There are tiers of distance that correspond to these. 'aa' means something is 0 to 2 meters in front of you, 'ee' means 2 to 8, and 'oo' means 8+. Notice they are in alphabetical order. These syllables play more rapidly the closer you are to something. Also, consonants are added if something interesting is in front of you; 'n' for enemy, 'f' for friendly, 'k' for interactable, and 'l' for loot. So, for example, if an enemy is 3 meters in front of you, echolocating will play the sound 'nee' repeatedly. If a chest is 1 meter from you, ‘laa’ will play.
 
 #### Side Awareness 
