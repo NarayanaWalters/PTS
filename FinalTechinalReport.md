@@ -90,17 +90,18 @@ The feedback on mechanics is somewhat mixed, mostly with the echolocation system
 Also, navigation of large areas is still confusing, especially because of the grid-based movement system. I feel it would be better if I had made the project more like old-school dungeon crawler rpgs that are just corridors. But to make a proper rpg would require large areas, so this will need to be explored and studied more.
 
 ### Final Features:
-- Echolocation: Solid, but not perfect. Could use full info alternative.
-- Audio Compass: Takes a moment to interpret, but works as intended, though not very precise.
-- Side Awareness: Works great, but can get overwhelmed by other sounds.
-- Grid-Based Movement: Works perfectly
-- Inventory System: Intuitive and easy to navigate and use
-- Leveling and Stats System: Intuitive and easy to navigate and use
-- Basic Combat: Works and is easy to understand, but pretty boring
-- NPC enemies: Easy to create and use, and for players to understand what the npc is doing, but don’t offer too exciting gameplay.
-- NPC basic navigation: Works well enough for the goals of this project
-- Music Combination Puzzle: Fun, original puzzle, but needs better sound design.
-- Gameplay: The current demo offers about 15 minutes of gameplay and could be easily expanded for more.
+-------------|-------------------
+Echolocation | Solid, but not perfect. Could use full info alternative.
+Audio Compass | Takes a moment to interpret, but works as intended, though not very precise.
+Side Awareness | Works great, but can get overwhelmed by other sounds.
+Grid-Based Movement | Works perfectly
+Inventory System | Intuitive and easy to navigate and use
+Leveling and Stats System | Intuitive and easy to navigate and use
+Basic Combat | Works and is easy to understand, but pretty boring
+NPC enemies | Easy to create and use, and for players to understand what the npc is doing, but don’t offer too exciting gameplay.
+NPC basic navigation | Works well enough for the goals of this project
+Music Combination Puzzle | Fun, original puzzle, but needs better sound design.
+Gameplay | The current demo offers about 15 minutes of gameplay and could be easily expanded for more.
 
 The game runs fine, with no lag or frame rate issues. Sometimes the audio has quality issues but is clear the majority of the time.
 
