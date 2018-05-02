@@ -3,7 +3,7 @@
 ## 5/1/2018
 
 ### Abstract
-The goal of this project was to make a fully functional first-person role-playing game (rpg) for blind or visually impaired players. The game was to be entirely audio-based and require no special technology beyond a computer, keyboard, headphones and, optionally, a mouse. The methods used to design and create the game was to follow the skateboard agile design philosophy to have a playable demo at every stage, adding features and making design decisions to solve new problems that arose. I used the open-source game engine Godot to rapidly prototype demos that could be playtested by volunteers. Sound effects were pulled from sources such as OpenGameArt, SoundBible, and Freesound and edited with open-source software Audacity. Design involved creating a fully immersive and intuitive first person character controller that uses only audio for gameplay feedback. The results were a game that has received positive feedback from the community of visually impaired gamers on the AudioGames.net forums. It is a fully-featured dungeon crawler complete with stats, weapons, armor, potions, leveling, magic, a journal, enemies, a boss, puzzles, and chests.
+The goal of this project was to make a fully functional first-person role-playing game (rpg) for blind or visually impaired players. The game was to be entirely audio-based and require no special technology beyond a computer, keyboard, headphones and, optionally, a mouse. The methods used to design and create the game was to follow the skateboard agile design philosophy to have a playable demo at every stage, adding features and making design decisions to solve new problems that arose. I used the open-source game engine Godot[1] to rapidly prototype demos that could be playtested by volunteers. Sound effects were pulled from OpenGameArt[6] and edited with open-source software Audacity. Design involved creating a fully immersive and intuitive first person character controller that uses only audio for gameplay feedback. The results were a game that has received positive feedback from the community of visually impaired gamers on the AudioGames.net[2] forums. It is a fully-featured dungeon crawler complete with stats, weapons, armor, potions, leveling, magic, a journal, enemies, a boss, puzzles, and chests.
 
 ### Keywords
 Audio game, audiogame, role playing game, rpg, audio based, blind gamers, visually impaired
@@ -16,7 +16,7 @@ Audio game, audiogame, role playing game, rpg, audio based, blind gamers, visual
 1. Conclusions
 
 ### Overview
-Audiogames are computer games designed to be playable by visually impaired or blind gamers. The problem is that these games are extremely niche and hard to find. For example, on Steam there is only one audiogame: The Blind Legend, a high-quality linear action-adventure game with about four hours of gameplay. There was also Papa Sangre, a puzzle game for IOS that was removed from the app store due to faulty audoi-spatial software. Most other audiogames are small, experimental games; there are very few full-length games with high quality production.
+Audiogames are computer games designed to be playable by visually impaired or blind gamers. The problem is that these games are extremely niche and hard to find. For example, on Steam there is only one audiogame: A Blind Legend[4], a high-quality linear action-adventure game with about four hours of gameplay. There was also Papa Sangre[5], a puzzle game for IOS that was removed from the app store due to faulty audoi-spatial software. Most other audiogames are small, experimental games; there are very few full-length games with high quality production.
 
 My goal with this project was to create a game that could be used as a solid foundation to build rpgs for visually impaired gamers that can have plenty of content and high-quality design. 
 
@@ -52,9 +52,9 @@ Journal is a collection of audio files that can be played by scrolling through t
 
 ### Design and Creation
 
-I used the Godot game engine for development. It is a high-quality open-source game engine that has a great 2d physics system and audio engine, both of which were critical for this project. I started development with Godot 2.1, then converted the project over Godot 3.0 when it was released.
+I used the Godot[1] game engine for development. It is a high-quality open-source game engine that has a great 2d physics system and audio engine, both of which were critical for this project. I started development with Godot 2.1, then converted the project over Godot 3.0 when it was released.
 
-I tried implementing the Festival text-to-speech library, as the Godot engine has support for adding custom components built with c++, but the lack of proper documentation for festival led to many wasted hours and ultimately unreliable text-to-speech in Godot, so I dropped it and recorded all text myself.
+I tried implementing the Festival[3] text-to-speech library, as the Godot engine has support for adding custom components built with c++, but the lack of proper documentation for festival led to many wasted hours and ultimately unreliable text-to-speech in Godot[1], so I dropped it and recorded all text myself.
 
 I started work on Ptolem’s Singing Catacombs by creating the character controller. A character controller determines how a player interacts with a game’s world, and having a properly designed one was especially critical for this project. I was designing it to solve problems that never come up in typical games, and there are no resources or advice online for covering them, due to how niche these games are. My philosophy was always that feedback must be precise and rapid, and as immersive as possible.
  I didn’t want text constantly reading out what you did or where you were, I wanted it to feel as approachable as a standard game. However, later on, I would sacrifice immersion for the sake of intuitivity. 
@@ -83,7 +83,7 @@ I also made tests for the inventory system which was especially prone to breakin
 
 
 ### Results
-The game is fully playable and has been playtested by the Audiogames.net community. There are bugs, but it is stable and stands out there as a complete, original rpg system.
+The game is fully playable and has been playtested by the AudioGames[2] community. There are bugs, but it is stable and stands out there as a complete, original rpg system.
 
 The feedback on mechanics is somewhat mixed, mostly with the echolocation system. Some players said single syllables are confusing and there should be full text feedback on everything e.g. “an enemy is five meters away” instead of “nee”, others say the system is great and doesn’t need to be changed. In the future I will likely add an option to toggle between a ‘full info’ mode that allows for both methods of feedback.
 
@@ -110,9 +110,18 @@ Gameplay | The current demo offers about 15 minutes of gameplay and could be eas
 ### Conclusions
 Making audiogames is very difficult, it is a very unexplored area of game design that needs a lot more research. Especially as someone with no visual impairments, it was very challenging for me to design what seemed to be very unintuitive mechanics.
 
+I wanted to make a much larger game, with friendly NPC's that have dialogue, give quests, and can be traded with, large outdoor areas that can be explored with a whole road navigation system, and towns with unique audio identities, but these ideas were too large for the scope of this project. A lot of time was also lost trying to implement the Festival[3] library, which could have gone towards more features.
+
+Also, the design challenges were much harder to solve than I anticipated. Easily navigating a world using sound alone is very difficult; making it approachable for casual players is something that will require a lot of research.
+
+
 
 ### References:
-- Godot Engine: https://godotengine.org/
-- AudioGames Community: http://forum.audiogames.net/
+1. Godot Engine: https://godotengine.org/
+1. AudioGames Community: http://forum.audiogames.net/
+1. Festival: http://www.cstr.ed.ac.uk/projects/festival/
+1. A Blind Legend: https://store.steampowered.com/app/437530/A_Blind_Legend/
+1. Papa Sangre: https://en.wikipedia.org/wiki/Papa_Sangre
+1. OpenGameArt: https://opengameart.org/
 
 
