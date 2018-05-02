@@ -9,11 +9,11 @@ The goal of this project was to make a fully functional first-person role-playin
 Audio game, audiogame, role playing game, rpg, audio based, blind gamers, visually impaired
 
 ### Table of contents
-* Overview
-* Features
-* Design and Creation
-* Results
-* Conclusions
+1. Overview
+1. Features
+1. Design and Creation
+1. Results
+1. Conclusions
 
 ### Overview
 Audiogames are computer games designed to be playable by visually impaired or blind gamers. The problem is that these games are extremely niche and hard to find. For example, on Steam there is only one audiogame: The Blind Legend, a high-quality linear action-adventure game with about four hours of gameplay. There was also Papa Sangre, a puzzle game for IOS that was removed from the app store due to faulty audoi-spatial software. Most other audiogames are small, experimental games; there are very few full-length games with high quality production.
