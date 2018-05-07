@@ -54,4 +54,5 @@ To go back to the main game, repeat the steps except navigate to "res://environm
 
 ## Resources
 [Project Proposal](https://github.com/NarayanaWalters/PTS/blob/master/CapstoneProjectProposal.pdf)
+
 [Final Technical Report](https://github.com/NarayanaWalters/PTS/blob/master/FinalTechinalReport.md)
