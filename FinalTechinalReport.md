@@ -81,6 +81,7 @@ Testing was reserved for subsystems that had many edge cases I needed to make su
 I made my own number to speech synthesis system for outputting stats and this needed comprehensive testing to make sure all numbers outputted correctly. This would have taken too long to verify manually so I built a test to cover it.
 I also made tests for the inventory system which was especially prone to breaking, so  whenever I added new code I could verify edge cases still worked and wouldn’t crash the game.
 
+![Image of System Architecture](https://github.com/NarayanaWalters/PTS/blob/master/pts_architecture.png)
 
 ### Results
 The game is fully playable and has been playtested by the AudioGames[2] community. There are bugs, but it is stable and stands out there as a complete, original rpg system.
