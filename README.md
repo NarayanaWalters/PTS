@@ -50,3 +50,8 @@ To run:
 - Close Project Settings and click play at the top right (or press F5)
 
 To go back to the main game, repeat the steps except navigate to "res://environment" and open "world.tscn" instead
+
+
+## Resources
+[Project Proposal](https://github.com/NarayanaWalters/PTS/blob/master/CapstoneProjectProposal.pdf)
+[Final Technical Report](https://github.com/NarayanaWalters/PTS/blob/master/FinalTechinalReport.md)
