@@ -9,11 +9,11 @@ The goal of this project was to make a fully functional first-person role-playin
 Audio game, audiogame, role playing game, rpg, audio based, blind gamers, visually impaired
 
 ### Table of contents
-1. Overview
-1. Features
-1. Design and Creation
-1. Results
-1. Conclusions
+1. [Overview](#overview)
+1. [Features](#features)
+1. [Design and Creation](#design-and-creation)
+1. [Results](#results)
+1. [Conclusions](#conclusions)
 
 ### Overview
 Audiogames are computer games designed to be playable by visually impaired or blind gamers. The problem is that these games are extremely niche and hard to find. For example, on Steam there is only one audiogame: A Blind Legend[4], a high-quality linear action-adventure game with about four hours of gameplay. There was also Papa Sangre[5], a puzzle game for IOS that was removed from the app store due to faulty audoi-spatial software. Most other audiogames are small, experimental games; there are very few full-length games with high quality production.
@@ -117,11 +117,11 @@ Also, the design challenges were much harder to solve than I anticipated. Easily
 
 
 ### References:
-1. Godot Engine: https://godotengine.org/
-1. AudioGames Community: http://forum.audiogames.net/
-1. Festival: http://www.cstr.ed.ac.uk/projects/festival/
-1. A Blind Legend: https://store.steampowered.com/app/437530/A_Blind_Legend/
-1. Papa Sangre: https://en.wikipedia.org/wiki/Papa_Sangre
-1. OpenGameArt: https://opengameart.org/
+1. Godot Engine. 2018. Godot Engine - Free and open source 2d and 3d game engine. Retrieved from https://godotengine.org/
+1. AudioGames. 2018. AudioGames.net Forum. Retrieved from http://forum.audiogames.net/
+1. Festival. 2018. The Festival Speech Synthesis System. Retrieved from http://www.cstr.ed.ac.uk/projects/festival/
+1. A Blind Legend. 2018. A Blind Legend on Steam. Retrieved from https://store.steampowered.com/app/437530/A_Blind_Legend/
+1. Papa Sangre. 2018. Papa Sangre - Wikipedia. Retrieved from https://en.wikipedia.org/wiki/Papa_Sangre
+1. OpenGameArt. 2018. OpenGameArt.org. Retrieved from https://opengameart.org/
 
 
