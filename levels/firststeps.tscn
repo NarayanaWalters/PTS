@@ -1,0 +1,89 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://basic.tres" type="TileSet" id=1]
+[ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://characters/enemy/npc.tscn" type="PackedScene" id=3]
+[ext_resource path="res://environment/lootbag.tscn" type="PackedScene" id=4]
+[ext_resource path="res://environment/ladder.tscn" type="PackedScene" id=5]
+
+[node name="World" type="Node2D" index="0"]
+
+[node name="TileMap" type="TileMap" parent="." index="0"]
+
+mode = 0
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, -65527, 0, 0, -65526, 0, 0, 1, 0, 0, 10, 0, 0, 65537, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 0, 0, 131073, 0, 0, 131075, 0, 0, 196609, 0, 0, 196611, 0, 0, 327671, 0, 0, 327672, 0, 0, 327673, 0, 0, 327674, 0, 0, 327675, 0, 0, 327676, 0, 0, 327677, 0, 0, 327678, 0, 0, 327679, 0, 0, 262144, 0, 0, 262145, 0, 0, 262147, 0, 0, 393207, 0, 0, 327683, 0, 0, 327697, 0, 0, 327698, 0, 0, 327699, 0, 0, 327700, 0, 0, 327701, 0, 0, 458743, 0, 0, 458744, 0, 0, 458745, 0, 0, 458746, 0, 0, 458747, 0, 0, 458748, 0, 0, 458749, 0, 0, 458750, 0, 0, 458751, 0, 0, 393216, 0, 0, 393217, 0, 0, 393219, 0, 0, 393233, 0, 0, 393237, 0, 0, 458753, 0, 0, 458755, 0, 0, 458769, 0, 0, 458773, 0, 0, 524289, 0, 0, 524291, 0, 0, 524305, 0, 0, 524309, 0, 0, 589825, 0, 0, 589827, 0, 0, 589841, 0, 0, 589842, 0, 0, 589844, 0, 0, 589845, 0, 0, 720892, 0, 0, 720893, 0, 0, 720894, 0, 0, 720895, 0, 0, 655360, 0, 0, 655361, 0, 0, 655363, 0, 0, 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655368, 0, 0, 655369, 0, 0, 655370, 0, 0, 655371, 0, 0, 655372, 0, 0, 655373, 0, 0, 655378, 0, 0, 655380, 0, 0, 786428, 0, 0, 720909, 0, 0, 720914, 0, 0, 720916, 0, 0, 851964, 0, 0, 851965, 0, 0, 851966, 0, 0, 851967, 0, 0, 786432, 0, 0, 786433, 0, 0, 786434, 0, 0, 786435, 0, 0, 786436, 0, 0, 786437, 0, 0, 786438, 0, 0, 786439, 0, 0, 786440, 0, 0, 786441, 0, 0, 786442, 0, 0, 786443, 0, 0, 786445, 0, 0, 786450, 0, 0, 786452, 0, 0, 851979, 0, 0, 851981, 0, 0, 851986, 0, 0, 851988, 0, 0, 917515, 0, 0, 917517, 0, 0, 917518, 0, 0, 917519, 0, 0, 917520, 0, 0, 917521, 0, 0, 917522, 0, 0, 917524, 0, 0, 983051, 0, 0, 983060, 0, 0, 1048587, 0, 0, 1048589, 0, 0, 1048590, 0, 0, 1048591, 0, 0, 1048592, 0, 0, 1048593, 0, 0, 1048594, 0, 0, 1048595, 0, 0, 1048596, 0, 0, 1114123, 0, 0, 1114125, 0, 0, 1179659, 0, 0, 1179661, 0, 0, 1179662, 0, 0, 1179663, 0, 0, 1179664, 0, 0, 1179665, 0, 0, 1245195, 0, 0, 1245201, 0, 0, 1310731, 0, 0, 1310732, 0, 0, 1310733, 0, 0, 1310734, 0, 0, 1310735, 0, 0, 1310736, 0, 0, 1310737, 0, 0 )
+_sections_unfolded = [ "Cell" ]
+
+[node name="Player" parent="." index="1" instance=ExtResource( 2 )]
+
+position = Vector2( -120.266, 88.0001 )
+rotation = -1.5708
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
+
+[node name="NPC" parent="." index="2" instance=ExtResource( 3 )]
+
+position = Vector2( 120, 8 )
+id = "h_zombie"
+
+[node name="NPC2" parent="." index="3" instance=ExtResource( 3 )]
+
+position = Vector2( -8, 184 )
+id = "h_zombie"
+
+[node name="NPC3" parent="." index="4" instance=ExtResource( 3 )]
+
+position = Vector2( 200, 264 )
+id = "h_zombie"
+
+[node name="NPC4" parent="." index="5" instance=ExtResource( 3 )]
+
+position = Vector2( 232, 312 )
+id = "h_zombie"
+
+[node name="NPC5" parent="." index="6" instance=ExtResource( 3 )]
+
+position = Vector2( 312, 184 )
+id = "h_zombie"
+
+[node name="LootBag" parent="." index="7" instance=ExtResource( 4 )]
+
+position = Vector2( 152, 8 )
+content1 = "w_fireball"
+content2 = null
+content3 = null
+
+[node name="LootBag3" parent="." index="8" instance=ExtResource( 4 )]
+
+position = Vector2( 264, 312 )
+content1 = "a_leather_vest"
+content2 = null
+content3 = null
+
+[node name="LootBag2" parent="." index="9" instance=ExtResource( 4 )]
+
+position = Vector2( -40, 184 )
+content1 = "w_bow"
+content2 = null
+content3 = null
+
+[node name="Ladder" parent="." index="10" instance=ExtResource( 5 )]
+
+position = Vector2( 312, 120 )
+load_next_on_use = true
+
+

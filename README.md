@@ -39,7 +39,10 @@ and 'l' for loot. So, for example, if an enemy is 3 meters in front of you, echo
 An ambient windy sound plays in your ear if there is an opening that way. E.g. a corridor to your right and a wall to your left will result in the sound playing in your right ear.
 
 #### Footsteps: 
-A footstep sound plays every meter you step. listen to the echo of your steps to tell when you're at an intersection or in a large room.
+A footstep sound plays every meter you step. Listen to the echo of your steps to tell when you're at an intersection or in a large room.
+
+#### Combat:
+If you're wielding a melee weapon and an enemy is within 2 meters of you, hold LMB or CTRL to auto attack. If you're holding a range weapon or spell and an enemy is in front of you at any distance, hold LMB or CTRL to auto attack. Keep in mind spells have splash damage, so you can get hurt if you're too close. 
 
 ## Unit Tests
 To run: 

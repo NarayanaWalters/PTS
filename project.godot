@@ -11,13 +11,14 @@ config_version=3
 [application]
 
 config/name="PTS"
-run/main_scene="res://environment/world.tscn"
+run/main_scene="res://levels/firststeps.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 entity_database="*res://entity_database.tscn"
 console="*res://console.tscn"
+levelmanager="*res://levels/levelmanager.tscn"
 
 [input]
 
@@ -53,5 +54,5 @@ prot_read=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name"
 
 [rendering]
 
-environment/default_clear_color=Color( 0, 0, 0, 1 )
+environment/default_clear_color=Color( 0.648438, 0.595245, 0.595245, 1 )
 environment/default_environment="res://default_env.tres"

@@ -27,14 +27,14 @@ var time_since_atk = 0
 
 func _process(delta):
 	if Input.is_action_pressed("attack"):
-		if !played_prep and !audio_player.is_playing():
+		if prep_sound != null and !played_prep and !audio_player.is_playing():
 			audio_player.stream = prep_sound
 			audio_player.play()
 			played_prep = true
 		time_since_atk += delta
 		attempt_attack()
 	else:
-		if audio_player.stream == prep_sound:
+		if prep_sound != null and audio_player.stream == prep_sound:
 			audio_player.stop()
 		played_prep = false
 		time_since_atk = 0
@@ -49,7 +49,7 @@ func _process(delta):
 func unequip_wep():
 	damage = fist_dmg
 	atk_rate = fist_speed
-	prep_sound = ""
+	prep_sound = null
 	atk_sound = fist_swing_snd
 	atk_hit_sound = fist_hit_snd
 	ranged = false
@@ -58,11 +58,15 @@ func unequip_wep():
 
 #pass dictionary from database
 func equip_wep(var item_to_eq):
+	
 	damage = item_to_eq["damage"]
 	atk_rate = item_to_eq["attack_rate"] / 10.0
 	atk_sound = item_to_eq["sounds"]["swing"]
 	atk_hit_sound = item_to_eq["sounds"]["hit"]
-	prep_sound = load(item_to_eq["sounds"]["prep"])
+	if item_to_eq["sounds"]["prep"] == "":
+		prep_sound = null
+	else:
+		prep_sound = load(item_to_eq["sounds"]["prep"])
 	attack_type = item_to_eq["attack_type"]
 	ranged = attack_type == "range" or attack_type == "magic"
 	if attack_type == "range":
