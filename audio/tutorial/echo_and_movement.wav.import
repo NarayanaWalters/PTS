@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/echo_and_movement.wav-eda9515a1f2f6b11681836825b732699.sample"
+
+[deps]
+
+source_file="res://audio/tutorial/echo_and_movement.wav"
+source_md5="33ca927db3c30b846e7c067311a2c991"
+
+dest_files=[ "res://.import/echo_and_movement.wav-eda9515a1f2f6b11681836825b732699.sample" ]
+dest_md5="9f1b92c3905935cb5065a74e2057e080"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

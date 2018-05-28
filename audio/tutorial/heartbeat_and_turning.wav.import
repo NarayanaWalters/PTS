@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/heartbeat_and_turning.wav-7d00ac1fe751a988220fcad6ae46db97.sample"
+
+[deps]
+
+source_file="res://audio/tutorial/heartbeat_and_turning.wav"
+source_md5="a594e1f23c66275a8c8b79f200f3ce80"
+
+dest_files=[ "res://.import/heartbeat_and_turning.wav-7d00ac1fe751a988220fcad6ae46db97.sample" ]
+dest_md5="868488d0848ed838014ee4c0900c46b0"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

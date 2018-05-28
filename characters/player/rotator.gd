@@ -7,6 +7,8 @@ onready var coll = get_parent().get_node("CollisionShape2D")
 const audio_path = "res://audio/directions/"
 var dirs = ["north", "east", "south", "west"]
 
+signal changed_dir(dir)
+
 var rot_speed = 0.1
 var rot = 0
 #turn slower if pointing at something interesting
@@ -63,6 +65,7 @@ func snap_turn(var body, var dir):
 	
 	stream_player.stream = load(audio_path + dirs[id] + ".wav")
 	stream_player.play()
+	emit_signal("changed_dir", dirs[id])
 
 func slow_align(var body):
 	var r = body.global_rotation_degrees

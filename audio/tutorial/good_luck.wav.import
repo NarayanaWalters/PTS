@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/good_luck.wav-e4361d9a46ba3fe7a4fd69f8ae0caab5.sample"
+
+[deps]
+
+source_file="res://audio/tutorial/good_luck.wav"
+source_md5="c3e741726e872006fdb795ac4b7ae0ec"
+
+dest_files=[ "res://.import/good_luck.wav-e4361d9a46ba3fe7a4fd69f8ae0caab5.sample" ]
+dest_md5="c0815830cb5d29008806cc3af7990764"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

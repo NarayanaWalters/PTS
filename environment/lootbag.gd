@@ -5,6 +5,8 @@ export(String) var content1
 export(String) var content2
 export(String) var content3
 
+signal opened
+
 var contents = null
 func _ready():
 	contents = []
@@ -23,6 +25,7 @@ func set_contents(var new_contents):
 
 func pick_up():
 	queue_free()
+	emit_signal("opened")
 	return contents
 
 func add_item(var item_id):

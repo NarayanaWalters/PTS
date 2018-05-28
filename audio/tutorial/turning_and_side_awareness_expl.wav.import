@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/turning_and_side_awareness_expl.wav-18a6c429f502503bc81ded26e42a6823.sample"
+
+[deps]
+
+source_file="res://audio/tutorial/turning_and_side_awareness_expl.wav"
+source_md5="6d6b8c76a009af790560c5789d01bc41"
+
+dest_files=[ "res://.import/turning_and_side_awareness_expl.wav-18a6c429f502503bc81ded26e42a6823.sample" ]
+dest_md5="7c644d23180dec8098524e2b48ab7f4b"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

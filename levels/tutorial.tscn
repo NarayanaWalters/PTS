@@ -1,12 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://basic.tres" type="TileSet" id=1]
 [ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://characters/enemy/npc.tscn" type="PackedScene" id=3]
 [ext_resource path="res://environment/lootbag.tscn" type="PackedScene" id=4]
 [ext_resource path="res://environment/ladder.tscn" type="PackedScene" id=5]
+[ext_resource path="res://audio/tutorial/keep_going.wav" type="AudioStream" id=6]
+[ext_resource path="res://levels/tutorial_manager.gd" type="Script" id=7]
+[ext_resource path="res://utility/player_enter_trigger.tscn" type="PackedScene" id=8]
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" index="0"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
@@ -31,9 +34,14 @@ _sections_unfolded = [ "Cell" ]
 
 [node name="Player" parent="." index="1" instance=ExtResource( 2 )]
 
+editor/display_folded = true
 position = Vector2( -56, -8 )
 rotation = -1.5708
 _sections_unfolded = [ "Collision", "Transform", "collision" ]
+
+[node name="Mover" parent="Player" index="2"]
+
+editor/display_folded = true
 
 [node name="NPC" parent="." index="2" instance=ExtResource( 3 )]
 
@@ -52,4 +60,41 @@ content3 = null
 position = Vector2( 232, 280 )
 load_next_on_use = true
 
+[node name="TutorialManager" type="AudioStreamPlayer" parent="." index="5"]
 
+stream = ExtResource( 6 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+script = ExtResource( 7 )
+
+[node name="PlayerEnterTrigger" parent="." index="6" instance=ExtResource( 8 )]
+
+position = Vector2( -56, 136 )
+spot = "end_of_first_corridor"
+
+[node name="PlayerEnterTrigger2" parent="." index="7" instance=ExtResource( 8 )]
+
+position = Vector2( 56, 216 )
+spot = "near_enemy"
+
+[node name="PlayerEnterTrigger3" parent="." index="8" instance=ExtResource( 8 )]
+
+position = Vector2( 200, 280 )
+spot = "end"
+
+[connection signal="click" from="Player/Echolocator" to="TutorialManager" method="echolocating"]
+
+[connection signal="changed_dir" from="Player/Rotator" to="TutorialManager" method="player_turned"]
+
+[connection signal="opened" from="LootBag" to="TutorialManager" method="opened_chest"]
+
+[connection signal="player_entered" from="PlayerEnterTrigger" to="TutorialManager" method="reached_loc"]
+
+[connection signal="player_entered" from="PlayerEnterTrigger2" to="TutorialManager" method="reached_loc"]
+
+[connection signal="player_entered" from="PlayerEnterTrigger3" to="TutorialManager" method="reached_loc"]
+
+
+[editable path="Player"]

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/keep_going.wav-1c633a62019d67561a9a0878006acfdd.sample"
+
+[deps]
+
+source_file="res://audio/tutorial/keep_going.wav"
+source_md5="5c3a055b49c139b2c36a030a2e55cd90"
+
+dest_files=[ "res://.import/keep_going.wav-1c633a62019d67561a9a0878006acfdd.sample" ]
+dest_md5="2ebe4af2696d53264afb003fec438a49"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
