@@ -16,21 +16,25 @@ func load_next_level():
 	cur_level += 1
 	if cur_level >= level_list.size():
 		cur_level = 0
-	get_tree().change_scene(format_level_path(level_list[cur_level]))
+	load_scene_from_name(level_list[cur_level])
 
 func load_last_level():
 	cur_level -= 1
 	if cur_level < 0:
 		cur_level = 0
 		return
-	get_tree().change_scene(format_level_path(level_list[cur_level]))
+	load_scene_from_name(level_list[cur_level])
 
 func load_level(var i):
 	if typeof(i) == TYPE_INT:
 		if i >= 0 and i < level_list.size() - 1:
-			get_tree().change_scene(format_level_path(level_list[i]))
+			load_scene_from_name(level_list[i])
 	else:
-		get_tree().change_scene(format_level_path(i))
+		load_scene_from_name(i)
 
 func format_level_path(var n):
 	return level_path + n + ".tscn"
+
+func load_scene_from_name(var n):
+	get_tree().call_group("player", "save_char")
+	get_tree().change_scene(level_path + n + ".tscn")

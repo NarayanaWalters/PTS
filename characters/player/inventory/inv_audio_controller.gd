@@ -195,7 +195,8 @@ func play_level_up():
 	add_sound_to_queue(level_up)
 
 func play_journal_entry(var snd):
-	var snd_path = audio_path + "/journal/" + snd + ".wav"
+	var snd_path = snd
+	#var snd_path = audio_path + "/journal/" + snd + ".wav"
 	if !File.new().file_exists(snd_path):
 		print("journal entry not found: ", snd_path)
 		return

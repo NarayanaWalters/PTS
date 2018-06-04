@@ -34,7 +34,6 @@ _sections_unfolded = [ "Cell" ]
 
 [node name="Player" parent="." index="1" instance=ExtResource( 2 )]
 
-editor/display_folded = true
 position = Vector2( -56, -8 )
 rotation = -1.5708
 _sections_unfolded = [ "Collision", "Transform", "collision" ]
@@ -90,6 +89,8 @@ spot = "end"
 
 [connection signal="opened" from="LootBag" to="TutorialManager" method="opened_chest"]
 
+[connection signal="add_entry_to_journal" from="TutorialManager" to="Player" method="add_entry_to_journal"]
+
 [connection signal="player_entered" from="PlayerEnterTrigger" to="TutorialManager" method="reached_loc"]
 
 [connection signal="player_entered" from="PlayerEnterTrigger2" to="TutorialManager" method="reached_loc"]
@@ -98,3 +99,4 @@ spot = "end"
 
 
 [editable path="Player"]
+[editable path="Player/Inventory"]

@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+const SAVE_PATH = "user://savegame.save"
+
 onready var echolocator = get_node("Echolocator")
 onready var mover = get_node("Mover")
 onready var rotator = get_node("Rotator")
@@ -16,6 +18,7 @@ var rot_speed = 0.03
 var mouse_sens = 0.1
 
 func _ready():
+	add_to_group("player")
 	mover.kine_body = self
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	set_meta("type", "player")
@@ -23,6 +26,7 @@ func _ready():
 	var t_map = get_parent().get_node("TileMap")
 	mover.tile_map = t_map
 	
+	load_char()
 
 
 func _input(ev):
@@ -87,3 +91,28 @@ func _physics_process(delta):
 
 func deal_damage(var dmg):
 	health.damage(dmg)
+
+func add_entry_to_journal(path):
+	inventory.add_entry_to_journal(path)
+
+func save_char():
+	var save_game = File.new()
+	
+	save_game.open(SAVE_PATH, File.WRITE)
+	var dict = inventory.save_to_dict()
+	save_game.store_line(to_json(dict))
+	
+	save_game.close()
+	print("saved")
+	#print ("saved ", dict)
+
+func load_char():
+	var save_game = File.new()
+	if not save_game.file_exists(SAVE_PATH):
+		print("not found")
+		return
+	print("found")
+	save_game.open(SAVE_PATH, File.READ)
+	var dict = parse_json(save_game.get_line())
+	inventory.load_from_dict(dict)
+	save_game.close()

@@ -1,5 +1,6 @@
 extends AudioStreamPlayer
 #TODO add entries to journal
+
 const audio_path = "res://audio/tutorial/"
 var instructions = [
 	"heartbeat_and_turning",
@@ -20,6 +21,8 @@ var instructions = [
 #7when nearing enemy play combat expl
 #8when reached end play good luck
 var cur_id = -1
+
+signal add_entry_to_journal(path)
 
 func _ready():
 	set_stream(0) #play heartbeat expl
@@ -54,5 +57,7 @@ func set_stream(id):
 	if cur_id >= id:
 		return
 	cur_id = id
-	stream = load(audio_path + instructions[id] + ".wav")
+	var path = audio_path + instructions[id] + ".wav"
+	emit_signal("add_entry_to_journal", path)
+	stream = load(path)
 	play()

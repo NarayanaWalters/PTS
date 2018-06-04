@@ -27,7 +27,7 @@ var inv = [
 # Stats
 ["melee", "ranged", "magic", "health", "experience"],
 # Journal
-["movement", "turning", "echolocation"]
+[]
 ]
 
 func _ready():
@@ -170,51 +170,54 @@ func unequip_from_p_doll():
 func equip_from_backpack():
 	if inv[BACKPACK].size() > 0:
 		var item_id = inv[BACKPACK][cur_row]
-		var item_to_eq = db.get_item(item_id)
-		var type = item_to_eq["type"]
-		if type == "potion" and item_to_eq.has("heals"):
-			health.heal(item_to_eq["heals"])
-			inv[cur_tab].remove(cur_row)
-			clamp_row()
-			return
-		
-		var slot = ""
-		if item_to_eq.has("slot"):
-			slot = item_to_eq["slot"]
-			var outp = ""
-			var index = 0
-			var item_to_swap = ""
-			var swap = false
-			for item in inv[PAPER_DOLL]:
-				var cur_item = db.get_item(item)
-				if cur_item["type"] == type and cur_item["slot"] == slot:
-					if type == "armor":
-						health.unequip_armor(item)
-					inv[PAPER_DOLL].erase(item)
-					swap = true
-					item_to_swap = item
-					#inv[BACKPACK].push_front(item)
-					#row_down()
-					#cur_row += 1
-					#clamp_row()
-					outp = "unequipped " + item + " : "
-					audio_controller.unequip_item(item, false)
-					break
-				index += 1
-			inv[PAPER_DOLL].push_front(item_id)
-			inv[BACKPACK].remove(cur_row)
-			if swap:
-				inv[BACKPACK].insert(cur_row, item_to_swap)
-			console.output(outp + "equipped " + item_id)
-			
-			if type == "weapon":
-				combat_manager.equip_wep(item_to_eq)
-			if type == "armor":
-				health.equip_armor(item_id, item_to_eq["protection"])
-		else:
-			console.output("cannot equip this")
+		equip_item(item_id)
 	else:
 		console.output("nothing to equip")
+
+func equip_item(var item_id):
+	var item_to_eq = db.get_item(item_id)
+	var type = item_to_eq["type"]
+	if type == "potion" and item_to_eq.has("heals"):
+		health.heal(item_to_eq["heals"])
+		inv[cur_tab].remove(cur_row)
+		clamp_row()
+		return
+	
+	var slot = ""
+	if item_to_eq.has("slot"):
+		slot = item_to_eq["slot"]
+		var outp = ""
+		var index = 0
+		var item_to_swap = ""
+		var swap = false
+		for item in inv[PAPER_DOLL]:
+			var cur_item = db.get_item(item)
+			if cur_item["type"] == type and cur_item["slot"] == slot:
+				if type == "armor":
+					health.unequip_armor(item)
+				inv[PAPER_DOLL].erase(item)
+				swap = true
+				item_to_swap = item
+				#inv[BACKPACK].push_front(item)
+				#row_down()
+				#cur_row += 1
+				#clamp_row()
+				outp = "unequipped " + item + " : "
+				audio_controller.unequip_item(item, false)
+				break
+			index += 1
+		inv[PAPER_DOLL].push_front(item_id)
+		inv[BACKPACK].remove(cur_row)
+		if swap:
+			inv[BACKPACK].insert(cur_row, item_to_swap)
+		console.output(outp + "equipped " + item_id)
+		
+		if type == "weapon":
+			combat_manager.equip_wep(item_to_eq)
+		if type == "armor":
+			health.equip_armor(item_id, item_to_eq["protection"])
+	else:
+		console.output("cannot equip this")
 
 func pickup_items(var items_list):
 	audio_controller.pickup_items(items_list)
@@ -238,7 +241,7 @@ func output_inv_pos(var clear, var play_tab):
 		if play_tab:
 			audio_controller.play_stat("skill_points")
 		audio_controller.play_stat(inv[cur_tab][cur_row])
-	if cur_tab == JOURNAL:
+	if cur_tab == JOURNAL and inv[cur_tab].size() > 0:
 		audio_controller.play_journal_entry(inv[cur_tab][cur_row])
 	var item_str = "empty"
 	if inv[cur_tab].size() > 0:
@@ -263,4 +266,27 @@ func get_contents_of_backpack():
 func get_contents_of_p_doll():
 	return inv[PAPER_DOLL]
 
-#TODO: loading and saving from/to file
+func add_entry_to_journal(path):
+	inv[JOURNAL].push_front(path)
+	pass
+
+#for loading and saving from/to file
+func save_to_dict():
+	return {
+		"cur_health":health.cur_health,
+		"equipment": inv[PAPER_DOLL], 
+		"backpack":inv[BACKPACK],
+		"stats":stats_manager.save_to_dict(),
+		"journal":inv[JOURNAL]}
+
+func load_from_dict(var dict):
+	inv[JOURNAL] = dict["journal"]
+	inv[BACKPACK] = dict["backpack"]
+	stats_manager.load_from_dict(dict["stats"])
+	for item in dict["equipment"]:
+		var it = db.get_item(item)
+		if it["type"] == "weapon":
+			combat_manager.equip_wep(it)
+		if it["type"] == "armor":
+			health.equip_armor(item, it["protection"])
+	health.cur_health = dict["cur_health"]
