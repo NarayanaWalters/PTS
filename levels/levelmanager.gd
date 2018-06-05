@@ -32,9 +32,15 @@ func load_level(var i):
 	else:
 		load_scene_from_name(i)
 
+func return_to_main_menu():
+	get_tree().change_scene(level_path + "main_menu.tscn")
+
 func format_level_path(var n):
 	return level_path + n + ".tscn"
 
 func load_scene_from_name(var n):
 	get_tree().call_group("player", "save_char")
 	get_tree().change_scene(level_path + n + ".tscn")
+
+func get_cur_scene_name():
+	return level_list[cur_level]

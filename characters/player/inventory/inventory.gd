@@ -1,5 +1,5 @@
 extends Node2D
-
+onready var lm = get_node("/root/levelmanager")
 onready var db = get_node("/root/entity_database")
 onready var console = get_node("/root/console")
 onready var audio_controller = $AudioController
@@ -40,7 +40,8 @@ func _ready():
 
 func _input(event):
 	if (Input.is_action_pressed("exit")):
-		get_tree().quit()
+		lm.return_to_main_menu()
+		#TODO: require double to return to main menu
 	
 	if health.is_dead():
 		return

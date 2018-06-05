@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+onready var lm = get_node("/root/levelmanager")
 const SAVE_PATH = "user://savegame.save"
 
 onready var echolocator = get_node("Echolocator")
@@ -99,20 +100,19 @@ func save_char():
 	var save_game = File.new()
 	
 	save_game.open(SAVE_PATH, File.WRITE)
+	save_game.store_line(lm.get_cur_scene_name())
 	var dict = inventory.save_to_dict()
 	save_game.store_line(to_json(dict))
 	
 	save_game.close()
-	print("saved")
 	#print ("saved ", dict)
 
 func load_char():
 	var save_game = File.new()
 	if not save_game.file_exists(SAVE_PATH):
-		print("not found")
 		return
-	print("found")
 	save_game.open(SAVE_PATH, File.READ)
+	save_game.get_line()
 	var dict = parse_json(save_game.get_line())
 	inventory.load_from_dict(dict)
 	save_game.close()
