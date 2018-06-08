@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://characters/player/player.gd" type="Script" id=1]
 [ext_resource path="res://characters/player/echolocator.gd" type="Script" id=2]
@@ -15,7 +15,6 @@
 [ext_resource path="res://audio/player/injury/low_hp_warning.wav" type="AudioStream" id=13]
 [ext_resource path="res://characters/player/inventory/inventory.tscn" type="PackedScene" id=14]
 [ext_resource path="res://characters/player/interactor.gd" type="Script" id=15]
-[ext_resource path="res://ptsicon-2ztbbbcw.png" type="Texture" id=16]
 
 [sub_resource type="AudioStreamSample" id=1]
 
@@ -48,7 +47,6 @@ _sections_unfolded = [ "Collision", "collision" ]
 
 [node name="Echolocator" type="Node2D" parent="." index="0"]
 
-editor/display_folded = true
 script = ExtResource( 2 )
 
 [node name="RayCast2D" type="RayCast2D" parent="Echolocator" index="0"]
@@ -214,7 +212,6 @@ _sections_unfolded = [ "Pause" ]
 [node name="Interactor" type="Area2D" parent="." index="10"]
 
 pause_mode = 2
-editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -237,7 +234,7 @@ _sections_unfolded = [ "Pause" ]
 enabled = true
 exclude_parent = true
 cast_to = Vector2( 0, 33 )
-collision_mask = 5
+collision_mask = 7
 
 [node name="Camera2D" type="Camera2D" parent="." index="11"]
 
@@ -265,44 +262,5 @@ editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Transform" ]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="12"]
-
-layer = 0
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-
-[node name="Label" type="Label" parent="CanvasLayer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 878.0
-margin_top = 571.0
-margin_right = 1006.0
-margin_bottom = 585.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "created by miziziziz"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Anchor" ]
-
-[node name="Sprite" type="Sprite" parent="CanvasLayer" index="1"]
-
-visible = false
-position = Vector2( 506.866, 291.107 )
-rotation = 3.14159
-texture = ExtResource( 16 )
-flip_v = true
-_sections_unfolded = [ "Offset", "Transform" ]
 
 

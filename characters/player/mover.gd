@@ -117,17 +117,27 @@ func set_footstep_echo():
 		return
 	
 	var t_pos = tile_map.world_to_map(global_position)
-	var t_ind = tile_map.get_cellv(t_pos)
+	#var t_ind = tile_map.get_cellv(t_pos)
+	#print(t_pos)
+	var p = 0
+	if tile_map.get_cellv(t_pos + Vector2(1, 0)) < 0:
+		p += 1
+	if tile_map.get_cellv(t_pos + Vector2(0, 1)) < 0:
+		p += 1
+	if tile_map.get_cellv(t_pos + Vector2(-1, 0)) < 0:
+		p += 1
+	if tile_map.get_cellv(t_pos + Vector2(0, -1)) < 0:
+		p += 1
 	
-	if t_ind == 1:
+	if p == 3:
 		reverb.dry = 0.9
 		reverb.wet = 0.5
 		reverb.room_size = 0.4
-	if t_ind == 2:
+	if p > 3:
 		reverb.dry = 0.8
 		reverb.wet = 1
 		reverb.room_size = 1
-	return
+
 
 func signal_new_position(var pos):
 	get_tree().call_group("doors", "set_player", self)

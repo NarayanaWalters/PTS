@@ -5,7 +5,7 @@ const level_path = "res://levels/"
 var level_list = [
 	"tutorial",
 	"firststeps",
-	"firstevil"
+	"first_evil"
 ]
 var cur_level = 0
 

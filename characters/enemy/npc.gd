@@ -104,7 +104,7 @@ func move_to_pos(var p_pos, var delta):
 
 func can_see_player():
 	rc.set_cast_to(player_pos - global_position)
-	var se = rc.is_colliding() and rc.get_collider().has_meta("type") and rc.get_collider().get_meta("type") == "player"
+	var se = rc.is_colliding() and rc.get_collider() != null and rc.get_collider().has_meta("type") and rc.get_collider().get_meta("type") == "player"
 	if se:
 		last_saw_player = player_pos
 	return se
@@ -113,7 +113,7 @@ func attack():
 	if time_since_attack > attack_rate:
 		time_since_attack = 0
 		audio_controller.attack()
-		if rc.is_colliding() && rc.get_collider().has_method("deal_damage"):
+		if rc.is_colliding() and rc.get_collider().has_method("deal_damage"):
 			rc.get_collider().deal_damage(base_damage)
 	
 

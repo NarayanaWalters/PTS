@@ -6,7 +6,13 @@ extends Node2D
 onready var music_player = $MusicPlayer
 onready var note_player = $NotePlayer
 
-export var correct_music_comb = [0, 1, 2]
+export var music_seq_ind = 0
+var music_seqs = [
+	[0, 1, 2],
+	[0, 2, 1],
+	[0, 2, 2]
+] 
+var correct_music_comb = []
 var cur_music_comb = []
 
 const audio_path = "res://puzzles/music_puzzle/"
@@ -30,6 +36,7 @@ const note_play_rate = 4.0
 signal completed
 
 func _ready():
+	correct_music_comb = music_seqs[music_seq_ind]
 	for child in get_children():
 		if child.get_signal_list()[0]["name"] == "activated":
 			child.connect("activated", self, "add_note")

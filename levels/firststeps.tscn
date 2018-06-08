@@ -64,22 +64,16 @@ id = "h_zombie"
 
 position = Vector2( 152, 8 )
 content1 = "w_fireball"
-content2 = null
-content3 = null
 
 [node name="LootBag3" parent="." index="8" instance=ExtResource( 4 )]
 
 position = Vector2( 264, 312 )
 content1 = "a_leather_vest"
-content2 = null
-content3 = null
 
 [node name="LootBag2" parent="." index="9" instance=ExtResource( 4 )]
 
 position = Vector2( -40, 184 )
 content1 = "w_bow"
-content2 = null
-content3 = null
 
 [node name="Ladder" parent="." index="10" instance=ExtResource( 5 )]
 

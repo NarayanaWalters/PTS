@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 entity_database="*res://entity_database.tscn"
 console="*res://console.tscn"
 levelmanager="*res://levels/levelmanager.tscn"
+cover="*res://cover.tscn"
 
 [input]
 

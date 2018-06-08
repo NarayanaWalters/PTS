@@ -34,7 +34,7 @@ _sections_unfolded = [ "Cell" ]
 
 [node name="Player" parent="." index="1" instance=ExtResource( 2 )]
 
-position = Vector2( -56, -8 )
+position = Vector2( -120, -8 )
 rotation = -1.5708
 _sections_unfolded = [ "Collision", "Transform", "collision" ]
 
@@ -83,6 +83,8 @@ position = Vector2( 344, -40 )
 
 [node name="MusicPuzzle" parent="StoneGate" index="2" instance=ExtResource( 7 )]
 
+music_seq_ind = 1
+
 [node name="PressurePad" parent="StoneGate/MusicPuzzle" index="2" instance=ExtResource( 8 )]
 
 position = Vector2( -48, -16 )
@@ -90,9 +92,13 @@ position = Vector2( -48, -16 )
 [node name="PressurePad2" parent="StoneGate/MusicPuzzle" index="3" instance=ExtResource( 8 )]
 
 position = Vector2( -32, -16 )
+id = 1
 
 [node name="PressurePad3" parent="StoneGate/MusicPuzzle" index="4" instance=ExtResource( 8 )]
 
 position = Vector2( -16, -16 )
+id = 2
+
+[connection signal="completed" from="StoneGate/MusicPuzzle" to="StoneGate" method="open"]
 
 

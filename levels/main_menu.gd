@@ -1,11 +1,27 @@
 extends Node2D
 
 onready var lm = get_node("/root/levelmanager")
+onready var audio_player = $AudioStreamPlayer
 const SAVE_PATH = "user://savegame.save"
 
+const AUDIO_PATH = "res://audio/main_menu/"
+
+var menu_stream = "menu_intro.wav"
+var confirm_stream = "confirm_new_game.wav"
+var controls_stream = "menu_controls.wav"
+
+var rq_confirm = false
+
 func _ready():
-	
-	pass
+	reset_audio_pl()
+
+func _process(delta):
+	if !audio_player.playing:
+		reset_audio_pl()
+
+func reset_audio_pl():
+	audio_player.stream = load(AUDIO_PATH + menu_stream)
+	audio_player.play()
 
 func _input(event):
 	if event is InputEventKey and event.pressed:
@@ -13,16 +29,26 @@ func _input(event):
 			new_game()
 		if event.scancode == KEY_2:
 			load_game()
+		if event.scancode == KEY_3:
+			play_controls()
+		if event.scancode == KEY_ENTER and rq_confirm:
+			new_game_erase_old()
 		if event.scancode == KEY_ESCAPE:
 			exit()
 
 func new_game():
 	var save_game = File.new()
+	
 	if save_game.file_exists(SAVE_PATH):
-		var dir = Directory.new()
-		dir.remove(SAVE_PATH)
-		#save_game.remove(SAVE_PATH)
-		pass
+		rq_confirm = true
+		audio_player.stream = load(AUDIO_PATH + confirm_stream)
+		audio_player.play()
+		return
+	lm.load_level(0)
+
+func new_game_erase_old():
+	var dir = Directory.new()
+	dir.remove(SAVE_PATH)
 	lm.load_level(0)
 
 func load_game():
@@ -35,6 +61,10 @@ func load_game():
 	var lvl = save_game.get_line()
 	lm.load_level(lvl)
 	save_game.close()
+
+func play_controls():
+	audio_player.stream = load(AUDIO_PATH + controls_stream)
+	audio_player.play()
 
 func exit():
 	get_tree().quit()
