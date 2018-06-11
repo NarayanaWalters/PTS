@@ -47,6 +47,7 @@ _sections_unfolded = [ "Collision", "collision" ]
 
 [node name="Echolocator" type="Node2D" parent="." index="0"]
 
+editor/display_folded = true
 script = ExtResource( 2 )
 
 [node name="RayCast2D" type="RayCast2D" parent="Echolocator" index="0"]
@@ -86,6 +87,7 @@ bus = "Compass"
 
 [node name="Mover" type="Node2D" parent="." index="2"]
 
+editor/display_folded = true
 script = ExtResource( 6 )
 
 [node name="MoveRay" type="RayCast2D" parent="Mover" index="0"]
@@ -212,6 +214,7 @@ _sections_unfolded = [ "Pause" ]
 [node name="Interactor" type="Area2D" parent="." index="10"]
 
 pause_mode = 2
+editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
