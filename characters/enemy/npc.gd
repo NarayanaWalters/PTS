@@ -26,7 +26,7 @@ onready var audio_controller = $NPCAudioController
 var time_since_attack = 9999
 
 var saw_player = false
-
+var player_visible = false
 var last_saw_player = []
 
 onready var tile_map = get_parent().get_node("TileMap")
@@ -64,8 +64,7 @@ func init_npc():
 		add_to_group("enemies")
 
 func _process(delta):
-	audio_controller.muffle(can_see_player())
-	#update()
+	audio_controller.muffle(player_visible)
 
 func _draw():
 	pass
@@ -94,10 +93,11 @@ func t_seek_player(delta):
 		move_and_collide(cur_dir * move_speed * delta)
 		return
 	
-	
+	player_visible = true
 	var dir = t_get_dir(t_pos, p_pos)
-	#print(dir)
+	
 	if dir == null:
+		player_visible = false
 		if last_pos == null:
 			#print("fis")
 			return
@@ -112,10 +112,16 @@ func t_seek_player(delta):
 	
 	
 	if !t_can_see_p(t_pos, p_pos, dir, t_range):
-		#print("yup")
+		player_visible = false
 		return
 	
-	
+	rc.cast_to = dir * attack_range
+	var hit_som = rc.is_colliding() and rc.get_collider() != null 
+	if hit_som:
+		var is_player = hit_som and rc.get_collider().has_meta("type") and rc.get_collider().get_meta("type") == "player"
+		if is_player:
+			attack()
+			return
 	cur_dir = dir
 	last_pos = p_pos
 	#if last_pos != null:
