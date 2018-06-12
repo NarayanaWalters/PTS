@@ -140,5 +140,5 @@ func set_footstep_echo():
 
 
 func signal_new_position(var pos):
-	get_tree().call_group("doors", "set_player", self)
+	#get_tree().call_group("doors", "set_player", self)
 	get_tree().call_group("enemies", "update_player_pos", pos)
