@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/rotting_shelf.wav-e806ed695549a556cf9768d753fefed6.sample"
+
+[deps]
+
+source_file="res://audio/journal/rotting_shelf.wav"
+source_md5="4376822612b72835ccc4c1aded7e2d9b"
+
+dest_files=[ "res://.import/rotting_shelf.wav-e806ed695549a556cf9768d753fefed6.sample" ]
+dest_md5="25f666c5eb359534bcc607a3423e547e"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

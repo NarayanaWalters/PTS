@@ -141,7 +141,7 @@ func t_in_tile():
 func t_can_see_p(t_pos, p_pos, dir, iter):
 	var i = 0
 	
-	while i < 5:
+	while i < iter:
 		t_pos += dir
 		if tile_map.get_cellv(t_pos) >= 0:
 			return false

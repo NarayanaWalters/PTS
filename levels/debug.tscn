@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://basic.tres" type="TileSet" id=1]
 [ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://characters/enemy/npc.tscn" type="PackedScene" id=3]
 [ext_resource path="res://environment/lootbag.tscn" type="PackedScene" id=4]
 [ext_resource path="res://environment/ladder.tscn" type="PackedScene" id=5]
+[ext_resource path="res://utility/journal_log_trigger.tscn" type="PackedScene" id=6]
 
-[node name="World" type="Node2D" index="0"]
+[node name="World" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
@@ -51,6 +52,10 @@ content1 = "w_bronze_dagger"
 
 position = Vector2( 96, 0 )
 load_next_on_use = true
+
+[node name="JournalLogTrigger" parent="." index="5" instance=ExtResource( 6 )]
+
+position = Vector2( -56, -8 )
 
 
 [editable path="Player"]

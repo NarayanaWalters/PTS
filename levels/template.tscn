@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://basic.tres" type="TileSet" id=1]
 [ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://characters/enemy/npc.tscn" type="PackedScene" id=3]
 [ext_resource path="res://environment/lootbag.tscn" type="PackedScene" id=4]
 [ext_resource path="res://environment/ladder.tscn" type="PackedScene" id=5]
+[ext_resource path="res://utility/stone_gate.tscn" type="PackedScene" id=6]
+[ext_resource path="res://utility/journal_log_trigger.tscn" type="PackedScene" id=7]
 
 [node name="World" type="Node2D" index="0"]
 
@@ -49,6 +51,14 @@ content1 = "w_bronze_dagger"
 
 position = Vector2( 96, 0 )
 load_next_on_use = true
+
+[node name="StoneGate" parent="." index="5" instance=ExtResource( 6 )]
+
+closed = true
+
+[node name="JournalLogTrigger" parent="." index="6" instance=ExtResource( 7 )]
+
+play_on_start = false
 
 
 [editable path="Player"]
