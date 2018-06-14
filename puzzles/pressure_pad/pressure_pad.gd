@@ -17,7 +17,10 @@ func _ready():
 func stepped_on(body):
 	if body.get("turning") and body.turning:
 		return
-	emit_signal("activated", id)
+	if id >= 0:
+		emit_signal("activated", id)
+	else:
+		emit_signal("activated")
 	play_sound(sound_on_enter)
 
 func stepped_off(body):
