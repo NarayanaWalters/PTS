@@ -21,7 +21,7 @@ var cur_row = 0
 
 var inv = [
 # Paper Doll
-["w_bronze_dagger"], 
+[], 
 # Backpack
 ["p_hp_basic_potion"],#"w_fireball", "w_iron_sword", "w_bronze_dagger", "default_item", "a_leather_vest"],
 # Stats
@@ -290,4 +290,5 @@ func load_from_dict(var dict):
 			combat_manager.equip_wep(it)
 		if it["type"] == "armor":
 			health.equip_armor(item, it["protection"])
+	inv[PAPER_DOLL] = dict["equipment"]
 	health.cur_health = dict["cur_health"]

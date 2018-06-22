@@ -5,7 +5,9 @@ const level_path = "res://levels/"
 var level_list = [
 	"tutorial",
 	"firststeps",
-	"first_evil"
+	"roundabout",
+	"first_evil",
+	"end"
 ]
 var cur_level = 0
 
@@ -26,13 +28,15 @@ func load_last_level():
 	load_scene_from_name(level_list[cur_level])
 
 func load_level(var i):
+	var name = i
 	if typeof(i) == TYPE_INT:
 		if i >= 0 and i < level_list.size() - 1:
-			load_scene_from_name(level_list[i])
-	else:
-		load_scene_from_name(i)
+			name = level_list[i]
+	cur_level = level_list.find(name)
+	load_scene_from_name(name)
 
 func return_to_main_menu():
+	cur_level = -1
 	get_tree().change_scene(level_path + "main_menu.tscn")
 
 func format_level_path(var n):

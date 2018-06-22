@@ -9,10 +9,12 @@ const AUDIO_PATH = "res://audio/main_menu/"
 var menu_stream = "menu_intro.wav"
 var confirm_stream = "confirm_new_game.wav"
 var controls_stream = "menu_controls.wav"
+var credits_stream = "credits.wav"
 
 var rq_confirm = false
 
 func _ready():
+	get_tree().paused = false
 	reset_audio_pl()
 
 func _process(delta):
@@ -31,6 +33,8 @@ func _input(event):
 			load_game()
 		if event.scancode == KEY_3:
 			play_controls()
+		if event.scancode == KEY_4:
+			play_credits()
 		if event.scancode == KEY_ENTER and rq_confirm:
 			new_game_erase_old()
 		if event.scancode == KEY_ESCAPE:
@@ -64,6 +68,10 @@ func load_game():
 
 func play_controls():
 	audio_player.stream = load(AUDIO_PATH + controls_stream)
+	audio_player.play()
+
+func play_credits():
+	audio_player.stream = load(AUDIO_PATH + credits_stream)
 	audio_player.play()
 
 func exit():

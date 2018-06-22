@@ -8,7 +8,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 7, 7 )
 
-[node name="PressurePad" type="Area2D"]
+[node name="PressurePad" type="Area2D" index="0"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -20,7 +20,7 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
-id = 0
+id = -1
 sound_on_enter = ""
 sound_on_exit = ""
 

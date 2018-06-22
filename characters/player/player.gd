@@ -103,9 +103,8 @@ func save_char():
 	save_game.store_line(lm.get_cur_scene_name())
 	var dict = inventory.save_to_dict()
 	save_game.store_line(to_json(dict))
-	
 	save_game.close()
-	#print ("saved ", dict)
+
 
 func load_char():
 	var save_game = File.new()

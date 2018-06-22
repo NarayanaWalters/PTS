@@ -32,7 +32,7 @@ func process_signal(name, param):
 		set_stream(1)
 	elif name == "reached_loc" and param == "end_of_first_corridor":
 		set_stream(2)
-	elif name == "turned" and param == "east":
+	elif name == "turned" and param == "east" and cur_id == 2:
 		set_stream(3) 
 	elif name == "opened_chest":
 		set_stream(4) 

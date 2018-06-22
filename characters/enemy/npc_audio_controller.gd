@@ -4,7 +4,7 @@ enum states {IDLE, CHASE}
 var state = 0
 
 var reg_vol = 1
-var muffled_vol = -10
+var muffled_vol = -30
 
 var sounds = {
 	"idle":[],

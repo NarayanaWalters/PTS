@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/pressure_plate_and_chime.wav-3db6f570fe9cc3ca33043552f3b85724.sample"
+
+[deps]
+
+source_file="res://audio/journal/pressure_plate_and_chime.wav"
+source_md5="69e4912c817b258374a1db72c3effc37"
+
+dest_files=[ "res://.import/pressure_plate_and_chime.wav-3db6f570fe9cc3ca33043552f3b85724.sample" ]
+dest_md5="6321c233622a87a160d4293ea403803b"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

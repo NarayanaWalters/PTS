@@ -113,7 +113,6 @@ play_on_start = false
 [node name="StoneGate" parent="." index="12" instance=ExtResource( 11 )]
 
 position = Vector2( 40, 152 )
-closed = true
 
 [node name="JournalLogTrigger3" parent="StoneGate" index="2" instance=ExtResource( 5 )]
 

@@ -11,7 +11,7 @@ config_version=3
 [application]
 
 config/name="PTS"
-run/main_scene="res://levels/roundabout.tscn"
+run/main_scene="res://levels/main_menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]

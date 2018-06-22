@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://basic.tres" type="TileSet" id=1]
 [ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=2]
@@ -10,12 +10,13 @@
 [ext_resource path="res://utility/stone_gate.tscn" type="PackedScene" id=8]
 [ext_resource path="res://audio/journal/gate_in_front.wav" type="AudioStream" id=9]
 [ext_resource path="res://audio/journal/musty_air.wav" type="AudioStream" id=10]
-[ext_resource path="res://audio/environment/Babbling Brook-SoundBible.com-17660315.wav" type="AudioStream" id=11]
-[ext_resource path="res://audio/journal/a_stream.wav" type="AudioStream" id=12]
-[ext_resource path="res://audio/environment/atmosbasement.mp3_.wav" type="AudioStream" id=13]
-[ext_resource path="res://puzzles/pressure_pad/pressure_pad.tscn" type="PackedScene" id=14]
+[ext_resource path="res://audio/journal/pressure_plate_sink.wav" type="AudioStream" id=11]
+[ext_resource path="res://audio/environment/Babbling Brook-SoundBible.com-17660315.wav" type="AudioStream" id=12]
+[ext_resource path="res://audio/journal/a_stream.wav" type="AudioStream" id=13]
+[ext_resource path="res://audio/environment/atmosbasement.mp3_.wav" type="AudioStream" id=14]
+[ext_resource path="res://puzzles/pressure_pad/pressure_pad.tscn" type="PackedScene" id=15]
 
-[node name="World" type="Node2D" index="0"]
+[node name="World" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
@@ -97,7 +98,6 @@ play_on_start = false
 
 [node name="StoneGate2" parent="." index="9" instance=ExtResource( 8 )]
 
-editor/display_folded = true
 position = Vector2( 376, -8 )
 closed = true
 
@@ -114,11 +114,23 @@ position = Vector2( -8, 8 )
 stream = ExtResource( 10 )
 play_on_start = true
 
-[node name="Brook" type="AudioStreamPlayer2D" parent="." index="11"]
+[node name="JournalLogTrigger6" parent="." index="11" instance=ExtResource( 5 )]
+
+position = Vector2( 136, -216 )
+stream = ExtResource( 11 )
+play_on_start = false
+
+[node name="JournalLogTrigger7" parent="." index="12" instance=ExtResource( 5 )]
+
+position = Vector2( 184, 216 )
+stream = ExtResource( 11 )
+play_on_start = false
+
+[node name="Brook" type="AudioStreamPlayer2D" parent="." index="13"]
 
 editor/display_folded = true
 position = Vector2( 104, -8 )
-stream = ExtResource( 11 )
+stream = ExtResource( 12 )
 volume_db = 0.0
 autoplay = true
 max_distance = 50.0
@@ -128,13 +140,13 @@ area_mask = 1
 
 [node name="JournalLogTrigger2" parent="Brook" index="0" instance=ExtResource( 5 )]
 
-stream = ExtResource( 12 )
+stream = ExtResource( 13 )
 play_on_start = false
 
-[node name="Drips" type="AudioStreamPlayer2D" parent="." index="12"]
+[node name="Drips" type="AudioStreamPlayer2D" parent="." index="14"]
 
 position = Vector2( -24, -8 )
-stream = ExtResource( 13 )
+stream = ExtResource( 14 )
 volume_db = 0.0
 autoplay = true
 max_distance = 50.0
@@ -142,19 +154,17 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="PressurePad" parent="." index="13" instance=ExtResource( 14 )]
+[node name="PressurePad" parent="." index="15" instance=ExtResource( 15 )]
 
-position = Vector2( 136, 216 )
-id = -1
+position = Vector2( 184, 216 )
 
-[node name="PressurePad2" parent="." index="14" instance=ExtResource( 14 )]
+[node name="PressurePad2" parent="." index="16" instance=ExtResource( 15 )]
 
 position = Vector2( 136, -216 )
-id = -1
-
-[connection signal="activated" from="PressurePad" to="StoneGate2" method="open"]
 
 [connection signal="activated" from="PressurePad" to="StoneGate2/JournalLogTrigger5" method="dont_play"]
+
+[connection signal="activated" from="PressurePad" to="StoneGate2" method="open"]
 
 [connection signal="activated" from="PressurePad2" to="StoneGate" method="open"]
 

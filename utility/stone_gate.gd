@@ -20,20 +20,22 @@ func _ready():
 
 
 func open():
+	audio_player.play()
 	if tile_map != null:
 		t_open()
 		return
 	collision_layer = 0
 	coll.disabled = true
-	audio_player.play()
+	
 
 func close():
+	audio_player.play()
 	if tile_map != null:
 		t_close()
 		return
 	collision_layer = 1
 	coll.disabled = false
-	audio_player.play()
+	
 
 func t_open():
 	var pos = tile_map.world_to_map(global_position)

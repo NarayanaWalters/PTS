@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://basic.tres" type="TileSet" id=1]
 [ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=2]
@@ -8,8 +8,13 @@
 [ext_resource path="res://utility/stone_gate.tscn" type="PackedScene" id=6]
 [ext_resource path="res://puzzles/music_puzzle/music_puzzle.tscn" type="PackedScene" id=7]
 [ext_resource path="res://puzzles/pressure_pad/pressure_pad.tscn" type="PackedScene" id=8]
+[ext_resource path="res://utility/journal_log_trigger.tscn" type="PackedScene" id=9]
+[ext_resource path="res://audio/journal/gateway_and_mech.wav" type="AudioStream" id=10]
+[ext_resource path="res://audio/journal/ancient_corpse.wav" type="AudioStream" id=11]
+[ext_resource path="res://audio/journal/first_evil_vanq.wav" type="AudioStream" id=12]
+[ext_resource path="res://audio/journal/pressure_plate_and_chime.wav" type="AudioStream" id=13]
 
-[node name="World" type="Node2D" index="0"]
+[node name="World" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
@@ -53,7 +58,7 @@ id = "h_zombie"
 position = Vector2( 120, 56 )
 id = "h_zombie"
 
-[node name="NPC4" parent="." index="5" instance=ExtResource( 3 )]
+[node name="Boss" parent="." index="5" instance=ExtResource( 3 )]
 
 position = Vector2( 392, -40 )
 id = "h_large_zombie"
@@ -62,15 +67,12 @@ id = "h_large_zombie"
 
 position = Vector2( 72, -120 )
 content1 = "w_iron_sword"
-content2 = null
-content3 = null
+content2 = "a_leather_vest"
 
 [node name="LootBag2" parent="." index="7" instance=ExtResource( 4 )]
 
 position = Vector2( 168, -56 )
-content1 = "w_bronze_dagger"
-content2 = null
-content3 = null
+content1 = "p_hp_basic_potion"
 
 [node name="Ladder" parent="." index="8" instance=ExtResource( 5 )]
 
@@ -80,14 +82,17 @@ load_next_on_use = true
 [node name="StoneGate" parent="." index="9" instance=ExtResource( 6 )]
 
 position = Vector2( 344, -40 )
+closed = true
 
 [node name="MusicPuzzle" parent="StoneGate" index="2" instance=ExtResource( 7 )]
 
+editor/display_folded = true
 music_seq_ind = 1
 
 [node name="PressurePad" parent="StoneGate/MusicPuzzle" index="2" instance=ExtResource( 8 )]
 
 position = Vector2( -48, -16 )
+id = 0
 
 [node name="PressurePad2" parent="StoneGate/MusicPuzzle" index="3" instance=ExtResource( 8 )]
 
@@ -98,6 +103,31 @@ id = 1
 
 position = Vector2( -16, -16 )
 id = 2
+
+[node name="JournalLogTrigger" parent="." index="10" instance=ExtResource( 9 )]
+
+position = Vector2( 280, -40 )
+stream = ExtResource( 10 )
+play_on_start = false
+
+[node name="JournalLogTrigger2" parent="." index="11" instance=ExtResource( 9 )]
+
+position = Vector2( 40, -120 )
+stream = ExtResource( 11 )
+play_on_start = false
+
+[node name="JournalLogTrigger3" parent="." index="12" instance=ExtResource( 9 )]
+
+position = Vector2( 408, -40 )
+stream = ExtResource( 12 )
+play_on_start = false
+
+[node name="JournalLogTrigger4" parent="." index="13" instance=ExtResource( 9 )]
+
+position = Vector2( 312, -56 )
+scale = Vector2( 2.5, 1 )
+stream = ExtResource( 13 )
+play_on_start = false
 
 [connection signal="completed" from="StoneGate/MusicPuzzle" to="StoneGate" method="open"]
 
